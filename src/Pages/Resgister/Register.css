@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.heading h1{
+    font-size: 60px;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../Components/Assests/PngItem_22665.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.register{
+    border: 1px solid black;
+    width: 500px;
+    min-height: 650px;
+    height: 70%;
+    padding: 15px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 0.9;
+    transition: 0.5s;
+}
+
+.register:hover{
+    background-color: white;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.register form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
+::placeholder {
+    text-align: center; 
+ }
+
+ .register input{
+    background: #f3f0f0;
+ }
+
+.logo{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.label-field label{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.input-field input{
+    width: 80%;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 35px;
+    width: 100%;
+}
+
+.btn button:hover{
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+    background-image: linear-gradient(
+    to right, 
+    #E7484F,
+    #E7484F 16.65%,
+    #F68B1D 16.65%,
+    #F68B1D 33.3%,
+    #FCED00 33.3%,
+    #FCED00 49.95%,
+    #009E4F 49.95%,
+    #009E4F 66.6%,
+    #00AAC3 66.6%,
+    #00AAC3 83.25%,
+    #732982 83.25%,
+    #732982 100%,
+    #E7484F 100%
+    );
+    animation:slidebg 8s linear infinite;
+    cursor: pointer;
+}
+
+.submit-btn button{
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+    padding: 10px;
+    width: 100%;
+    width: 170px;
+}
+
+.info-text p{
+    font-size: 20px;
+}
+
+
+
+
+
+ 

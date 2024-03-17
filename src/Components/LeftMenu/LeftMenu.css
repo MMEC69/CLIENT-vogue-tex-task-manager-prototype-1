@@ -1,0 +1,54 @@
+.left-menu{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: absolute;
+    float: left;
+    background-color: white;
+    box-shadow: 8px 8px 8px #ddd;
+    margin-top: 5rem;
+    position: fixed;
+}
+
+.left-menu button{
+    padding: 20px;
+    background: white;
+    border: 1px black solid;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.left-menu button:hover{
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+    background-image: linear-gradient(
+    to right, 
+    #E7484F,
+    #E7484F 16.65%,
+    #F68B1D 16.65%,
+    #F68B1D 33.3%,
+    #FCED00 33.3%,
+    #FCED00 49.95%,
+    #009E4F 49.95%,
+    #009E4F 66.6%,
+    #00AAC3 66.6%,
+    #00AAC3 83.25%,
+    #732982 83.25%,
+    #732982 100%,
+    #E7484F 100%
+    );
+    animation:slidebg 4s linear infinite;
+}
+
+@keyframes slidebg {
+    to {
+      background-position:20vw;
+    }
+  }

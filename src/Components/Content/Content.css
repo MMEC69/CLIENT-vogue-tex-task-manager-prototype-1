@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+    border: 0px;
+}
+.content{
+    width: 83%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+    box-shadow: 8px 8px 8px #ddd;
+    margin: 10px;
+    margin-left: 16%;
+    position: absolute;
+    margin-top: 5rem;
+    z-index: -1;
+}
