@@ -5,6 +5,38 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({children}){
     const [user, setUser] = useState(null);
+    const [activity, setActivity] = useState("dashboard");
+    const [project, setProject] = useState({
+        projectOwner: "",
+        projectName: "",
+        projectDescription: "",
+        departmentName: "",
+        startDate: "",
+        dueDate: "",
+        assignedTo: "",
+        state: "",
+        tasks:[],
+        comments:[]
+    });
+
+    const [newComment, setNewComment] = useState({
+        commentor: "",
+        commentedDate: "",
+        commentedTime: "",
+        message: ""
+    });
+
+    const [newTask, setNewTask] = useState({
+        newTaskName: "",
+        newTaskDescription: "",
+        newTaskStartDate: "",
+        newTaskdueDate: "",
+        newTaskAssignedTo: "",
+        state:""
+    });
+
+    const [tasks, setTasks] = useState([]);
+
     useEffect(() => {
         if(!user){
             axios.get("/profile")
@@ -15,7 +47,20 @@ export function UserContextProvider({children}){
     }, []);
 
     return(
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{
+            user, 
+            setUser, 
+            activity, 
+            setActivity,
+            project,
+            setProject,
+            newComment, 
+            setNewComment,
+            newTask, 
+            setNewTask,
+            tasks,
+            setTasks
+            }}>
             {children}
         </UserContext.Provider>
     );
