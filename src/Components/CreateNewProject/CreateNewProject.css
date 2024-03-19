@@ -1,6 +1,8 @@
 *{
     box-sizing: border-box;
     border: 0px;
+    letter-spacing: 2px;
+    outline: none;
 }
 .create-new-project{
     width: 100%;
@@ -14,7 +16,91 @@
     margin-left: 0;
     position: absolute;
     margin-top: 0;
-    z-index: -1;
-    
+    z-index: -1;  
+    height: 100vh; 
 }
+
+.create-new-project form{
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 80vh;
+}
+
+.field-P{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.field-P input{
+    width: 75%;
+    background: #f3f0f0;
+    font-size: 20px;
+    line-height: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+}
+
+.field-P input:hover{
+    transform: scale(1.02);
+}
+
+.field-P textarea:hover{
+    transform: scale(1.02);
+}
+
+.field-P textarea{
+    width: 75%;
+    height: 400px;
+    background: #f3f0f0;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+
+}
+
+.field-P label{
+    width: 25%;
+    font-size: 20px;
+}
+
+.create-new-project button{
+    width: 40%;
+    padding: 10px;
+    text-align: center;
+    justify-content: right;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.create-new-project button{
+    background-color: #04AA6D;
+    color: white;
+    width: 40%;
+    padding: 10px;
+    text-align: center;
+    justify-content: right;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 25px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 7px #676666;
+}
+
+.create-new-project button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.create-new-project button:active{
+    box-shadow: none;
+}
+
+
 

@@ -14,7 +14,7 @@ export function UserContextProvider({children}){
         startDate: "",
         dueDate: "",
         assignedTo: "",
-        state: "",
+        projectState: "",
         tasks:[],
         comments:[]
     });

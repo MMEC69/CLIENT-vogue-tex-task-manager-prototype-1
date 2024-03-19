@@ -1,17 +1,50 @@
 import React from 'react';
 import "./CreateNewProject.css";
-import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex'; 
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
-export default function CreateNewPage() {
-    const {activity, setActivity, project, setProject} = useContext(UserContext);
-
-    const addNewProject = (e) => {
+export default function CreateNewProject() {
+    const {activity, setActivity, project, setProject, user} = useContext(UserContext);
+    
+    const addNewProject = async (e) => {
         e.preventDefault();
-        setActivity("create-new-task");
+        const { 
+            projectOwner,
+            projectName, 
+            projectDescription, 
+            departmentName, 
+            startDate, 
+            dueDate, 
+            assignedTo, 
+            projectState} = project;
+        try {
+            const {data} = await axios.post("/createNewProject", {
+                projectOwner,
+                projectName, 
+                projectDescription, 
+                departmentName, 
+                startDate, 
+                dueDate, 
+                assignedTo, 
+                projectState
+            });
+
+            if(data.error){
+                toast.error(data.error);
+            }else{
+                setProject({});
+                toast.success("Project Created!");
+                setActivity("create-new-task");;
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+
 
     return (
     <div className='create-new-project'>
@@ -30,7 +63,7 @@ export default function CreateNewPage() {
 
             <div className='field-P'>
                 <label>Project Description:</label> 
-                <input 
+                <textarea 
                     type='text'
                     placeholder=''
                     autoComplete='off'
@@ -96,11 +129,15 @@ export default function CreateNewPage() {
                     autoComplete='off'
                     name = "state"
                     value={project.state}
-                    onChange={(e) => {setProject({...project, state: e.target.value})}}
+                    onChange={(e) => {setProject({...project, projectState: e.target.value})}}
                 /> 
             </div>
 
-            <button type = "submit">Add the Project</button>
+            <div className='field-P'>
+            <label></label>
+            <button type = "submit" onClick={(e) => setProject({...project, projectOwner: user.email})}>Add the Project</button>
+            </div>
+
         </form>
         
     </div>
