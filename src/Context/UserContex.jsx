@@ -37,6 +37,11 @@ export function UserContextProvider({children}){
 
     const [tasks, setTasks] = useState([]);
 
+    const [currentProject, setCurrentProject] = useState({
+        currentProjectOwner: "",
+        currentProjectName:"" 
+    });
+
     useEffect(() => {
         if(!user){
             axios.get("/profile")
@@ -59,7 +64,9 @@ export function UserContextProvider({children}){
             newTask, 
             setNewTask,
             tasks,
-            setTasks
+            setTasks,
+            currentProject, 
+            setCurrentProject
             }}>
             {children}
         </UserContext.Provider>

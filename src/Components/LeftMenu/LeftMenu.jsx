@@ -25,8 +25,13 @@ export const LeftMenu = () => {
     setActivity("create-new-project");
   }
 
+  const createNewTaskActivity = () => {
+    setActivity("create-new-task");
+  }
+
   return (
     <div className='left-menu'>
+      <button onClick={createNewTaskActivity}>Create New Task</button>
       <button onClick={createNewProjectActivity}>Create New Project</button>
       <button onClick={dashboardActivity}>Dashboard</button>
       <button>TimeLine</button>

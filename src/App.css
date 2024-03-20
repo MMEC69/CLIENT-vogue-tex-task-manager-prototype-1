@@ -2,3 +2,18 @@
   box-sizing: border-box;
   border: 0px;
 }
+
+.app{
+  overflow: hidden;
+}
+
+.task-view::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.task-view {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 
 export default function CreateNewProject() {
-    const {activity, setActivity, project, setProject, user} = useContext(UserContext);
+    const {activity, setActivity, project, setProject, user, currentProject, setCurrentProject} = useContext(UserContext);
     
     const addNewProject = async (e) => {
         e.preventDefault();
@@ -35,6 +35,10 @@ export default function CreateNewProject() {
             if(data.error){
                 toast.error(data.error);
             }else{
+                setCurrentProject({
+                    currentProjectOwner: projectOwner,
+                    currentProjectName: projectName
+                });
                 setProject({});
                 toast.success("Project Created!");
                 setActivity("create-new-task");;

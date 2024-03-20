@@ -6,7 +6,7 @@ import { UserContext } from '../../Context/UserContex';
 
 
 export default function CreateNewTask() {
-    const {project, setProject, newTask, setNewTask, tasks, setTasks, setActivity} = useContext(UserContext);
+    const {project, setProject, newTask, setNewTask, tasks, setTasks, setActivity, currentProject, setCurrentProject} = useContext(UserContext);
 
     const addNewTask = (e) => {
         e.preventDefault();
@@ -19,8 +19,19 @@ export default function CreateNewTask() {
     }
 
     return (
-    <div className='create-new-task'>
-        <form onSubmit={addNewTask}>
+        <div className='create-new-task'>
+            <form onSubmit={addNewTask}>
+            <div className='field-P'>
+                <label>Project Name:</label> 
+                <input 
+                    type='text'
+                    placeholder=''
+                    autoComplete='off'
+                    name = "newTaskName"
+                    value={currentProject.currentProjectName}
+                    onChange={(e) => {setNewTask({...currentProject, currentProjectName: e.target.value})}}
+                />  
+            </div>
             <div className='field-P'>
                 <label>Task Name:</label> 
                 <input 
@@ -35,7 +46,7 @@ export default function CreateNewTask() {
 
             <div className='field-P'>
                 <label>Task Description:</label> 
-                <input 
+                <textarea 
                     type='text'
                     placeholder=''
                     autoComplete='off'
@@ -94,18 +105,35 @@ export default function CreateNewTask() {
                 /> 
             </div>
 
+            <div className='field-P'>
+                <label></label>
+                <button type = "submit">Add Task</button><br/>
+                <button onClick={completeProject} id='complete-project'>Complete Project</button>
+            </div>
             
-            <button type = "submit">Add Task</button><br/>
-            <button onClick={completeProject}>Complete Project</button>
-        </form>
+            </form>
 
         
 
-        <div className='task-view'>
-            <SingleTaskView/>
-            <SingleTaskView/>
-        </div>
+    <div className='task-view'>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
+        <SingleTaskView/>
     </div>
+</div>
     
     );
 }
