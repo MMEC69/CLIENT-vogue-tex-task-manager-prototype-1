@@ -5,10 +5,9 @@
 .navbar{
     background-color: white;
     width: 100%;
-    border-radius: 10px;
     height: 4.5rem;
     padding: 15px 15px;
-    box-shadow: 8px 8px 8px #ddd;
+    box-shadow: 0 0 10px 0px #ddd;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -32,7 +31,16 @@
     align-items: center;
     gap: 10px;
     width: 50%;
+    border-width: 0px;
+    transition: 0.5s;
 }
+
+.search-bar:hover{
+    transform: scale(1.025);
+    transform: scaleX(1.05);
+    transition: 0.5s;
+}
+
 .search-bar input{
     width: 100%;
     height: 2.5rem;
@@ -40,9 +48,23 @@
     border: 1px rgba(54, 50, 50, 0.934) solid;
     font-size: 20px;
     padding: 10px;
+    border-width: 0px;
+    text-align: center;
+    box-shadow: 0 0 10px 0px #ddd;
 }
 
 #search-icon{
-    font-size: 20px;
+    font-size: 21px;
     
 }
+
+.logo_{
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.logo_:hover{
+    transform: scale(1.025);
+    transition: 0.5s;
+}
+

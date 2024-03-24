@@ -26,21 +26,25 @@ export function UserContextProvider({children}){
         message: ""
     });
 
+    const [currentProject, setCurrentProject] = useState({
+        currentProjectOwner: "",
+        currentProjectName:"" 
+    });
+
     const [newTask, setNewTask] = useState({
+        assginer:"",
+        assignedProject: "",
         newTaskName: "",
         newTaskDescription: "",
         newTaskStartDate: "",
         newTaskdueDate: "",
         newTaskAssignedTo: "",
-        state:""
+        tastState:""
     });
 
     const [tasks, setTasks] = useState([]);
 
-    const [currentProject, setCurrentProject] = useState({
-        currentProjectOwner: "",
-        currentProjectName:"" 
-    });
+    
 
     useEffect(() => {
         if(!user){
@@ -49,7 +53,7 @@ export function UserContextProvider({children}){
                 setUser(data);
             });
         }
-    }, []);
+    }, [activity]);
 
     return(
         <UserContext.Provider value={{

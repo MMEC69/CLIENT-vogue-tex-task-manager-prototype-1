@@ -1,14 +1,14 @@
 .left-menu{
     width: 15%;
-    height: 91vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 20px;
     position: absolute;
     float: left;
     background-color: white;
-    box-shadow: 8px 8px 8px #ddd;
-    margin-top: 5rem;
+    box-shadow: 0 0 10px 0px #ddd;
+    margin-top: 4.75rem;
     position: fixed;
 }
 
@@ -21,12 +21,14 @@
     font-size: 20px;
     font-weight: 500;
     border-radius: 15px;
-    box-shadow: 2px 2px 7px #676666;
+    box-shadow: 0 0 0 3px #ddd;
+    transition: 0.25s;
 }
 
 .left-menu button:hover{
     cursor: pointer;
     transform: scale(1.1);
+    transition: 0.25s;
     
 }
 .left-menu button:active{

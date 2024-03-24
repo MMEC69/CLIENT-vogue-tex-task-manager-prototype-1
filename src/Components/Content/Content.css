@@ -4,13 +4,18 @@
 }
 .content{
     width: 83%;
-    display: flex;
-    flex-direction: column;
     height: 91vh;
-    gap: 10px;
-    box-shadow: 8px 8px 8px #ddd;
-    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    gap: 50px;
+    
+    margin: 50px;
     margin-left: 16%;
+    padding: 200px;
+    padding-top: 20px;
     position: absolute;
     margin-top: 5rem;
     z-index: -1;

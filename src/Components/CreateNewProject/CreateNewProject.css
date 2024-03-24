@@ -61,7 +61,7 @@
     border-radius: 10px;
     padding: 10px;
     border: none;
-
+    transition: 0.5s;
 }
 
 .field-P label{
@@ -91,11 +91,13 @@
     line-height: 25px;
     border-radius: 15px;
     box-shadow: 2px 2px 7px #676666;
+    transition: 0.5s;
 }
 
 .create-new-project button:hover{
     cursor: pointer;
     transform: scale(1.05);
+    transition: 0.5s;
 }
 
 .create-new-project button:active{

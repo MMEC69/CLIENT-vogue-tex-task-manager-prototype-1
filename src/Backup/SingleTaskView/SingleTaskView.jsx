@@ -15,18 +15,9 @@ export default function SingleTaskView() {
 
   return (
     <div className='single-task'>
-      <div className='task-name'>
-          <p>{projectName}</p>
-        </div>
-
-        <div className='task-time'>
-          <p>{startDate} to {dueDate}</p>
-        </div>
-
-        <div className='task-state'>
-          <p>State due</p>
-        </div>
-      
+        <p><span>Task: </span> {projectName}</p>
+        <p><span>Start date: </span> {startDate} <span>Due date: </span> {dueDate}</p>
+        <p><span>State: </span>Due</p>
     </div>
   )
 }

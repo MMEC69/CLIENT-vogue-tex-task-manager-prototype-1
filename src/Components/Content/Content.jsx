@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Content.css";
 import SingleProjectView from '../SingleProjectView/SingleProjectView';
 import { projects } from "../../TestData/Projects";
@@ -8,7 +8,10 @@ import CreateNewProject from '../CreateNewProject/CreateNewProject';
 import CreateNewTask from '../CreateNewTask/CreateNewTask';
 
 export default function Content() {
-  const { activity } = useContext(UserContext);
+  const { activity, setActivity } = useContext(UserContext);
+  useEffect(() => {
+    setActivity("dashboard")
+  }, []);
   return (
     // projects?.length > 0 ?
     <div className='content'>

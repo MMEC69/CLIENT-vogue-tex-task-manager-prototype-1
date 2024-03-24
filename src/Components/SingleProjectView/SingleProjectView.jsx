@@ -15,9 +15,19 @@ export default function SingleProjectView({ project }) {
 
   return (
     <div className='single-project'>
-        <p><span>Project: </span> {project.name}</p>
-        <p><span>Start date: </span> {project.startDate} <span>Due date: </span> {project.dueDate}</p>
-        <p><span>State: </span>{project.state}</p>
+        <div className='project-name'>
+          <p>{project.name}</p>
+        </div>
+
+        <div className='time'>
+          <p>{project.startDate}<span> to </span>{project.dueDate}</p>
+        </div>
+
+        <div className='state'>
+          <p>State {project.state}</p>
+        </div>
+        
+
     </div>
-  )
+  );
 }

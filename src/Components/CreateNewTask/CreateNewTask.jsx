@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./CreateNewTask.css";
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 export default function CreateNewTask() {
-    const {project, setProject, newTask, setNewTask, tasks, setTasks, setActivity, currentProject, setCurrentProject} = useContext(UserContext);
+    const {user, newTask, setNewTask, tasks, setTasks, setActivity, currentProject, setCurrentProject} = useContext(UserContext);
 
-    const addNewTask = (e) => {
+    useEffect(() => {
+        setCurrentProject({...currentProject, currentProjectOwner: user.email});
+        setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
+    }, []);
+    
+    const addNewTask = async (e) => {
         e.preventDefault();
-        setTasks([newTask, ...tasks]);
-        setProject({...project, tasks: tasks});
+        setTasks ([newTask, ...tasks]);
+        setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
     }
 
-    const completeProject = () => {
-        
+    const completeProject = async (e) => {
+        e.preventDefault();
+        try{
+            const {data} = await axios.put("/createNewTask", {
+                currentProject, tasks
+            });
+            if(data.error){
+                toast.error(data.error);
+            }else{
+                setCurrentProject({});
+                toast.success("Project Completed!");
+                setActivity("dashboard");
+            }
+        } catch (error) {
+            console.log("Error:" +error);
+        }
     }
 
     return (
@@ -27,9 +48,10 @@ export default function CreateNewTask() {
                     type='text'
                     placeholder=''
                     autoComplete='off'
-                    name = "newTaskName"
+                    name = "assginedProject"
                     value={currentProject.currentProjectName}
-                    onChange={(e) => {setNewTask({...currentProject, currentProjectName: e.target.value})}}
+                    onChange={(e) => {
+                        setNewTask({...currentProject, currentProjectName: e.target.value})}}
                 />  
             </div>
             <div className='field-P'>
@@ -100,8 +122,8 @@ export default function CreateNewTask() {
                     placeholder=''
                     autoComplete='off'
                     name = "state"
-                    value={newTask.newTaskName}
-                    onChange={(e) => {setNewTask({...newTask, newTaskName: e.target.value})}}
+                    value={newTask.state}
+                    onChange={(e) => {setNewTask({...newTask, taskState: e.target.value})}}
                 /> 
             </div>
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import "./SingleTaskView.css";
+import "./SingleProjectView.css";
 import { useState, useEffect } from 'react';
 
-export default function SingleTaskView() {
+export default function SingleProjectView({ project }) {
 
     const currentDate = () => {
         const date = new Date();
@@ -14,19 +14,10 @@ export default function SingleTaskView() {
     const [dueDate, setDueDate] = useState(currentDate);
 
   return (
-    <div className='single-task'>
-      <div className='task-name'>
-          <p>{projectName}</p>
-        </div>
-
-        <div className='task-time'>
-          <p>{startDate} to {dueDate}</p>
-        </div>
-
-        <div className='task-state'>
-          <p>State due</p>
-        </div>
-      
+    <div className='single-project'>
+        <p><span>Project: </span> {project.name}</p>
+        <p><span>Start date: </span> {project.startDate} <span>Due date: </span> {project.dueDate}</p>
+        <p><span>State: </span>{project.state}</p>
     </div>
   )
 }
