@@ -8,7 +8,8 @@ import CreateNewProject from '../CreateNewProject/CreateNewProject';
 import CreateNewTask from '../CreateNewTask/CreateNewTask';
 
 export default function Content() {
-  const { activity, setActivity } = useContext(UserContext);
+  const { activity, setActivity, displayProjects} = useContext(UserContext);
+
   useEffect(() => {
     setActivity("dashboard")
   }, []);
@@ -16,9 +17,9 @@ export default function Content() {
     // projects?.length > 0 ?
     <div className='content'>
         {activity === "dashboard" &&
-          projects.map((project => (
-            <SingleProjectView project= {project}/>
-          ))) 
+          displayProjects.map((displayProject => {
+            return <SingleProjectView project= {displayProject}/>
+          })) 
         }
  
         {activity === "create-new-project" &&

@@ -43,7 +43,7 @@ export function UserContextProvider({children}){
     });
 
     const [tasks, setTasks] = useState([]);
-
+    const [displayProjects, setDisplayProjects] = useState([]);
     
 
     useEffect(() => {
@@ -53,6 +53,10 @@ export function UserContextProvider({children}){
                 setUser(data);
             });
         }
+
+        axios.get("/getProjects")
+        .then(displayProjects => setDisplayProjects(displayProjects.data))
+        .catch(err => console.log(err));
     }, [activity]);
 
     return(
@@ -70,7 +74,9 @@ export function UserContextProvider({children}){
             tasks,
             setTasks,
             currentProject, 
-            setCurrentProject
+            setCurrentProject,
+            displayProjects, 
+            setDisplayProjects
             }}>
             {children}
         </UserContext.Provider>
