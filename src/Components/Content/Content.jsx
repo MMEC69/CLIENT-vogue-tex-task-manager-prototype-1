@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex';
 import CreateNewProject from '../CreateNewProject/CreateNewProject';
 import CreateNewTask from '../CreateNewTask/CreateNewTask';
+import ProjectContentView from '../PojectContentView/ProjectContentView';
 
 export default function Content() {
   const { activity, setActivity, displayProjects} = useContext(UserContext);
@@ -28,6 +29,10 @@ export default function Content() {
 
         {activity === "create-new-task" &&
           <CreateNewTask/>
+        }
+
+        {activity === "project-content-view" &&
+          <ProjectContentView/>
         }
     </div>
     

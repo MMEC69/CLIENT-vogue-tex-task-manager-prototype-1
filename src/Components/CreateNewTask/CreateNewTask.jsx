@@ -51,7 +51,9 @@ export default function CreateNewTask() {
                     name = "assginedProject"
                     value={currentProject.currentProjectName}
                     onChange={(e) => {
-                        setNewTask({...currentProject, currentProjectName: e.target.value})}}
+                        setNewTask({...currentProject, currentProjectName: e.target.value})
+                        }
+                    }
                 />  
             </div>
             <div className='field-P'>
@@ -138,22 +140,7 @@ export default function CreateNewTask() {
         
 
     <div className='task-view'>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
-        <SingleTaskView/>
+        
     </div>
 </div>
     

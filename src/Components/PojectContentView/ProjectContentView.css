@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    border: 0px;
+    letter-spacing: 2px;
+    outline: none;
+}
+
+.content_{
+    width: 80%;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+
+}
+
+.project-content-view{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.task-content-view{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.field-D{
+    display: grid;
+    grid-template-columns: 10fr 0.25fr 15fr;
+    flex-direction: row;
+    align-items: left;
+}
+
+.field-D h1{
+    font-size: 20px;
+}
+
+.field-D h2{
+    font-size: 20px;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+*{
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+
+

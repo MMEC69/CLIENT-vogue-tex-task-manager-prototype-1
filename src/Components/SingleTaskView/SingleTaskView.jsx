@@ -2,29 +2,31 @@ import React from 'react'
 import "./SingleTaskView.css";
 import { useState, useEffect } from 'react';
 
-export default function SingleTaskView() {
+export default function SingleTaskView({singleTask}) {
 
-    const currentDate = () => {
-        const date = new Date();
-        return date.toDateString();
-    }
-
-    const [projectName, setProjectName] = useState("Squashing bugs found in app!");
-    const [startDate, setStartDate] = useState(currentDate);
-    const [dueDate, setDueDate] = useState(currentDate);
+  const {
+    assginer, 
+    assignedProject,
+    newTaskName,
+    newTaskDescription,
+    newTaskStartDate,
+    newTaskdueDate,
+    newTaskAssignedTo,
+    tastState
+  } = singleTask;
 
   return (
     <div className='single-task'>
       <div className='task-name'>
-          <p>{projectName}</p>
+          <p>{newTaskName}</p>
         </div>
 
         <div className='task-time'>
-          <p>{startDate} to {dueDate}</p>
+          <p>{newTaskStartDate} to {newTaskdueDate}</p>
         </div>
 
         <div className='task-state'>
-          <p>State due</p>
+          <p>{tastState}</p>
         </div>
       
     </div>

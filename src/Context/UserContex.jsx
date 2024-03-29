@@ -44,6 +44,8 @@ export function UserContextProvider({children}){
 
     const [tasks, setTasks] = useState([]);
     const [displayProjects, setDisplayProjects] = useState([]);
+
+    const [test, setTest] = useState({});
     
 
     useEffect(() => {
@@ -76,7 +78,9 @@ export function UserContextProvider({children}){
             currentProject, 
             setCurrentProject,
             displayProjects, 
-            setDisplayProjects
+            setDisplayProjects,
+            test, 
+            setTest
             }}>
             {children}
         </UserContext.Provider>
