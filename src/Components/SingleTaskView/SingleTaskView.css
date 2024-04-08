@@ -5,21 +5,20 @@
 
 .single-task{
     width: 80%;
-    height: 10%px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     background: white;
     box-shadow: 0 0 10px 0px #ddd;
-    padding: 10px;
+    padding: 20px;
     cursor: pointer;
     border-radius: 20px;
     transition: 0.5s;
     text-align: center;
+    margin-top: 10px;
     margin-left: 50px;
-    margin-bottom: 10px;
 }
 
 .task-name p{

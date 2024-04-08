@@ -22,34 +22,34 @@ export default function ProjectContentView() {
 
         <div className='project-content-view'>
             <div className='field-D'>
-                <h1>Project Name</h1>
-                <h1>:</h1>
-                <h2>{selectedProject.projectName}</h2> 
+                <p>Project Name</p>
+                <p>:</p>
+                <p>{selectedProject.projectName}</p> 
             </div>
             <div className='field-D'>
-                <h1>Project Description</h1> 
-                <h1>:</h1>
-                <h2>{selectedProject.projectDescription}</h2> 
+                <p>Project Description</p> 
+                <p>:</p>
+                <p>{selectedProject.projectDescription}</p> 
             </div>
             <div className='field-D'>
-                <h1>Department Name</h1>
-                <h1>:</h1>
-                <h2>{selectedProject.departmentName}</h2>  
+                <p>Department Name</p>
+                <p>:</p>
+                <p>{selectedProject.departmentName}</p>  
             </div>
             <div className='field-D'>
-                <h1>Start Date</h1>
-                <h1>:</h1>
-                <h2>{selectedProject.startDate}</h2>  
+                <p>Start Date</p>
+                <p>:</p>
+                <p>{selectedProject.startDate}</p>  
             </div>
             <div className='field-D'>
-                <h1>Due Date</h1> 
-                <h1>:</h1>
-                <h2>{selectedProject.dueDate}</h2> 
+                <p>Due Date</p> 
+                <p>:</p>
+                <p>{selectedProject.dueDate}</p> 
             </div>
             <div className='field-D'>
-                <h1>Project State</h1>
-                <h1>:</h1>
-                <h2>{selectedProject.projectState}</h2>  
+                <p>Project State</p>
+                <p>:</p>
+                <p>{selectedProject.projectState}</p>  
             </div>
         </div>
 

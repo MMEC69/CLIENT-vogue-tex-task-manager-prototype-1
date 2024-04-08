@@ -7,13 +7,21 @@ import toast from 'react-hot-toast';
 
 
 export default function CreateNewProject() {
-    const {setTasks, setActivity, project, setProject, user, setNewTask, setCurrentProject} = useContext(UserContext);
+    const {
+        setActivity, 
+        project, 
+        setProject, 
+        setCurrentProject, 
+        setNewTask, 
+        setTasks, 
+        user
+    } = useContext(UserContext);
     
     const addNewProject = async (e) => {
         e.preventDefault();
         setNewTask({});
         setTasks([]);
-        const { 
+        let { 
             projectOwner,
             projectName, 
             projectDescription, 
@@ -22,6 +30,11 @@ export default function CreateNewProject() {
             dueDate, 
             assignedTo, 
             projectState} = project;
+
+            if (projectState === undefined || projectState === ""){
+                projectState = "On going";
+            }
+
         try {
             const {data} = await axios.post("/createNewProject", {
                 projectOwner,
@@ -94,7 +107,7 @@ export default function CreateNewProject() {
             <div className='field-P'>
                 <label>Start Date:</label> 
                 <input 
-                    type='text'
+                    type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "startDate"
@@ -106,7 +119,7 @@ export default function CreateNewProject() {
             <div className='field-P'>
                 <label>Due Date:</label> 
                 <input 
-                    type='text'
+                    type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "dueDate"
@@ -128,15 +141,12 @@ export default function CreateNewProject() {
             </div>
 
             <div className='field-P'>
-                <label>State:</label>             
-                <input 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "state"
-                    value={project.state}
-                    onChange={(e) => {setProject({...project, projectState: e.target.value})}}
-                /> 
+                <label>State:</label> 
+                <select onChange={(e) => {setProject({...project, projectState: e.target.value})}}>
+                    <option value="On Going" selected>On Going</option>
+                    <option value="Completed">Completed</option>    
+                    <option value="Due">Due</option>    
+                </select>           
             </div>
 
             <div className='field-P'>

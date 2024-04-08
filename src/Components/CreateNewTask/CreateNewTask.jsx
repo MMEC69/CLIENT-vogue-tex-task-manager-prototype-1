@@ -13,6 +13,9 @@ export default function CreateNewTask() {
     useEffect(() => {
         setCurrentProject({...currentProject, currentProjectOwner: user.email});
         setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
+        if (newTask.tastState === undefined || newTask.tastState === ""){
+            newTask.tastState = "On going";
+        }
     }, []);
     
     const addNewTask = async (e) => {
@@ -83,7 +86,7 @@ export default function CreateNewTask() {
             <div className='field-P'>
                 <label>Start Date:</label> 
                 <input 
-                    type='text'
+                    type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "startDate"
@@ -95,7 +98,7 @@ export default function CreateNewTask() {
             <div className='field-P'>
                 <label>Due Date:</label> 
                 <input 
-                    type='text'
+                    type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "dueDate"
@@ -119,14 +122,11 @@ export default function CreateNewTask() {
 
             <div className='field-P'>
                 <label>State:</label> 
-                <input 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "state"
-                    value={newTask.state}
-                    onChange={(e) => {setNewTask({...newTask, taskState: e.target.value})}}
-                /> 
+                <select onChange={(e) => {setNewTask({...newTask, taskState: e.target.value})}}>
+                    <option value="On Going" selected>On Going</option>
+                    <option value="Completed">Completed</option>    
+                    <option value="Due">Due</option>    
+                </select>   
             </div>
 
             <div className='field-P'>
@@ -140,7 +140,9 @@ export default function CreateNewTask() {
         
 
     <div className='task-view'>
-        
+        {tasks.map(projectTask => {
+                return <SingleTaskView singleTask = {projectTask}/>
+        })}
     </div>
 </div>
     

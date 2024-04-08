@@ -33,9 +33,9 @@ export const LeftMenu = () => {
 
   return (
     <div className='left-menu'>
-      <button onClick={createNewTaskActivity}>Create New Task</button>
-      <button onClick={createNewProjectActivity}>Create New Project</button>
-      <button onClick={dashboardActivity}>Dashboard</button>
+      <button onClick={createNewTaskActivity}>New Task</button>
+      <button onClick={createNewProjectActivity}>New Project</button>
+      <button onClick={dashboardActivity}><span>Dashboard</span></button>
       <button>TimeLine</button>
       <button onClick={logOut}>LogOut</button>
     </div>
