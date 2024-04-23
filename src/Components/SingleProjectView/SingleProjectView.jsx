@@ -13,8 +13,16 @@ export default function SingleProjectView({project}) {
     setActivity("project-content-view");
   }
 
+  const projectModify = async (e) => {
+    setCurrentProject({
+      currentProjectOwner:project.projectOwner,
+      currentProjectName: project.projectName
+    });
+    setActivity("project-modify");
+  }
+
   return (
-    <div className='single-project' onClick={viewProject}>
+    <div className='single-project'>
         <div className='project-name'>
           <p>{project.projectName}</p>
         </div>
@@ -27,6 +35,13 @@ export default function SingleProjectView({project}) {
           <p>State {project.projectState}</p>
         </div>
         
+        <div className='modify'>
+          <button onClick={projectModify}>Modify</button>
+        </div>
+
+        <div className='modify'>
+          <button onClick={viewProject}>View</button>
+        </div>
 
     </div>
   );

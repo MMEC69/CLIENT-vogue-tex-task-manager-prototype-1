@@ -5,21 +5,33 @@ import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { registerLicense } from '@syncfusion/ej2-base';
+import Select from "react-dropdown-select"; 
 
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww==');
 
 export default function CreateNewTask() {
-    const {user, newTask, setNewTask, tasks, setTasks, setActivity, currentProject, setCurrentProject} = useContext(UserContext);
+    const {
+        users,
+        user,
+        displayProjects, 
+        newTask, 
+        setNewTask, 
+        tasks, 
+        setTasks, 
+        setActivity, 
+        currentProject, 
+        setCurrentProject} = useContext(UserContext);
 
-    useEffect(() => {
-        setCurrentProject({...currentProject, currentProjectOwner: user.email});
-        setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
-        if (newTask.tastState === undefined || newTask.tastState === ""){
-            newTask.tastState = "On going";
-        }
-    }, []);
+    const InitialStartDate = new Date();
+    const endDate = currentProject.dueDate;
     
     const addNewTask = async (e) => {
         e.preventDefault();
+        if (newTask.tastState === undefined || newTask.tastState === ""){
+            newTask.tastState = "On going";
+        }
         setTasks ([newTask, ...tasks]);
         setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
     }
@@ -53,8 +65,11 @@ export default function CreateNewTask() {
                     autoComplete='off'
                     name = "assginedProject"
                     value={currentProject.currentProjectName}
-                    onChange={(e) => {
-                        setNewTask({...currentProject, currentProjectName: e.target.value})
+                    onBlur={(e) => {
+                        setNewTask({
+                            ...currentProject, 
+                            currentProjectName: e.target.value, 
+                            currentProjectOwner: currentProject.currentProjectOwner});
                         }
                     }
                 />  
@@ -85,38 +100,64 @@ export default function CreateNewTask() {
 
             <div className='field-P'>
                 <label>Start Date:</label> 
-                <input 
+                <DatePickerComponent 
+                    onChange={(e) => {setNewTask({...newTask, newTaskStartDate: e.target.value})}}
+                    value = {newTask.newTaskStartDate}
+                    placeholder='Enter Date'
+                    min={InitialStartDate}
+                    max={endDate}
+                    >
+                </DatePickerComponent>
+                {/* <input 
                     type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "startDate"
                     value={newTask.newTaskStartDate}
                     onChange={(e) => {setNewTask({...newTask, newTaskStartDate: e.target.value})}}
-                /> 
+                />  */}
             </div>
 
             <div className='field-P'>
                 <label>Due Date:</label> 
-                <input 
+                <DatePickerComponent 
+                    onChange={(e) => {setNewTask({...newTask, newTaskdueDate: e.target.value})}}
+                    placeholder='Enter Date'
+                    value={newTask.newTaskdueDate}
+                    min={newTask.newTaskStartDate}
+                    max={endDate}
+                    >
+                </DatePickerComponent>
+                {/* <input 
                     type='date'
                     placeholder=''
                     autoComplete='off'
                     name = "dueDate"
                     value={newTask.newTaskdueDate}
                     onChange={(e) => {setNewTask({...newTask, newTaskdueDate: e.target.value})}}
-                /> 
+                />  */}
             </div>
 
             <div className='field-P'>
                 <label>Assigned To:</label> 
-                <input 
+                <Select
+                    name = "users"
+                    options = {users}
+                    labelField="email"
+                    valueField='email'
+                    multi
+                    searchable = "true"
+                    onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e.target.value})}}
+                >
+                </Select>
+                {/* <input 
                     type='text'
                     placeholder=''
                     autoComplete='off'
                     name = "assignedTo"
                     value={newTask.newTaskAssignedTo}
                     onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e.target.value})}}
-                /> 
+                />  */}
             </div>
 
 
@@ -131,7 +172,7 @@ export default function CreateNewTask() {
 
             <div className='field-P'>
                 <label></label>
-                <button type = "submit">Add Task</button><br/>
+                <button type = "submit" onClick={(e) => setNewTask({...newTask, assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName})}>Add Task</button><br/>
                 <button onClick={completeProject} id='complete-project'>Complete Project</button>
             </div>
             

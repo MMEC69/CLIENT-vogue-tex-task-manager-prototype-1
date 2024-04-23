@@ -6,6 +6,7 @@ import { UserContext } from '../../Context/UserContex';
 import CreateNewProject from '../CreateNewProject/CreateNewProject';
 import CreateNewTask from '../CreateNewTask/CreateNewTask';
 import ProjectContentView from '../PojectContentView/ProjectContentView';
+import ProjectModify from '../ProjectModify/ProjectModify';
 
 export default function Content() {
   const { activity, setActivity, displayProjects} = useContext(UserContext);
@@ -35,6 +36,10 @@ export default function Content() {
         {activity === "project-content-view" &&
           <ProjectContentView/>
         }
+
+        {activity === "project-modify" &&
+          <ProjectModify/>
+        } 
     </div>
     
   );

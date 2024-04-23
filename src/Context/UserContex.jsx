@@ -5,7 +5,11 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({children}){
     const [user, setUser] = useState(null);
+
+    const [users, setUsers] = useState([]);
+
     const [activity, setActivity] = useState("dashboard");
+
     const [project, setProject] = useState({
         projectOwner: "",
         projectName: "",
@@ -13,7 +17,7 @@ export function UserContextProvider({children}){
         departmentName: "",
         startDate: "",
         dueDate: "",
-        assignedTo: "",
+        assignedTo: [],
         projectState: "",
         tasks:[],
         comments:[]
@@ -44,7 +48,6 @@ export function UserContextProvider({children}){
 
     const [tasks, setTasks] = useState([]);
     const [displayProjects, setDisplayProjects] = useState([]);
-
     const [test, setTest] = useState({});
     
 
@@ -57,13 +60,18 @@ export function UserContextProvider({children}){
         }
 
         axios.get("/getProjects")
-        .then(displayProjects => setDisplayProjects(displayProjects.data))
-        .catch(err => console.log(err));
+            .then(res => setDisplayProjects(res.data))
+            .catch(err => console.log(err));
+
+        axios.get("/getUsers")
+            .then(res => setUsers(res.data))
+            .catch(err => console.log(err));
     }, [activity]);
 
     return(
         <UserContext.Provider value={{
-            user, 
+            user,
+            users, 
             setUser, 
             activity, 
             setActivity,
