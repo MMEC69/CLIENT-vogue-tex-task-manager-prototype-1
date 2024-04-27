@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./ProjectModify.css";
 import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex'; 
@@ -17,12 +17,10 @@ export default function ProjectModify() {
     const {
         users,
         displayProjects, 
-        setCurrentProject, 
-        currentProject, 
-        test, 
-        setTest,
-        project,
-        setProject} = useContext(UserContext);
+        currentProject,
+    } = useContext(UserContext);
+
+    const [project, setProject] = useState({});
     
     //selected project from the projects
     const displayProject = displayProjects.filter((displayProject) => {
@@ -34,76 +32,19 @@ export default function ProjectModify() {
     //Content for datepicker
     const InitialStartDate = new Date();
 
-    //Select filteration
-    let filteredUsers = users.filter((assignUser) => {
-        return assignUser.email != selectedProject.projectOwner;
-    });
-
+    //Select projectOwner
+    const projectModifier = selectedProject.projectOwner;
+    
     //post/put to server
     const modifyProject = async (e) => {
         e.preventDefault();
-        let{
-            projectOwner,
-            projectName,
-            projectDescription,
-            departmentName,
-            startDate,
-            dueDate,
-            assignedTo,
-            projectState
-        } = project;
-        
-        let{
-            tasks,
-            comments
-        } = selectedProject
-
-        if (projectOwner === undefined || projectOwner === ""){
-            projectOwner = selectedProject.projectOwner;
-        }
-        if (projectState === undefined || projectState === ""){
-            projectState = selectedProject.projectState;
-        }
-        if (projectName === undefined || projectName === ""){
-            projectName = selectedProject.projectName;
-        }
-        if (projectDescription === undefined || projectDescription === ""){
-            projectName = selectedProject.projectDescription;
-        }
-        if (departmentName === undefined || departmentName === ""){
-            projectName = selectedProject.departmentName;
-        }
-        if (startDate === undefined || startDate === ""){
-            startDate = selectedProject.departmentName;
-        }
-        if (dueDate === undefined || dueDate === ""){
-            dueDate = selectedProject.departmentName;
-        }
-        if (assignedTo === undefined || assignedTo === ""){
-            assignedTo = selectedProject.departmentName;
-        }
-
-        let projectOwnerObj = selectedProject.assignedTo.filter((ass) => {
-            return ass.email = selectedProject.projectOwner;
-        });
-        
-        assignedTo = [...assignedTo, {
-            email: projectOwnerObj[0].email, 
-            fullName: projectOwnerObj[0].fullName
-        }];
+        console.log(project);
+        //select project object
 
         try{
-            const {data} = await axios.put(`/modifyTheProject/${selectedProject[0].projectName}`, {
-                projectOwner,
-                projectName,
-                projectDescription,
-                departmentName,
-                startDate,
-                dueDate,
-                assignedTo,
-                projectState,
-                tasks,
-                comments
+            const {data} = await axios.put(`/modifyTheProject/${selectedProject.projectName}`, {
+                projectModifier,
+                project
             });
 
             if(data.error){
@@ -117,11 +58,11 @@ export default function ProjectModify() {
             toast.error(error);
         }     
     }
-
+   
     return (
     <div className='content_'>
         <div className='project-content-view'>
-            <form action={modifyProject}>
+            <form onSubmit={modifyProject}>
                 <div className='field-D'>
                     <label>Project Name</label> 
                     <p>:</p>
@@ -202,11 +143,12 @@ export default function ProjectModify() {
                     <p>:</p>
                     <Select
                         name = "users"
-                        options={filteredUsers}
+                        options={users}
                         labelField= "email"
                         valueField="email"
                         multi
                         searchable = "true"
+                        onChange={(e) => {setProject({...project, assignedTo: e})}}
                     >
                     </Select>
                     {/* <input 
@@ -229,7 +171,7 @@ export default function ProjectModify() {
                 </div>
                 
                 <div className='field-D'>
-                    <button type = "submit">Complete The Changes</button>
+                    <button type = "submit" onClick={(e) => {}}>Complete The Changes</button>
                 </div>
             </form>   
         </div>
