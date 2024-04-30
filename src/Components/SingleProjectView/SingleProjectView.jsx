@@ -1,12 +1,17 @@
 import React, { useContext } from 'react'
 import "./SingleProjectView.css";
 import { UserContext } from '../../Context/UserContex';
-import toast from 'react-hot-toast';
 import axios from 'axios';
+import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
+import {dateFormat1} from "../../Functions/Conversion";
 
-export default function SingleProjectView({project}) {
+export default function SingleProjectView ({project}) {
   const {
-    projectName
+    projectOwner,
+    projectName,
+    startDate,
+    dueDate,
+    projectState
   } = project;
 
   const {
@@ -16,19 +21,22 @@ export default function SingleProjectView({project}) {
   } = useContext(UserContext);
 
   const projectDeleter = user.email;
+  const fStartDate = dateFormat1(startDate);
+  const fDueDate = dateFormat1(dueDate);
 
+  //===========================Functions
   const viewProject = async (e) => {
     setCurrentProject({
-      currentProjectOwner:project.projectOwner,
-      currentProjectName: project.projectName
+      currentProjectOwner : projectOwner,
+      currentProjectName : projectName
     });
     setActivity("project-content-view");
   }
 
   const projectModify = async (e) => {
     setCurrentProject({
-      currentProjectOwner:project.projectOwner,
-      currentProjectName: project.projectName
+      currentProjectOwner : projectOwner,
+      currentProjectName : projectName
     });
     setActivity("project-modify");
   }
@@ -57,39 +65,21 @@ export default function SingleProjectView({project}) {
       // return toast.error(error);
     }
   }
+  //===========================End of functions
 
   return (
     <div className='single-project'>
       <div>
-        <div className='project-name'>
-            <p>{project.projectName}</p>
-          </div>
-
-          <div className='time'>
-            <p>{project.startDate}<span> to </span>{project.dueDate}</p>
-          </div>
-
-          <div className='state'>
-            <p>State {project.projectState}</p>
-          </div>
-          
+        <BigH pn =  {projectName}/>
+        <MidH sd =  {fStartDate} dd = {fDueDate}/>
+        <LH s = {projectState}/>
       </div>
 
       <div>
-        <div className='option-button'>
-              <button onClick={projectModify}>Modify</button>
-            </div>
-        <div className='option-button'>
-          <button onClick={viewProject}>View</button>
-        </div>
-
-        <div className='option-button'>
-          <form onSubmit={deleteProject}>
-            <button type='submit'>Remove</button>
-          </form>
-        </div>
+        <OB c = "Modify" f = {projectModify}/>
+        <OB c = "View" f = {viewProject}/>
+        <OB c = "Remove" f = {deleteProject}/>  
       </div>
-
     </div>
   );
 }

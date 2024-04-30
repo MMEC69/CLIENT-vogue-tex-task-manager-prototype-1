@@ -1,0 +1,37 @@
+.bigH{
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(67, 64, 64);
+}
+
+.midH{
+    font-size: 25px;
+    font-weight: 700;
+    color: rgb(105, 100, 100);
+}
+
+.LH{
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(17, 219, 64);
+}
+
+.OB{
+    background-color: aliceblue;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;
+    margin: 5px 0px;
+    padding: 2px;
+    text-align: center;
+}
+
+.OB button{
+    background-color: aliceblue;
+    text-align: center;
+    padding: 5px 20px;
+}
+
+.OB button:hover{
+    cursor: pointer;
+    
+}
