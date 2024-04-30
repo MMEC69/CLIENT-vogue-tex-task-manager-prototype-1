@@ -43,7 +43,7 @@ export function UserContextProvider({children}){
         newTaskStartDate: "",
         newTaskdueDate: "",
         newTaskAssignedTo: "",
-        tastState:""
+        taskState:""
     });
 
     const [tasks, setTasks] = useState([]);

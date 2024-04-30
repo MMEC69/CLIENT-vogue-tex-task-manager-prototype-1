@@ -1,5 +1,6 @@
 import React from 'react'
 import "./SingleTaskView.css";
+import { dateFormat1 } from "../../Functions/Conversion";
 import { useState, useEffect } from 'react';
 
 export default function SingleTaskView({singleTask}) {
@@ -12,7 +13,7 @@ export default function SingleTaskView({singleTask}) {
     newTaskStartDate,
     newTaskdueDate,
     newTaskAssignedTo,
-    tastState
+    taskState
   } = singleTask;
 
   return (
@@ -22,11 +23,11 @@ export default function SingleTaskView({singleTask}) {
         </div>
 
         <div className='task-time'>
-          <p>{newTaskStartDate} to {newTaskdueDate}</p>
+          <p>{dateFormat1(newTaskStartDate)} to {dateFormat1(newTaskdueDate)}</p>
         </div>
 
         <div className='task-state'>
-          <p>{tastState}</p>
+          <p>{taskState}</p>
         </div>
       
     </div>

@@ -147,7 +147,7 @@ export default function CreateNewTask() {
                     valueField='email'
                     multi
                     searchable = "true"
-                    onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e.target.value})}}
+                    onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e})}}
                 >
                 </Select>
                 {/* <input 
