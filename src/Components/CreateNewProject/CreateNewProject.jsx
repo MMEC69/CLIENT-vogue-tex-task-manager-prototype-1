@@ -1,14 +1,10 @@
-import React from 'react';
-import "./CreateNewProject.css";
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex'; 
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { registerLicense } from '@syncfusion/ej2-base';
-import Select from "react-dropdown-select"; 
+import Styles from "../ComponentCSS/Form.module.css";
+import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww==');
 
 export default function CreateNewProject() {
     //This is the use contex
@@ -31,11 +27,20 @@ export default function CreateNewProject() {
         return assignUser.email != user.email;
     });
 
+    //options for state
+    const options = [
+        {name: "on going"},
+        {name: "due"},
+        {name: "completed"}
+    ];
+
     //post/put to server
     const addNewProject = async (e) => {
+    
         e.preventDefault();
         setNewTask({});
         setTasks([]);
+    
         let { 
             projectOwner,
             projectName, 
@@ -46,155 +51,120 @@ export default function CreateNewProject() {
             assignedTo, 
             projectState} = project;
 
-            if (projectState === undefined || projectState === ""){
-                projectState = "On going";
-            }
+        projectState = projectState[0].name;
+        console.log(projectState);
 
-            assignedTo = [...assignedTo, {email: user.email, fullName: user.fullName}];
+        if (projectState === undefined || projectState === ""){
+            projectState = "on going";
+        }
+
+        assignedTo = [...assignedTo, {email: user.email, fullName: user.fullName}];
         try {
-            const {data} = await axios.post("/createNewProject", {
-                projectOwner,
-                projectName, 
-                projectDescription, 
-                departmentName, 
-                startDate, 
-                dueDate, 
-                assignedTo, 
-                projectState
-            });
+        const {data} = await axios.post("/createNewProject", {
+            projectOwner,
+            projectName, 
+            projectDescription, 
+            departmentName, 
+            startDate, 
+            dueDate, 
+            assignedTo, 
+            projectState
+        });
 
-            if(data.error){
-                toast.error(data.error);
-                setCurrentProject({});
-            }else{
-                setProject({});
-                toast.success("Project Created!");
-                setActivity("create-new-task");
-            }
+        if(data.error){
+            toast.error(data.error);
+            setCurrentProject({});
+        }else{
+            setProject({});
+            toast.success("Project Created!");
+            setActivity("create-new-task");
+        }
         } catch (error) {
+            toast.error(error);
             console.log(error);
         }
     }
 
     return (
-    <div className='create-new-project'>
-
+    <div className={Styles.form1}>
         <form onSubmit={addNewProject}>
-            <div className='field-P'>
-            <label>Project Name:</label>
-                <input 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "projectName"
-                    value={project.projectName}
-                    onChange={(e) => {setProject({...project, projectName: e.target.value})}}
-                /> 
-            </div>
+            <Field1
+                labelName = "Project Name"
+                type = "text"
+                placeholder=''
+                autoComplete='off'
+                name = "projectName"
+                value={project.projectName}
+                onChange={(e) => {setProject({...project, projectName: e.target.value})}}
+            />
+            <Field2
+                labelName = "Project Description"
+                type = "text"
+                placeholder=''
+                autoComplete='off'
+                name = "projectDescription"
+                value={project.projectDescription}
+                onChange={(e) => {setProject({...project, projectDescription: e.target.value})}}         
+            />
+            <Field1
+                labelName = "Department Name"
+                type = "text"
+                placeholder=''
+                autoComplete='off'
+                name = "departmentName"
+                value={project.departmentName}
+                onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
+            />
 
-            <div className='field-P'>
-                <label>Project Description:</label> 
-                <textarea 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "projectDescription"
-                    value={project.projectDescription}
-                    onChange={(e) => {setProject({...project, projectDescription: e.target.value})}}
-                /> 
-            </div>
+            <DField1
+                labelName = "Start Date"
+                value = {project.startDate}
+                min = {InitialStartDate}
+                max = {project.dueDate}
+                onChange = {(e) => {setProject({...project, startDate: e.target.value})}}
+            />
 
-            <div className='field-P'>
-                <label>Department Name:</label> 
-                <input 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "departmentName"
-                    value={project.departmentName}
-                    onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
-                /> 
-            </div>
-           
-            <div className='field-P'>
-                <label>Start Date:</label> 
-                <DatePickerComponent 
-                    onChange={(e) => {setProject({...project, startDate: e.target.value})}}
-                    value = {project.startDate}
-                    placeholder='Enter Date'
-                    min={InitialStartDate}>
-                </DatePickerComponent>
-                {/* <input 
-                    type='date'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "startDate"
-                    value={project.startDate}
-                    onChange={(e) => {setProject({...project, startDate: e.target.value})}}
-                />  */}
-            </div>
+            <DField1
+                labelName = "Due Date"
+                value = {project.dueDate}
+                min = {project.startDate}
+                onChange={(e) => {setProject({...project, dueDate: e.target.value})}}
+            />
 
-            <div className='field-P'>
-                <label>Due Date:</label> 
-                <DatePickerComponent 
-                    onChange={(e) => {setProject({...project, dueDate: e.target.value})}}
-                    placeholder='Enter Date'
-                    value={project.dueDate}
-                    min={project.startDate}>
-                </DatePickerComponent>
-                {/* <input 
-                    type='date'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "dueDate"
-                    value={project.dueDate}
-                    onChange={(e) => {setProject({...project, dueDate: e.target.value})}}
-                /> */}
-            </div>   
+            <MSField1
+                alert = "*Project owner/creator is already added"
+                labelName = "Assigned To"
+                name = "assignedTo"
+                options = {filteredUsers}
+                labelField = "email"
+                valueField = "email"
+                onChange = {(e) => {setProject({...project, assignedTo: e})}}
+            />
 
-            <div className='field-P'>
-                <label>Assigned To:</label> 
-                <Select
-                    name = "users"
-                    options = {filteredUsers}
-                    labelField="email"
-                    valueField='email'
-                    multi
-                    searchable = "true"
-                    onChange={(e) => {setProject({...project, assignedTo: e})}}
-                >
-                </Select>
-                {/* <input 
-                    type='text'
-                    placeholder=''
-                    autoComplete='off'
-                    name = "assignedTo"
-                    value={project.assignedTo}
-                    onChange={(e) => {setProject({...project, assignedTo: e.target.value})}}
-                />  */}
-            </div>
+            <SSField1
+                labelName = "State"
+                name = "state"
+                labelField = "name"
+                valueField = "name"
+                options = {options}
+                onChange = {(e) => {setProject({...project, projectState: e})}}
+            />
 
-            <div className='field-P'>
-                <label>State:</label> 
-                <select onChange={(e) => {setProject({...project, projectState: e.target.value})}}>
-                    <option value="On Going" selected>On Going</option>
-                    <option value="Completed">Completed</option>    
-                    <option value="Due">Due</option>    
-                </select>           
-            </div>
-
-            <div className='field-P'>
-            <label></label>
-            <button type = "submit" onClick={(e) => {
-                setProject({...project, projectOwner: user.email});
-                setCurrentProject({
-                    currentProjectOwner: user.email,
-                    currentProjectName: project.projectName,
-                    dueDate: project.dueDate
-                });
-            }}>Add the Project</button>
-            </div>
-
+            <SubmitBtn1
+                buttonName = "Create The Project"
+                type = "submit"
+                onClick = 
+                {
+                    (e) => {
+                        setProject({...project, projectOwner: user.email});
+                        setCurrentProject({
+                            currentProjectOwner: user.email,
+                            currentProjectName: project.projectName,
+                            dueDate: project.dueDate
+                        });
+                    }
+                }
+            />
         </form>
         
     </div>

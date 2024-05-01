@@ -1,3 +1,4 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
 .bigH{
     font-size: 30px;
     font-weight: 700;
@@ -34,4 +35,90 @@
 .OB button:hover{
     cursor: pointer;
     
+}
+.fieldS1{
+    width: 100%;
+}
+.fieldS1 label{
+    width: 100%;
+    font-size: 20px;
+}
+.fieldS1 input{
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    padding: 5px 0px;
+    border-bottom: solid grey 1px;
+}
+.fieldS1 input:focus{
+    border-bottom: solid rgb(30, 213, 48) 2px;
+}
+.fieldS1 textarea{
+    margin: 5px 0px;
+    width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    font-size: 20px;
+    border: 1px solid grey;
+    padding: 5px 5px;
+    resize: none;
+    border-radius: 10px;
+}
+.fieldS1 textarea:focus{
+    border: solid rgb(30, 213, 48) 2px;
+}
+
+.fieldS2{
+    width: 100%;
+}
+.fieldS2 p{
+    margin: 0px 0px 5px 0px;
+}
+.fieldS2 label{
+    width: 100%;
+    font-size: 20px;
+}
+.fieldS2 input{
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    padding: 5px 0px;
+}
+.fieldS2 textarea{
+    margin: 5px 0px;
+    width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    font-size: 20px;
+    border: 1px solid grey;
+    padding: 5px 5px;
+    resize: none;
+    border-radius: 10px;
+}
+.fieldS2 textarea:focus{
+    border: solid rgb(30, 213, 48) 2px;
+}
+
+.sButton1{
+    text-align: right;
+} 
+.sButton1 button{
+    width: 40%;
+    height: 50px;
+    padding: auto;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #04AA6D;
+    color: white;
+    transition: 0.5s;
+    box-shadow: 2px 2px 7px #676666;
+}
+.sButton1 button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+.sButton1 button:active{
+    box-shadow: none;
 }

@@ -1,0 +1,14 @@
+.form1{
+    width: 80%;
+    padding: 10px;
+    position: absolute;
+    z-index: -1;  
+}
+
+.form1 form{
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
