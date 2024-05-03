@@ -1,65 +1,77 @@
-import React from 'react';
-import "./ProjectContentView.css";
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex'; 
-import axios from 'axios';
-import toast from 'react-hot-toast';
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
-
+import { Field1, Field2} from '../UtilizeComponents/fC';
+import Styles from "../ComponentCSS/Form.module.css";
 
 export default function ProjectContentView() {
-    const {displayProjects, setCurrentProject, currentProject, test, setTest} = useContext(UserContext);
-    
-    const displayProject = displayProjects.filter((displayProject) => {
-        return currentProject.currentProjectName === displayProject.projectName;
-    });   
-    
-    const selectedProject = displayProject[0];
-    const projectTasks = selectedProject.tasks;
+    const {currentProject} = useContext(UserContext);
+    const {project} = currentProject;
+    const {tasks} = project;
     
     return (
-    <div className='content_'>
+        <div className={Styles.form1}>
+        <form>
+            <Field1
+                labelName = "Project Name"
+                type = "text"
+                autoComplete='off'
+                name = "projectName"
+                value={project.projectName}
+            />
+            <Field2
+                labelName = "Project Description"
+                type = "text"
+                autoComplete='off'
+                name = "projectDescription"
+                value={project.projectDescription}
+            />
+            <Field1
+                labelName = "Department Name"
+                type = "text"
+                autoComplete='off'
+                name = "departmentName"
+                value={project.departmentName}
+            />
 
-        <div className='project-content-view'>
-            <div className='field-D'>
-                <p>Project Name</p>
-                <p>:</p>
-                <p>{selectedProject.projectName}</p> 
-            </div>
-            <div className='field-D'>
-                <p>Project Description</p> 
-                <p>:</p>
-                <p>{selectedProject.projectDescription}</p> 
-            </div>
-            <div className='field-D'>
-                <p>Department Name</p>
-                <p>:</p>
-                <p>{selectedProject.departmentName}</p>  
-            </div>
-            <div className='field-D'>
-                <p>Start Date</p>
-                <p>:</p>
-                <p>{selectedProject.startDate}</p>  
-            </div>
-            <div className='field-D'>
-                <p>Due Date</p> 
-                <p>:</p>
-                <p>{selectedProject.dueDate}</p> 
-            </div>
-            <div className='field-D'>
-                <p>Project State</p>
-                <p>:</p>
-                <p>{selectedProject.projectState}</p>  
-            </div>
-        </div>
+            <Field1
+                labelName = "Start Date"
+                type = "text"
+                autoComplete='off'
+                name = "startDate"
+                value={project.startDate}
+            />
+
+            <Field1
+                labelName = "Due Date"
+                type = "text"
+                autoComplete='off'
+                name = "dueDate"
+                value={project.dueDate}
+            />
+
+            <Field1
+                labelName = "Due Date"
+                type = "text"
+                autoComplete='off'
+                name = "assignedTo"
+                value={project.assignedTo}
+            />
+
+            <Field1
+                labelName = "State"
+                type = "text"
+                autoComplete='off'
+                name = "projectState"
+                value={project.projectState}
+            />
+        </form>
 
         <div className='task-content-view'>
-            {projectTasks.map(projectTask => {
-                return <SingleTaskView singleTask = {projectTask}/>
+            {tasks.map(task => {
+                return <SingleTaskView singleTask = {task}/>
             })}
-        </div>
-        
+        </div>   
     </div>
-    
   );
 }

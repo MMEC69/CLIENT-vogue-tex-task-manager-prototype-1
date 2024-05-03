@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {toast} from "react-hot-toast";
+import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
+import { MidHG, BigHG } from "../../Components/UtilizeComponents/spC";
 
 export default function Login() {
     const [logInfo, setLogInfo] = useState({
@@ -39,61 +41,40 @@ export default function Login() {
             <h1>Login</h1>
         </div>
 
+        
         <form onSubmit={loginUser}>
-            <div className='label-field'>
-                <label>Email</label>
-            </div>
-            <div className='input-field'>
-                <input 
-                    type='text'
-                    placeholder='Email'
-                    autoComplete='off'
-                    name = "email"
-                    value = {logInfo.email}
-                    onChange={(e) => setLogInfo({...logInfo, email: e.target.value})}
-                />
-            </div>
+            <Field3
+                labelName = "Email"
+                type = "email"
+                placeholder = ""
+                autoComplete = "off"
+                name = "email"
+                value = {logInfo.email}
+                onChange = {(e) => setLogInfo({...logInfo, email: e.target.value})}
+            />
 
-            <div className='label-field'>
-                <label>Password</label>
-            </div>
-            <div className='input-field'>
-                <input 
-                    type='password'
-                    placeholder='Password'
-                    autoComplete='off'
-                    name = "password"
-                    value={logInfo.password}
-                    onChange={(e) => setLogInfo({...logInfo, password: e.target.value})}
-                />
-            </div>
-
+            <Field3
+                labelName = "Password"
+                type = "password"
+                placeholder = ""
+                autoComplete = "off"
+                name = "password"
+                value = {logInfo.password}
+                onChange = {(e) => setLogInfo({...logInfo, password: e.target.value})}
+            />
             
+            <SubmitBtn2 
+                buttonName = "Login"
+                type = "submit"
+            />
 
-            <div className='btn'>
-                <div className='submit-btn'>
-                    <button type = "submit">
-                        Login
-                    </button>
-                </div>
-                
-                {/* <div className='info-text'>
-                    <p>Already Have an Account</p>
-                </div> */}
-                <div className='submit-btn'>
-                    <Link to = "/register">
-                        <button>
-                            Register
-                        </button>
-                    </Link>
-                    
-                </div>
-            </div>
-
-            <div className='info-text'>
-                <p>Forgot password</p>
-            </div>
-
+            <MidHG s = "Forgot Password?"/> 
+            
+            <Link to = "/register" style={{ textDecoration: 'none' }}>
+                <BigHG
+                    pn = "SIGN UP"
+                />
+            </Link>
         </form>
     </div>
         <div className='logo'>

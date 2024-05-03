@@ -55,6 +55,32 @@ export function Field2(props) {
   )
 }
 
+export function Field3(props) {
+  const {
+      labelName,
+      type,
+      placeholder,
+      autoComplete,
+      name,
+      value,
+      onChange
+  } = props
+return (
+  <div className = {styles.fieldS1}>
+      <label htmlFor={name}>{labelName}: </label>
+      <input
+          style={{textAlign:'center'}}
+          type = {type}
+          placeholder = {placeholder}
+          autoComplete = {autoComplete}
+          name = {name}
+          value = {value}
+          onChange = {onChange}  
+      />
+  </div>
+)
+}
+
 //For date picker
 export function DField1(props) {
     const {
@@ -139,16 +165,57 @@ export function SSField1(props) {
 //button
 export function SubmitBtn1(props) {
     const {
-        buttonName,
-        type,
-        onClick
+      buttonName,
+      type,
+      onClick
     } = props;
   return (
     <div className = {styles.sButton1} >
         <button 
-            type = {type} 
-            onClick = {onClick}
+          type = {type} 
+          onClick = {onClick}
         >{buttonName}</button>
     </div>
   )
+}
+
+export function SubmitBtn2(props) {
+  const {
+    buttonName,
+    type,
+    onClick
+  } = props;
+return (
+  <div className = {styles.sButton2} >
+      <button 
+        type = {type} 
+        onClick = {onClick}
+      >{buttonName}</button>
+  </div>
+)
+}
+
+//radio btn
+export function Radio1(props) {
+  const {
+    labelName,
+    name,
+    value,
+    checked,
+    onChange,
+    id
+  } = props;
+return (
+  <div className = {styles.radio1} key={id+name+value}>
+    <label htmlFor={id+name+value}>{labelName}</label>
+    <input 
+        type="radio" 
+        name={name}
+        value={value}
+        checked = {checked}
+        onChange={onChange}
+        id={id+name+value}
+    />
+  </div>
+)
 }

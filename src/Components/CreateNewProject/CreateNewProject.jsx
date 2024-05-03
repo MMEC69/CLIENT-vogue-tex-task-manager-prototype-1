@@ -86,88 +86,87 @@ export default function CreateNewProject() {
     }
 
     return (
-    <div className={Styles.form1}>
-        <form onSubmit={addNewProject}>
-            <Field1
-                labelName = "Project Name"
-                type = "text"
-                placeholder=''
-                autoComplete='off'
-                name = "projectName"
-                value={project.projectName}
-                onChange={(e) => {setProject({...project, projectName: e.target.value})}}
-            />
-            <Field2
-                labelName = "Project Description"
-                type = "text"
-                placeholder=''
-                autoComplete='off'
-                name = "projectDescription"
-                value={project.projectDescription}
-                onChange={(e) => {setProject({...project, projectDescription: e.target.value})}}         
-            />
-            <Field1
-                labelName = "Department Name"
-                type = "text"
-                placeholder=''
-                autoComplete='off'
-                name = "departmentName"
-                value={project.departmentName}
-                onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
-            />
+        <div className={Styles.form1}>
+            <form onSubmit={addNewProject}>
+                <Field1
+                    labelName = "Project Name"
+                    type = "text"
+                    placeholder=''
+                    autoComplete='off'
+                    name = "projectName"
+                    value={project.projectName}
+                    onChange={(e) => {setProject({...project, projectName: e.target.value})}}
+                />
+                <Field2
+                    labelName = "Project Description"
+                    type = "text"
+                    placeholder=''
+                    autoComplete='off'
+                    name = "projectDescription"
+                    value={project.projectDescription}
+                    onChange={(e) => {setProject({...project, projectDescription: e.target.value})}}         
+                />
+                <Field1
+                    labelName = "Department Name"
+                    type = "text"
+                    placeholder=''
+                    autoComplete='off'
+                    name = "departmentName"
+                    value={project.departmentName}
+                    onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
+                />
 
-            <DField1
-                labelName = "Start Date"
-                value = {project.startDate}
-                min = {InitialStartDate}
-                max = {project.dueDate}
-                onChange = {(e) => {setProject({...project, startDate: e.target.value})}}
-            />
+                <DField1
+                    labelName = "Start Date"
+                    value = {project.startDate}
+                    min = {InitialStartDate}
+                    max = {project.dueDate}
+                    onChange = {(e) => {setProject({...project, startDate: e.target.value})}}
+                />
 
-            <DField1
-                labelName = "Due Date"
-                value = {project.dueDate}
-                min = {project.startDate}
-                onChange={(e) => {setProject({...project, dueDate: e.target.value})}}
-            />
+                <DField1
+                    labelName = "Due Date"
+                    value = {project.dueDate}
+                    min = {project.startDate}
+                    onChange={(e) => {setProject({...project, dueDate: e.target.value})}}
+                />
 
-            <MSField1
-                alert = "*Project owner/creator is already added"
-                labelName = "Assigned To"
-                name = "assignedTo"
-                options = {filteredUsers}
-                labelField = "email"
-                valueField = "email"
-                onChange = {(e) => {setProject({...project, assignedTo: e})}}
-            />
+                <MSField1
+                    alert = "*Project owner/creator is already added"
+                    labelName = "Assigned To"
+                    name = "assignedTo"
+                    options = {filteredUsers}
+                    labelField = "email"
+                    valueField = "email"
+                    onChange = {(e) => {setProject({...project, assignedTo: e})}}
+                />
 
-            <SSField1
-                labelName = "State"
-                name = "state"
-                labelField = "name"
-                valueField = "name"
-                options = {options}
-                onChange = {(e) => {setProject({...project, projectState: e})}}
-            />
+                <SSField1
+                    labelName = "State"
+                    name = "state"
+                    labelField = "name"
+                    valueField = "name"
+                    options = {options}
+                    onChange = {(e) => {setProject({...project, projectState: e})}}
+                />
 
-            <SubmitBtn1
-                buttonName = "Create The Project"
-                type = "submit"
-                onClick = 
-                {
-                    (e) => {
-                        setProject({...project, projectOwner: user.email});
-                        setCurrentProject({
-                            currentProjectOwner: user.email,
-                            currentProjectName: project.projectName,
-                            dueDate: project.dueDate
-                        });
+                <SubmitBtn1
+                    buttonName = "Create The Project"
+                    type = "submit"
+                    onClick = 
+                    {
+                        (e) => {
+                            setProject({...project, projectOwner: user.email});
+                            setCurrentProject({
+                                currentProjectOwner: user.email,
+                                currentProjectName: project.projectName,
+                                dueDate: project.dueDate
+                            });
+                        }
                     }
-                }
-            />
-        </form>
-        
-    </div>
-    
+                />
+            </form>
+            
+        </div>
   );
 }

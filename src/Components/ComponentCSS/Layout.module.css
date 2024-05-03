@@ -1,0 +1,32 @@
+.projectStateSelector{
+    display: flex;
+    flex-direction: column;
+    gap: 20%;
+}
+
+.functionButtonLayout{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.spLayout{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 1%;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 20px;
+    transition: 0.15s;
+}
+.spLayout:hover{
+    transform: translateY(-10px);
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+
+

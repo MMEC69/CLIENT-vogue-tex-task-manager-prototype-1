@@ -1,6 +1,8 @@
 .form1{
     width: 80%;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
     position: absolute;
     z-index: -1;  
 }

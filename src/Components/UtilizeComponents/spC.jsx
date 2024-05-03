@@ -10,11 +10,29 @@ export const BigH = (props) => {
   )
 }
 
+export const BigHG = (props) => {
+  const {pn} = props; 
+  return (
+    <div className={styles.bigHG}>
+        <p>{pn}</p>
+    </div>
+  )
+}
+
 export const MidH = (props) => {
   const {sd, dd} = props; 
   return (
     <div className={styles.midH}>
         <p>{sd} to {dd}</p>
+    </div>
+  )
+}
+
+export const MidHG = (props) => {
+  const {s} = props; 
+  return (
+    <div className={styles.midHG}>
+        <p>{s}</p>
     </div>
   )
 }

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
-import "./SingleProjectView.css";
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
+import {Radio1} from "../UtilizeComponents/fC";
 import {dateFormat1} from "../../Functions/Conversion";
+import Styles1 from "../ComponentCSS/Layout.module.css";
 
 export default function SingleProjectView ({project}) {
   const {
-    projectOwner,
     projectName,
     startDate,
     dueDate,
@@ -24,20 +24,24 @@ export default function SingleProjectView ({project}) {
   const fStartDate = dateFormat1(startDate);
   const fDueDate = dateFormat1(dueDate);
 
+  const projectStateOptions = [
+    {name: "prjectState", state: "on going"},
+    {name: "prjectState", state: "completed"},
+    {name: "prjectState", state: "due"}
+  ]
+
   //===========================Functions
   const viewProject = async (e) => {
-    setCurrentProject({
-      currentProjectOwner : projectOwner,
-      currentProjectName : projectName
-    });
+    setCurrentProject(
+      {project: project}
+    );
     setActivity("project-content-view");
   }
 
   const projectModify = async (e) => {
-    setCurrentProject({
-      currentProjectOwner : projectOwner,
-      currentProjectName : projectName
-    });
+    setCurrentProject(
+      {project: project}
+    );
     setActivity("project-modify");
   }
 
@@ -65,21 +69,48 @@ export default function SingleProjectView ({project}) {
       // return toast.error(error);
     }
   }
+
+  const changeState = async (e) => {
+    e.preventDefault();
+  }
   //===========================End of functions
 
   return (
-    <div className='single-project'>
+    <div className={Styles1.spLayout}>
       <div>
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
       </div>
 
-      <div>
-        <OB c = "Modify" f = {projectModify}/>
-        <OB c = "View" f = {viewProject}/>
-        <OB c = "Remove" f = {deleteProject}/>  
+      <div className={Styles1.functionButtonLayout}>
+        <div>
+          <OB c = "Modify" f = {projectModify}/>
+          <OB c = "View" f = {viewProject}/>
+          <OB c = "Remove" f = {deleteProject}/>  
+        </div>
+        
+        <div className={Styles1.projectStateSelector}>
+          {
+            projectStateOptions.map((projectStateOption) => {
+              const {
+                name,
+                state
+              } = projectStateOption;
+              return <Radio1
+                labelName = {state}
+                name = {name}
+                value = {state}
+                checked = {state === projectStateOption.state}
+                id = {projectName+name+state}
+                onChange = {(e) => changeState}
+              />
+            })
+          }
+        </div>
       </div>
+
+      
     </div>
   );
 }
