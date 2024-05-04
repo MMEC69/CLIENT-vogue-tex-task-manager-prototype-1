@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../Context/UserContex';
 import "./CreateNewTask.css";
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
-import { useContext } from 'react';
-import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { registerLicense } from '@syncfusion/ej2-base';
-import Select from "react-dropdown-select"; 
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 
 registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww==');

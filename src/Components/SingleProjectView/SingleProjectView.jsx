@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {Radio1} from "../UtilizeComponents/fC";
+import {CommentsPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 
@@ -19,6 +20,8 @@ export default function SingleProjectView ({project}) {
     setCurrentProject,
     user
   } = useContext(UserContext);
+
+  const [commentPopUp, setCommentPopUp] = useState(false);
 
   const projectDeleter = user.email;
   const fStartDate = dateFormat1(startDate);
@@ -73,6 +76,7 @@ export default function SingleProjectView ({project}) {
   const changeState = async (e) => {
     e.preventDefault();
   }
+
   //===========================End of functions
 
   return (
@@ -81,7 +85,10 @@ export default function SingleProjectView ({project}) {
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
+        <OB c = "Add Comment" f = {(e) => setCommentPopUp(true)}/>
+        <CommentsPopUp trigger = {commentPopUp} setTrigger = {setCommentPopUp}/>
       </div>
+      
 
       <div className={Styles1.functionButtonLayout}>
         <div>

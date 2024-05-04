@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import "./Content.css";
+import styles1 from "../ComponentCSS/Layout.module.css";
 import SingleProjectView from '../SingleProjectView/SingleProjectView';
 import { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex';
@@ -18,7 +18,7 @@ export default function Content() {
 
   return (
     // projects?.length > 0 ?
-    <div className='content'>
+    <div className={styles1.content}>
         {activity === "dashboard" &&
           displayProjects.map((displayProject => {
             return <SingleProjectView project= {displayProject}/>

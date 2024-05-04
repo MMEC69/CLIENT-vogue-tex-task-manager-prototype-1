@@ -1,9 +1,10 @@
 import React from 'react';
-import "./LeftMenu.css";
 import { UserContext } from '../../Context/UserContex';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
+import { SubmitBtn3 } from "../UtilizeComponents/fC";
+import styles1 from "../ComponentCSS/Layout.module.css";
 
 export const LeftMenu = () => {
   const [cookie, setCookie, removeCookie] = useCookies(['token']);
@@ -32,12 +33,26 @@ export const LeftMenu = () => {
   
 
   return (
-    <div className='left-menu'>
-      <button onClick={createNewTaskActivity}>New Task</button>
-      <button onClick={createNewProjectActivity}>New Project</button>
-      <button onClick={dashboardActivity}><span>Dashboard</span></button>
-      <button>TimeLine</button>
-      <button onClick={logOut}>LogOut</button>
+    <div className={styles1.leftMenu}>
+      <SubmitBtn3 
+        buttonName = "Dashboard"
+        onClick={dashboardActivity}
+      />
+      <SubmitBtn3 
+        buttonName = "New Project"
+        onClick={createNewProjectActivity}
+      />
+      <SubmitBtn3 
+        buttonName = "New Task"
+        onClick={createNewTaskActivity}
+      />
+      <SubmitBtn3 
+        buttonName = "TimeLine"
+      />
+      <SubmitBtn3 
+        buttonName = "LogOut"
+        onClick={logOut}
+      />
     </div>
   )
 }

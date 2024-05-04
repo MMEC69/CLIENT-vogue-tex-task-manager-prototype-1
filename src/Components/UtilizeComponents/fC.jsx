@@ -195,6 +195,22 @@ return (
 )
 }
 
+export function SubmitBtn3(props) {
+  const {
+    buttonName,
+    type,
+    onClick
+  } = props;
+return (
+  <div className = {styles.sButton3} >
+      <button 
+        type = {type} 
+        onClick = {onClick}
+      >{buttonName}</button>
+  </div>
+)
+}
+
 //radio btn
 export function Radio1(props) {
   const {

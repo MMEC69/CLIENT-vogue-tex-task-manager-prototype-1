@@ -11,17 +11,17 @@ import { Link } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <div className='navbar'>
-        <div className='logo_'>
+        {/* <div className='logo_'>
             <img src={logo} alt="Vogue Tex Logo"/>
-        </div>
+        </div> */}
 
-        <div className='search-bar'>
+        {/* <div className='search-bar'>
             <FaSearch id="search-icon" />
             <input placeholder='Search...'/>
-        </div>
+        </div> */}
 
         <div className='navigation'>
-            <ul>
+            {/* <ul>
                 <li>
                     <div className='notification'>
                     <IoIosNotifications />
@@ -45,7 +45,7 @@ export const Navbar = () => {
                     <Link to = "/profile"><CgProfile /></Link>
                     </div>
                 </li>
-            </ul>
+            </ul> */}
         </div>
 
         
