@@ -17,10 +17,10 @@ export function SingleComment1(props) {
     } = props;
     return (
       <div className={styles1.singleComment1}>
-          <div className='msg'>
+          <div className={styles1.msg1}>
             {msg}
           </div>
-          <div className='dateTime'>
+          <div className={styles1.dateTime1}>
             {date}
           </div>
       </div>
