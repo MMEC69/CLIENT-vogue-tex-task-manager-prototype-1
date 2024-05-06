@@ -33,7 +33,7 @@ export default function ProjectModify() {
     //Content for datepicker
     const InitialStartDate = new Date();
 
-    //Select projectOwner
+    //Select project modifier
     const projectModifier = user.email;
     
     //post/put to server
