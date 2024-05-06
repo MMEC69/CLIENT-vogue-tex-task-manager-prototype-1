@@ -3,47 +3,46 @@ import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {Radio1} from "../UtilizeComponents/fC";
-import {CommentsPopUp} from "../UtilizeComponents/PopUps.jsx";
+import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import Styles1 from "../ComponentCSS/Layout.module.css";
+import toast from 'react-hot-toast';
 
-export default function SingleProjectView ({project}) {
+export default function SingleProjectView (props) {
+  const selectedProject = props.project;
   const {
     projectName,
     startDate,
     dueDate,
     projectState
-  } = project;
+  } = props.project;
 
   const {
     setActivity, 
     setCurrentProject,
-    user
+    user,
+    setTest
   } = useContext(UserContext);
 
-  const [commentPopUp, setCommentPopUp] = useState(false);
+  //Popup useStates
+  const [trigger1, setTrigger1] = useState(false);
+  const [trigger2, setTrigger2] = useState(false);
 
   const projectDeleter = user.email;
   const fStartDate = dateFormat1(startDate);
   const fDueDate = dateFormat1(dueDate);
 
-  const projectStateOptions = [
-    {name: "prjectState", state: "on going"},
-    {name: "prjectState", state: "completed"},
-    {name: "prjectState", state: "due"}
-  ]
-
   //===========================Functions
   const viewProject = async (e) => {
     setCurrentProject(
-      {project: project}
+      {project: props.project}
     );
     setActivity("project-content-view");
   }
 
   const projectModify = async (e) => {
     setCurrentProject(
-      {project: project}
+      {project: props.project}
     );
     setActivity("project-modify");
   }
@@ -73,8 +72,28 @@ export default function SingleProjectView ({project}) {
     }
   }
 
+  //If modify protect changes this must change as well
   const changeState = async (e) => {
     e.preventDefault();
+    
+    //Select project modifier
+    const projectModifier = user.email;
+    const project = {projectState: e.target.value};
+
+    try {
+      const {data} = await axios.put(`modifyTheProject/${projectName}`,{
+        projectModifier,
+        project
+      });
+      if(data.error){
+        console.log("Didn't Post/nError Code: "+data.error);
+      }else{
+        console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
+      }
+    } catch (error) {
+      console.log(`Unexpected error\nError code: ${error}`);
+    }
+
   }
 
   //===========================End of functions
@@ -85,8 +104,8 @@ export default function SingleProjectView ({project}) {
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
-        <OB c = "Add Comment" f = {(e) => setCommentPopUp(true)}/>
-        <CommentsPopUp trigger = {commentPopUp} setTrigger = {setCommentPopUp}/>
+        <OB c = "Add Comment" f = {(e) => setTrigger1(true)}/>
+        <CommentsPopUp trigger = {trigger1} setTrigger = {setTrigger1}/>
       </div>
       
 
@@ -94,30 +113,24 @@ export default function SingleProjectView ({project}) {
         <div>
           <OB c = "Modify" f = {projectModify}/>
           <OB c = "View" f = {viewProject}/>
-          <OB c = "Remove" f = {deleteProject}/>  
+          <OB c = "Remove" f = {deleteProject}/>
+          <OB c = "Users" f = {(e) => setTrigger2(true)}/> 
+          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2}/>  
         </div>
         
         <div className={Styles1.projectStateSelector}>
-          {
-            projectStateOptions.map((projectStateOption) => {
-              const {
-                name,
-                state
-              } = projectStateOption;
-              return <Radio1
-                labelName = {state}
-                name = {name}
-                value = {state}
-                checked = {state === projectStateOption.state}
-                id = {projectName+name+state}
-                onChange = {(e) => changeState}
-              />
-            })
-          }
+          <select 
+            name = "projectState" 
+            id = "projectState" 
+            onChange={changeState}
+            defaultValue={projectState}
+          >
+            <option value="on going">on going</option>
+            <option value="due">due</option>
+            <option value="completed">completed</option>
+          </select>
         </div>
       </div>
-
-      
     </div>
   );
 }

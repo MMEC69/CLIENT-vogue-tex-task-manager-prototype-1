@@ -34,12 +34,19 @@ export default function CreateNewTask() {
     
     const addNewTask = async (e) => {
         e.preventDefault();
+
         newTask.taskState = newTask.taskState[0].name;
-        if (newTask.tastState === undefined || newTask.tastState === ""){
-            newTask.tastState = "on going";
-        }
         setTasks ([newTask, ...tasks]);
-        setNewTask ({assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName});
+        setNewTask ({
+            assginer:currentProject.currentProjectOwner,
+            assignedProject: currentProject.currentProjectName,
+            newTaskName: "",
+            newTaskDescription: "",
+            newTaskStartDate: "",
+            newTaskdueDate: "",
+            newTaskAssignedTo: "",
+            taskState:""
+        });
     }
 
     const completeProject = async (e) => {

@@ -45,3 +45,15 @@ export function CommentInput1(props) {
       </div>
     )
   }
+
+  export function CloseBtn1(props) {
+    const {
+      btnName,
+      onClick
+    } = props
+    return (
+      <div className = {styles1.closeBtn1}>
+          <button onClick={onClick}>{btnName}</button>
+      </div>
+    );
+  } 

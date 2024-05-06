@@ -38,7 +38,16 @@ export default function CreateNewProject() {
     const addNewProject = async (e) => {
     
         e.preventDefault();
-        setNewTask({});
+        setNewTask({
+            assginer:"",
+            assignedProject: "",
+            newTaskName: "",
+            newTaskDescription: "",
+            newTaskStartDate: "",
+            newTaskdueDate: "",
+            newTaskAssignedTo: "",
+            taskState:""
+        });
         setTasks([]);
     
         let { 
@@ -53,10 +62,6 @@ export default function CreateNewProject() {
 
         projectState = projectState[0].name;
         console.log(projectState);
-
-        if (projectState === undefined || projectState === ""){
-            projectState = "on going";
-        }
 
         assignedTo = [...assignedTo, {email: user.email, fullName: user.fullName}];
         try {

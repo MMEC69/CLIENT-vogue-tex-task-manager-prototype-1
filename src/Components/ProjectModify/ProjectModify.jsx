@@ -41,7 +41,12 @@ export default function ProjectModify() {
         e.preventDefault();
         
         //select project object
-        project.projectState = project.projectState[0].name;
+        try{
+            project.projectState = project.projectState[0].name;
+        }catch(e){
+            console.log("Project state was empty!\nError Code: "+e);
+        }
+        
 
         try{
             const {data} = await axios.put(`/modifyTheProject/${selectedProject.projectName}`, {
