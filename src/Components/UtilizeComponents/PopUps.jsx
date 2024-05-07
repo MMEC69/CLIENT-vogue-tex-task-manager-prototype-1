@@ -31,36 +31,54 @@ export function CommentsPopUp(props) {
 }
 
 export function ProjectUsersPopUp(props) {
+  const {selectedProject} = props;
+  const {
+    projectName,
+    assignedTo
+  } = selectedProject;
   return (props.trigger) ? (
     <div className={styles1.viewProjectUsers}>
       <div className={styles1.viewProjectUsersInner}>
         <div className = {styles1.popupTitle1}>
-          <p>Project Name - Assgined users</p>
+          <p>{projectName} - Assgined users</p>
           <CloseBtn1 btnName = "Close" onClick = {(e) => props.setTrigger(false)}/>
         </div>
         <div className={styles1.projectUserList}>
-          <SingleProjectUser1/>
+          {
+            assignedTo.map((singleUser) => {
+              return(
+                <SingleProjectUser1 
+                  singleUser = {singleUser} 
+                />
+              );
+            })
+          }
+          
         </div>
       </div>
     </div>
   ) : "";
 }
 
-export function SingleProjectUser1(){
+export function SingleProjectUser1(props){
+  const {singleUser} = props;
   return(
     <div className={styles1.singleUser1}>
       <div className={styles1.userProfileImage1}>
         <ProfileImage1 />
       </div>
       <div className={styles1.userInfo1}>
-        <p>Email</p>
-        <p>FullName</p>
+      <p>{singleUser.email}</p>
+      <p>{singleUser.fullName}</p>
+      
+      </div>
+      <div className={styles1.userInfo1}>
+        <p>{singleUser.type}</p>
       </div>
       <div className={styles1.functions1}> 
         <OB c = "type"/>
         <OB c = "remove"/>
       </div>
-
     </div>
   );
 }

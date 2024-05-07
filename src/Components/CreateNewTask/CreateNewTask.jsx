@@ -53,10 +53,11 @@ export default function CreateNewTask() {
         e.preventDefault();
         try{
             const {data} = await axios.put("/createNewTask", {
-                currentProject, tasks
+                currentProject, tasks, user
             });
             if(data.error){
                 toast.error(data.error);
+                console.log(data.error)
             }else{
                 setCurrentProject({});
                 toast.success("Project Completed!");

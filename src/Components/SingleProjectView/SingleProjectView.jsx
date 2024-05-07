@@ -2,11 +2,9 @@ import React, { useContext, useState } from 'react'
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
-import {Radio1} from "../UtilizeComponents/fC";
 import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import Styles1 from "../ComponentCSS/Layout.module.css";
-import toast from 'react-hot-toast';
 
 export default function SingleProjectView (props) {
   const selectedProject = props.project;
@@ -14,8 +12,9 @@ export default function SingleProjectView (props) {
     projectName,
     startDate,
     dueDate,
-    projectState
-  } = props.project;
+    projectState, 
+    assginedTo
+  } = selectedProject;
 
   const {
     setActivity, 
@@ -115,7 +114,7 @@ export default function SingleProjectView (props) {
           <OB c = "View" f = {viewProject}/>
           <OB c = "Remove" f = {deleteProject}/>
           <OB c = "Users" f = {(e) => setTrigger2(true)}/> 
-          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2}/>  
+          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2} selectedProject = {selectedProject}/>  
         </div>
         
         <div className={Styles1.projectStateSelector}>

@@ -4,8 +4,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Styles from "../ComponentCSS/Form.module.css";
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
-
-
+import {userRoleDividerCP, projectOwnerFilter} from "../../Functions/Conversion";
+import {options} from "../../MetaData/MetaData";
 export default function CreateNewProject() {
     //This is the use contex
     const {
@@ -23,33 +23,13 @@ export default function CreateNewProject() {
     const InitialStartDate = new Date();
 
     //Select filteration
-    let filteredUsers = users.filter((assignUser) => {
-        return assignUser.email != user.email;
-    });
-
-    //options for state
-    const options = [
-        {name: "on going"},
-        {name: "due"},
-        {name: "completed"}
-    ];
+    let filteredUsers = projectOwnerFilter(user, users);
 
     //post/put to server
     const addNewProject = async (e) => {
-    
         e.preventDefault();
-        setNewTask({
-            assginer:"",
-            assignedProject: "",
-            newTaskName: "",
-            newTaskDescription: "",
-            newTaskStartDate: "",
-            newTaskdueDate: "",
-            newTaskAssignedTo: "",
-            taskState:""
-        });
+        setNewTask({});
         setTasks([]);
-    
         let { 
             projectOwner,
             projectName, 
@@ -60,10 +40,21 @@ export default function CreateNewProject() {
             assignedTo, 
             projectState} = project;
 
-        projectState = projectState[0].name;
-        console.log(projectState);
+        try {
+            assignedTo = userRoleDividerCP (projectOwner, assignedTo);
+            console.log("1");
+            console.log(assignedTo);
+        } catch (error) {
+            console.log("Users assign problem\nError code: "+error);
+        }
+        
+        try {
+            projectState = projectState[0].name;
+        } catch (error) {
+            projectState = "on going";
+            console.log("Project state was not selected\nError code: "+error);
+        }
 
-        assignedTo = [...assignedTo, {email: user.email, fullName: user.fullName}];
         try {
         const {data} = await axios.post("/createNewProject", {
             projectOwner,
@@ -161,9 +152,9 @@ export default function CreateNewProject() {
                     onClick = 
                     {
                         (e) => {
-                            setProject({...project, projectOwner: user.email});
+                            setProject({...project, projectOwner: user});
                             setCurrentProject({
-                                currentProjectOwner: user.email,
+                                currentProjectOwner: user,
                                 currentProjectName: project.projectName,
                                 dueDate: project.dueDate
                             });
