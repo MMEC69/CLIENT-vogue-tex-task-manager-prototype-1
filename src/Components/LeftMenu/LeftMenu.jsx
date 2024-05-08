@@ -7,8 +7,8 @@ import { SubmitBtn3 } from "../UtilizeComponents/fC";
 import styles1 from "../ComponentCSS/Layout.module.css";
 
 export const LeftMenu = () => {
-  const [cookie, setCookie, removeCookie] = useCookies(['token']);
-  const {setUser, activity, setActivity} = useContext(UserContext);
+  const [removeCookie] = useCookies(['token']);
+  const {setUser, setActivity} = useContext(UserContext);
   const navigate = useNavigate();
   
   const logOut = () => { 

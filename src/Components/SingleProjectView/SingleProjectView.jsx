@@ -91,9 +91,7 @@ export default function SingleProjectView (props) {
     } catch (error) {
       console.log(`Unexpected error\nError code: ${error}`);
     }
-
   }
-
   //===========================End of functions
 
   return (

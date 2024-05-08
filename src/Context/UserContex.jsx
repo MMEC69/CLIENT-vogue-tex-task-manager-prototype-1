@@ -66,7 +66,7 @@ export function UserContextProvider({children}){
         axios.get("/getUsers")
             .then(res => setUsers(res.data))
             .catch(err => console.log(err));
-    }, [activity]);
+    });
 
     return(
         <UserContext.Provider value={{

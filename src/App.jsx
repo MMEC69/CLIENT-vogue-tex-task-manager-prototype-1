@@ -4,7 +4,7 @@ import Login from "./Pages/Login/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard/Dashboard';
 import axios from 'axios';
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster} from "react-hot-toast";
 import { UserContextProvider } from './Context/UserContex';
 import Profile from './Pages/Profile/Profile';
 import CreateNewPage from "./Components/CreateNewProject/CreateNewProject"

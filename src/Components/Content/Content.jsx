@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles1 from "../ComponentCSS/Layout.module.css";
 import SingleProjectView from '../SingleProjectView/SingleProjectView';
 import { useContext } from 'react';
@@ -9,18 +9,12 @@ import ProjectContentView from '../PojectContentView/ProjectContentView';
 import ProjectModify from '../ProjectModify/ProjectModify';
 
 export default function Content() {
-  const { activity, setActivity, displayProjects} = useContext(UserContext);
-
-  //To set dashbaord as default content are loaded at first
-  useEffect(() => {
-    setActivity("dashboard")
-  }, []);
-
+  const { activity, displayProjects} = useContext(UserContext);
+  
   return (
-    // projects?.length > 0 ?
     <div className={styles1.content}>
         {activity === "dashboard" &&
-          displayProjects.map((displayProject => {
+          displayProjects?.map((displayProject => {
             return <SingleProjectView project= {displayProject}/>
           })) 
         }
