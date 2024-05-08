@@ -20,7 +20,7 @@ export default function ProjectModify() {
 
     //Select filteration
     let filteredUsers = users.filter((assignUser) => {
-        return assignUser.email != user.email;
+        return assignUser.email !== user.email;
     });
 
     //options for state

@@ -13,7 +13,6 @@ export default function CreateNewTask() {
     const {
         users,
         user,
-        displayProjects, 
         newTask, 
         setNewTask, 
         tasks, 

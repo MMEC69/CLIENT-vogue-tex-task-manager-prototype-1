@@ -13,14 +13,13 @@ export default function SingleProjectView (props) {
     startDate,
     dueDate,
     projectState, 
-    assginedTo
+    comments
   } = selectedProject;
 
   const {
     setActivity, 
     setCurrentProject,
     user,
-    setTest
   } = useContext(UserContext);
 
   //Popup useStates
@@ -104,7 +103,13 @@ export default function SingleProjectView (props) {
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
         <OB c = "Add Comment" f = {(e) => setTrigger1(true)}/>
-        <CommentsPopUp trigger = {trigger1} setTrigger = {setTrigger1}/>
+        <CommentsPopUp 
+          trigger = {trigger1} 
+          setTrigger = {setTrigger1}
+          user = {user}
+          projectName = {projectName}
+          pastComments = {comments}
+        />
       </div>
       
 
