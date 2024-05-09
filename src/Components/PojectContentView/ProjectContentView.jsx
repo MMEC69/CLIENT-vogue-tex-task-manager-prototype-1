@@ -3,6 +3,7 @@ import { UserContext } from '../../Context/UserContex';
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import { Field1, Field2} from '../UtilizeComponents/fC';
 import Styles from "../ComponentCSS/Form.module.css";
+import Styles1 from "../ComponentCSS/Layout.module.css";
 
 export default function ProjectContentView() {
     const {currentProject} = useContext(UserContext);
@@ -67,7 +68,7 @@ export default function ProjectContentView() {
             />
         </form>
 
-        <div className='task-content-view'>
+        <div className={Styles1.taskView1}>
             {tasks.map(task => {
                 return <SingleTaskView singleTask = {task}/>
             })}

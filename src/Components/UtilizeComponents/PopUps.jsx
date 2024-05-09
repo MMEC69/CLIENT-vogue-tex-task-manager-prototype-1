@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
+import styles2 from "../ComponentCSS/Form.module.css";
 import { ProfileImage1, SingleComment1, CommentInput1, CloseBtn1, SingleProjectUser1} from "./PopUpsU";
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Field1, Field2} from '../UtilizeComponents/fC';
 
 export function CommentsPopUp(props) {
   const {
@@ -123,5 +125,85 @@ export function ProjectUsersPopUp(props) {
   ) : "";
 }
 
+export function TaskViewPopUp(props){
+  const {
+    trigger,
+    setTrigger,
+    task
+  } = props;
+  const {
+    assginer,
+    assignedProject,
+    newTaskName,
+    newTaskDescription,
+    newTaskStartDate,
+    newTaskdueDate,
+    newTaskAssignedTo,
+    taskState
+  } = task;
+  return(trigger) ?(
+    <div className={styles1.viewTask1}>
+      <div className={styles1.viewTaskInner1}>
+        <div className={styles1.popupTitle1}>
+          <p>Project - {assignedProject} || Task - {newTaskName}</p>
+          <CloseBtn1 btnName = "Close" onClick = {(e) => setTrigger(false)}/>
+        </div>
+        <div className={styles1.viewTaskForm}>
+          <form>
+              <Field1
+                  labelName = "Assigner"
+                  type = "text"
+                  autoComplete='off'
+                  name = "assigner"
+                  value={assginer}
+              />
+              <Field1
+                  labelName = "Task Name"
+                  type = "text"
+                  autoComplete='off'
+                  name = "taskName"
+                  value={newTaskName}
+              />
+              <Field2
+                  labelName = "Task Description"
+                  type = "text"
+                  autoComplete='off'
+                  name = "taskDescription"
+                  value={newTaskDescription}
+              />
+              <Field1
+                  labelName = "Start Date"
+                  type = "text"
+                  autoComplete='off'
+                  name = "taskStartDate"
+                  value={newTaskStartDate}
+              />
+              <Field1
+                  labelName = "Due Date"
+                  type = "text"
+                  autoComplete='off'
+                  name = "dueDate"
+                  value={newTaskdueDate}
+              />
+              <Field1
+                  labelName = "Assigned To"
+                  type = "text"
+                  autoComplete='off'
+                  name = "assignedTo"
+                  value={newTaskAssignedTo}
+              />
+              <Field1
+                  labelName = "State"
+                  type = "text"
+                  autoComplete='off'
+                  name = "state"
+                  value={taskState}
+              />
+          </form>
+        </div>
+      </div>
+    </div>
+  ) : "";
+} 
 
 

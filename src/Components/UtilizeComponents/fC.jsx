@@ -3,6 +3,7 @@ import styles from "../ComponentCSS/ComponentCSS.module.css";
 import Select from "react-dropdown-select"; 
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { registerLicense } from '@syncfusion/ej2-base';
+import "../ComponentCSS/other.css";
 registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww==');
 
 export function Field1(props) {

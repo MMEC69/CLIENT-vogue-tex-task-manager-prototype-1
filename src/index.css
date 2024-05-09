@@ -18,3 +18,6 @@ code {
   letter-spacing: 2px;
   outline: none;
 }
+
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+

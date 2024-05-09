@@ -5,6 +5,9 @@ import toast from 'react-hot-toast';
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import Styles from "../ComponentCSS/Form.module.css";
+import Styles1 from "../ComponentCSS/Layout.module.css";
+import { options } from '../../MetaData/MetaData';
+
 
 export default function ProjectModify() {
     const {
@@ -23,18 +26,9 @@ export default function ProjectModify() {
         return assignUser.email !== user.email;
     });
 
-    //options for state
-    const options = [
-        {name: "on going"},
-        {name: "due"},
-        {name: "completed"}
-    ];
     
     //Content for datepicker
     const InitialStartDate = new Date();
-
-    //Select project modifier
-    const projectModifier = user.email;
     
     //post/put to server
     const modifyProject = async (e) => {
@@ -50,7 +44,7 @@ export default function ProjectModify() {
 
         try{
             const {data} = await axios.put(`/modifyTheProject/${selectedProject.projectName}`, {
-                projectModifier,
+                user,
                 project
             });
             if(data.error){
@@ -141,7 +135,7 @@ export default function ProjectModify() {
                 />
             </form>
 
-            <div className='task-content-view'>
+            <div className={Styles1.taskView1}>
                 {tasks.map(task => {
                     return <SingleTaskView singleTask = {task}/>
                 })}

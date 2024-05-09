@@ -92,7 +92,7 @@ export default function CreateNewProject() {
                     name = "projectName"
                     value={project.projectName}
                     onChange={(e) => {setProject({...project, projectName: e.target.value})}}
-                />
+                />       
                 <Field2
                     labelName = "Project Description"
                     type = "text"

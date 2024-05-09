@@ -6,7 +6,7 @@
 /* ====================================== */
 .functionButtonLayout{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
 }
 /* ====================================== */
@@ -55,6 +55,40 @@
     margin-top: 4.25rem;
     z-index: -1;
 }
-
-
+/* ====================================== */
+.createNewTask{
+    width: 80%;
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    position: absolute;
+}
+.createNewTask form{
+    width: 60%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.taskView1{
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.taskView1::-webkit-scrollbar {
+    display: none;
+  }
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.taskView1 {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+/* ====================================== */
 

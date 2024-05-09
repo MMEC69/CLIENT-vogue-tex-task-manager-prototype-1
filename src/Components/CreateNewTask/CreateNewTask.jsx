@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../Context/UserContex';
-import "./CreateNewTask.css";
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { registerLicense } from '@syncfusion/ej2-base';
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
-
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww==');
-
+import { options } from '../../MetaData/MetaData';
+import Styles1 from "../ComponentCSS/Layout.module.css";
 export default function CreateNewTask() {
     const {
         users,
@@ -20,13 +17,6 @@ export default function CreateNewTask() {
         setActivity, 
         currentProject, 
         setCurrentProject} = useContext(UserContext);
-
-    //options for state
-    const options = [
-        {name: "on going"},
-        {name: "due"},
-        {name: "completed"}
-    ];
 
     const InitialStartDate = new Date();
     const endDate = currentProject.dueDate;
@@ -68,7 +58,7 @@ export default function CreateNewTask() {
     }
    
     return (
-        <div className='create-new-task'>
+        <div className={Styles1.createNewTask}>
             <form onSubmit={addNewTask}>
                 <Field1
                     labelName = "Project Name"
@@ -149,12 +139,12 @@ export default function CreateNewTask() {
                 />
             </form>
 
-    <div className='task-view'>
-        {tasks.map(projectTask => {
-                return <SingleTaskView singleTask = {projectTask}/>
-        })}
-    </div>
-</div>
+            <div className={Styles1.taskView1}>
+                {tasks?.map(projectTask => {
+                        return <SingleTaskView singleTask = {projectTask}/>
+                })}
+            </div>
+        </div>
     
     );
 }
