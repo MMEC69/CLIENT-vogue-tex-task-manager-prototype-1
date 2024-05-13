@@ -4,7 +4,7 @@ import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
-import { options } from '../../MetaData/MetaData';
+import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 export default function CreateNewTask() {
     const {
@@ -24,7 +24,9 @@ export default function CreateNewTask() {
     const addNewTask = async (e) => {
         e.preventDefault();
 
-        newTask.taskState = newTask.taskState[0].name;
+        //state code
+        newTask.taskState = projectStateForCP(newTask.newTaskStartDate);
+
         setTasks ([newTask, ...tasks]);
         setNewTask ({
             assginer:currentProject.currentProjectOwner,
@@ -117,15 +119,6 @@ export default function CreateNewTask() {
                     labelField = "email"
                     valueField = "email"
                     onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e})}}
-                />
-
-                <SSField1
-                    labelName = "State"
-                    name = "state"
-                    labelField = "name"
-                    valueField = "name"
-                    options = {options}
-                    onChange = {(e) => {setNewTask({...newTask, taskState: e})}}
                 />
 
                 <SubmitBtn1

@@ -5,6 +5,7 @@ import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import Styles1 from "../ComponentCSS/Layout.module.css";
+import { options } from '../../MetaData/MetaData.jsx';
 
 export default function SingleProjectView (props) {
   const selectedProject = props.project;
@@ -73,23 +74,25 @@ export default function SingleProjectView (props) {
   //If modify protect changes this must change as well
   const changeState = async (e) => {
     e.preventDefault();
-    
-    //Select project modifier
-    const projectModifier = user.email;
-    const project = {projectState: e.target.value};
 
-    try {
-      const {data} = await axios.put(`modifyTheProject/${projectName}`,{
-        projectModifier,
-        project
-      });
-      if(data.error){
-        console.log("Didn't Post/nError Code: "+data.error);
-      }else{
-        console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
+    if(e.target.value === ""){
+      return ("No need to change");
+    }else{
+      const project = {projectState: e.target.value};
+
+      try {
+        const {data} = await axios.put(`modifyTheProject/${projectName}`,{
+          user,
+          project
+        });
+        if(data.error){
+          console.log("Didn't Post/nError Code: "+data.error);
+        }else{
+          console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
+        }
+      } catch (error) {
+        console.log(`Unexpected error\nError code: ${error}`);
       }
-    } catch (error) {
-      console.log(`Unexpected error\nError code: ${error}`);
     }
   }
   //===========================End of functions
@@ -125,11 +128,12 @@ export default function SingleProjectView (props) {
             name = "projectState" 
             id = "projectState" 
             onChange={changeState}
-            defaultValue={projectState}
+            defaultValue=""
           >
-            <option value="on going">on going</option>
-            <option value="due">due</option>
+            <option value="">select</option>
             <option value="completed">completed</option>
+            <option value="hold">hold</option>
+            <option value="dismissed">dismissed</option>
           </select>
         </div>
       </div>

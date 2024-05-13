@@ -1,7 +1,17 @@
 export const options = [
-    {name: "on going"},
+    {name: "completed"},
+    {name: "hold"},
+    {name: "dismissed"}
+];
+
+export const allOptions = [
+    {name: "active"},
     {name: "due"},
-    {name: "completed"}
+    {name: "completed"},
+    {name: "inactive"},
+    {name: "completed after due"},
+    {name: "hold"},
+    {name: "dismissed"}
 ];
 
 export const userRoles = [

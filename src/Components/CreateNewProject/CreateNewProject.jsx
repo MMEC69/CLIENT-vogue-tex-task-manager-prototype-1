@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import Styles from "../ComponentCSS/Form.module.css";
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import {userRoleDividerCP, projectOwnerFilter} from "../../Functions/Conversion";
-import {options} from "../../MetaData/MetaData";
+import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 export default function CreateNewProject() {
     //This is the use contex
     const {
@@ -25,7 +25,7 @@ export default function CreateNewProject() {
     //Select filteration
     let filteredUsers = projectOwnerFilter(user, users);
 
-    //post/put to server
+    //post/put to server--------------------------------------------------Function
     const addNewProject = async (e) => {
         e.preventDefault();
         setNewTask({});
@@ -48,12 +48,8 @@ export default function CreateNewProject() {
             console.log("Users assign problem\nError code: "+error);
         }
         
-        try {
-            projectState = projectState[0].name;
-        } catch (error) {
-            projectState = "on going";
-            console.log("Project state was not selected\nError code: "+error);
-        }
+        //state code
+        projectState = projectStateForCP(startDate);
 
         try {
         const {data} = await axios.post("/createNewProject", {
@@ -135,15 +131,6 @@ export default function CreateNewProject() {
                     labelField = "email"
                     valueField = "email"
                     onChange = {(e) => {setProject({...project, assignedTo: e})}}
-                />
-
-                <SSField1
-                    labelName = "State"
-                    name = "state"
-                    labelField = "name"
-                    valueField = "name"
-                    options = {options}
-                    onChange = {(e) => {setProject({...project, projectState: e})}}
                 />
 
                 <SubmitBtn1

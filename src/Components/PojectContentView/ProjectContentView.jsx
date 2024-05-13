@@ -70,7 +70,7 @@ export default function ProjectContentView() {
 
         <div className={Styles1.taskView1}>
             {tasks.map(task => {
-                return <SingleTaskView singleTask = {task}/>
+                return <SingleTaskView singleTask = {task} project = {project}/>
             })}
         </div>   
     </div>

@@ -137,7 +137,11 @@ export default function ProjectModify() {
 
             <div className={Styles1.taskView1}>
                 {tasks.map(task => {
-                    return <SingleTaskView singleTask = {task}/>
+                    return <SingleTaskView 
+                        singleTask = {task} 
+                        project = {selectedProject}
+                        user = {user}
+                        />
                 })}
             </div>   
         </div>
