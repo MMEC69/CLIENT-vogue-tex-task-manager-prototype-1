@@ -116,6 +116,7 @@ export default function SingleTaskView({singleTask, project}) {
             setTrigger = {setTrigger2}
             task = {singleTask}
             project = {project}
+            user = {user}
           />
       </div>
       

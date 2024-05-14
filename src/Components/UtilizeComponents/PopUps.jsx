@@ -132,12 +132,12 @@ export function TaskViewPopUp(props){
     task
   } = props;
   const {
-    assginer,
+    assigner,
     assignedProject,
     newTaskName,
     newTaskDescription,
     newTaskStartDate,
-    newTaskdueDate,
+    newTaskDueDate,
     newTaskAssignedTo,
     taskState
   } = task;
@@ -156,7 +156,7 @@ export function TaskViewPopUp(props){
                   type = "text"
                   autoComplete='off'
                   name = "assigner"
-                  value={assginer}
+                  value={assigner}
               />
               <Field1
                   labelName = "Task Name"
@@ -184,7 +184,7 @@ export function TaskViewPopUp(props){
                   type = "text"
                   autoComplete='off'
                   name = "dueDate"
-                  value={newTaskdueDate}
+                  value={newTaskDueDate}
               />
               <Field1
                   labelName = "Assigned To"
@@ -217,23 +217,28 @@ export function TaskModifyPopUp(props){
     user
   } = props;
 
+  const prevTaskName = task.newTaskName;
+
   // taskModify====================================/
   const taskModify = async (e) => {
     e.preventDefault();
     try {
       const {data} = await axios.put(`/modifyTask/${project.projectName}`, {
+        prevTaskName,
         user,
         taskModification
       });
       if(data.error){
-        toast.error(data.error);
+        console.log(data.error);
+        // toast.error(data.error);
       }else{
         setTaskModification({});
-        toast.success("Task Modified")
+        console.log("Task Modified");
+        // toast.success("Task Modified")
       }
     } catch (error) {
       console.log(error);
-      toast.error(error);
+      // toast.error(error);
     }
   } 
 
@@ -251,7 +256,7 @@ export function TaskModifyPopUp(props){
                   type = "text"
                   autoComplete='off'
                   name = "assigner"
-                  value={task.assginer}
+                  value={task.assigner}
               />
               <Field1
                   labelName = "Task Name"
@@ -281,8 +286,8 @@ export function TaskModifyPopUp(props){
                 />
               <DField1
                   labelName = "Due Date"
-                  placeholder={task.newTaskdueDate}
-                  value = {taskModification.newTaskdueDate}
+                  placeholder={task.newTaskDueDate}
+                  value = {taskModification.newTaskDueDate}
                   min = {project.startDate}
                   onChange={(e) => {setTaskModification({...taskModification, newTaskdueDate: e.target.value})}}
               />

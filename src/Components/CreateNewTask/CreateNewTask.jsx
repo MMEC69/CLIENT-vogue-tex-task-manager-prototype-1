@@ -29,12 +29,12 @@ export default function CreateNewTask() {
 
         setTasks ([newTask, ...tasks]);
         setNewTask ({
-            assginer:currentProject.currentProjectOwner,
+            assigner:user,
             assignedProject: currentProject.currentProjectName,
             newTaskName: "",
             newTaskDescription: "",
             newTaskStartDate: "",
-            newTaskdueDate: "",
+            newTaskDueDate: "",
             newTaskAssignedTo: "",
             taskState:""
         });
@@ -67,13 +67,13 @@ export default function CreateNewTask() {
                     type = "text"
                     placeholder=''
                     autoComplete='off'
-                    name = "assginedProject"
+                    name = "assignedProject"
                     value={currentProject.currentProjectName}
                     onBlur={(e) => {
                         setNewTask({
                             ...currentProject, 
                             currentProjectName: e.target.value, 
-                            currentProjectOwner: currentProject.currentProjectOwner});
+                            });
                         }
                     }                
                 />
@@ -106,10 +106,10 @@ export default function CreateNewTask() {
 
                 <DField1
                     labelName = "Due Date"
-                    value = {newTask.newTaskdueDate}
+                    value = {newTask.newTaskDueDate}
                     min = {newTask.newTaskStartDate}
                     max = {endDate}
-                    onChange={(e) => {setNewTask({...newTask, newTaskdueDate: e.target.value})}}
+                    onChange={(e) => {setNewTask({...newTask, newTaskDueDate: e.target.value})}}
                 />
 
                 <MSField1
@@ -124,7 +124,13 @@ export default function CreateNewTask() {
                 <SubmitBtn1
                     buttonName = "Add Task"
                     type = "submit"
-                    onClick={(e) => setNewTask({...newTask, assginer:currentProject.currentProjectOwner, assignedProject: currentProject.currentProjectName})}
+                    onClick = {(e) => {
+                        setNewTask({
+                            ...newTask,
+                            assigner:user,
+                            assignedProject: currentProject.currentProjectName
+                        });
+                    }}
                 />
                 <SubmitBtn1
                     buttonName = "Finish"

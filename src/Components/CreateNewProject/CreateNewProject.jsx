@@ -42,7 +42,6 @@ export default function CreateNewProject() {
 
         try {
             assignedTo = userRoleDividerCP (projectOwner, assignedTo);
-            console.log("1");
             console.log(assignedTo);
         } catch (error) {
             console.log("Users assign problem\nError code: "+error);
