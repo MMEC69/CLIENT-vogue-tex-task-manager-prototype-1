@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../Context/UserContex'; 
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -19,6 +19,9 @@ export default function CreateNewProject() {
         users
     } = useContext(UserContext);
 
+    //state hook
+    const [files, setFiles] = useState([]);
+
     //Content for datepicker
     const InitialStartDate = new Date();
 
@@ -30,6 +33,7 @@ export default function CreateNewProject() {
         e.preventDefault();
         setNewTask({});
         setTasks([]);
+        let attachments;
         let { 
             projectOwner,
             projectName, 
@@ -51,25 +55,55 @@ export default function CreateNewProject() {
         projectState = projectStateForCP(startDate);
 
         try {
-        const {data} = await axios.post("/createNewProject", {
-            projectOwner,
-            projectName, 
-            projectDescription, 
-            departmentName, 
-            startDate, 
-            dueDate, 
-            assignedTo, 
-            projectState
-        });
+            const {data} = await axios.post("/createNewProject", {
+                projectOwner,
+                projectName, 
+                projectDescription, 
+                departmentName, 
+                startDate, 
+                dueDate, 
+                assignedTo, 
+                projectState
+            });
 
-        if(data.error){
-            toast.error(data.error);
-            setCurrentProject({});
-        }else{
-            setProject({});
-            toast.success("Project Created!");
-            setActivity("create-new-task");
-        }
+            if(data.error){
+                toast.error(data.error);
+                setCurrentProject({});
+            }else{
+                try {
+                    console.log("file upload init........");
+                    console.log(files);
+                    const formData = new FormData();
+                    console.log("Form data obj created........");
+                    for (let index = 0; index < files.length; index++){
+                        let file = files[index];
+                        const prevOriginalName = file.originalname;
+                        file.originalname = `${projectName}||${prevOriginalName}`;
+                        formData.append("files", file);
+                        console.log(`${file} appended...............`);
+                    }
+                    console.log("Files appended........");
+    
+                    try {
+                        console.log("Attachments are going to be uploaded.......");
+                        const {data} = await axios.post(`/uploadProjectAttachments`, formData);
+                        if (data.error){
+                            toast.error(data.error);
+                        }else{
+                            toast.success("Attachments upladed to project");
+                        }
+                    } catch (error) {
+                        console.log(`Occured an unknown error.......!!!!`);
+                        toast.error(error);
+                    }
+                } catch (error) {
+                    console.log("Files didn't init.......");
+                    toast.error(error);
+                }
+                setProject({});
+                toast.success("Project Created!");
+                setActivity("create-new-task");
+            }
         } catch (error) {
             toast.error(error);
             console.log(error);
@@ -106,7 +140,6 @@ export default function CreateNewProject() {
                     value={project.departmentName}
                     onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
                 />
-
                 <DField1
                     labelName = "Start Date"
                     value = {project.startDate}
@@ -131,6 +164,8 @@ export default function CreateNewProject() {
                     valueField = "email"
                     onChange = {(e) => {setProject({...project, assignedTo: e})}}
                 />
+
+                <input type='file' multiple onChange={(e) => setFiles(e.target.files)}/>
 
                 <SubmitBtn1
                     buttonName = "Create The Project"
