@@ -33,7 +33,6 @@ export default function CreateNewProject() {
         e.preventDefault();
         setNewTask({});
         setTasks([]);
-        let attachments;
         let { 
             projectOwner,
             projectName, 
@@ -65,41 +64,13 @@ export default function CreateNewProject() {
                 assignedTo, 
                 projectState
             });
-
             if(data.error){
                 toast.error(data.error);
                 setCurrentProject({});
             }else{
-                try {
-                    console.log("file upload init........");
-                    console.log(files);
-                    const formData = new FormData();
-                    console.log("Form data obj created........");
-                    for (let index = 0; index < files.length; index++){
-                        let file = files[index];
-                        const prevOriginalName = file.originalname;
-                        file.originalname = `${projectName}||${prevOriginalName}`;
-                        formData.append("files", file);
-                        console.log(`${file} appended...............`);
-                    }
-                    console.log("Files appended........");
-    
-                    try {
-                        console.log("Attachments are going to be uploaded.......");
-                        const {data} = await axios.post(`/uploadProjectAttachments`, formData);
-                        if (data.error){
-                            toast.error(data.error);
-                        }else{
-                            toast.success("Attachments upladed to project");
-                        }
-                    } catch (error) {
-                        console.log(`Occured an unknown error.......!!!!`);
-                        toast.error(error);
-                    }
-                } catch (error) {
-                    console.log("Files didn't init.......");
-                    toast.error(error);
-                }
+                const data = await uploadAttachments();
+                const result = await updateServerAttachments(data, projectName);
+                console.log(result);
                 setProject({});
                 toast.success("Project Created!");
                 setActivity("create-new-task");
@@ -107,6 +78,57 @@ export default function CreateNewProject() {
         } catch (error) {
             toast.error(error);
             console.log(error);
+        }
+    }
+
+    const uploadAttachments = async() => {
+        try {
+            console.log("file upload init........");
+            console.log(files);
+            const formData = new FormData();
+            console.log("Form data obj created........");
+            for (let index = 0; index < files.length; index++){
+                let file = files[index];
+                formData.append("files", file);
+                console.log(`${file} appended...............`);
+            }
+            console.log("Files appended........");
+            try {
+                console.log("Attachments are going to be uploaded.......");
+                const {data} = await axios.post(`/uploadProjectAttachments`, formData);
+                if (data.error){
+                    toast.error(data.error);
+                }else{
+                    console.log("Attachments upladed to project");
+                    return data;
+                }
+            } catch (error) {
+                console.log(`Occured an unknown error.......!!!!`);
+                return [];
+            }
+        } catch (error) {
+            console.log("Files didn't init.......");
+            return [];
+        }
+    }
+
+    const updateServerAttachments = async (fileInfo, projectName) => {
+        try {
+            const project = {attachments: fileInfo};
+            const {data} = await axios.put(`/modifyTheProject/${projectName}`, {
+                user,
+                project
+            });
+            if(data.error){
+                console.log("Files paths didnt put to DB.........");
+                return "Files paths didnt put to DB.........";
+            }else{
+                console.log("Files paths are updated..........");
+                return data;
+            }
+        } catch (error) {
+            console.log("Unknown Error..............");
+            return "Unknown error..............";
         }
     }
 
