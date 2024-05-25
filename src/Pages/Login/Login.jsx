@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Login.css";
-import logo from "../../Components/Assests/logo-vogue.jpg";
+import styles from "../../Components/ComponentCSS/ComponentCSS.module.css";
+import styles1 from "../../Components/ComponentCSS/Layout.module.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {toast} from "react-hot-toast";
 import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
 import { MidHG, BigHG } from "../../Components/UtilizeComponents/spC";
@@ -35,9 +35,9 @@ export default function Login() {
         
     }
   return (
-    <div className='container'>
-        <div className='logger'>
-        <div className='heading'>
+    <div className={styles1.logLayout1}>
+        <div className={styles1.logLayout1Inner}>
+        <div className={styles.heading1}>
             <h1>Login</h1>
         </div>
 
@@ -77,9 +77,7 @@ export default function Login() {
             </Link>
         </form>
     </div>
-        <div className='logo'>
-            <img src={logo}/>
-        </div>
+        
     </div>
     
   )

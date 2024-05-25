@@ -15,7 +15,7 @@
     height: auto;
     display: flex;
     justify-content: space-between;
-    background: #fdf7fa;
+    background: rgb(79, 79, 79);
     padding: 1%;
     cursor: pointer;
     border: 1px solid grey;
@@ -23,9 +23,8 @@
     transition: 0.15s;
 }
 .spLayout:hover{
-    background: #ffffff;
+    border: 1px solid rgb(255, 254, 254);
     cursor: pointer;
-    transition: 0.15s;
 }
 /* ====================================== */
 .leftMenu{
@@ -37,9 +36,9 @@
     padding: 20px;
     position: absolute;
     float: left;
-    margin-top: 4.75rem;
+    margin-top: 4.54rem;
     position: fixed;
-    background-color: #F8C8DC;
+    background-color: rgb(79, 79, 79);
 }
 /* ====================================== */
 .content{
@@ -91,4 +90,34 @@
 scrollbar-width: none;  /* Firefox */
 }
 /* ====================================== */
-
+/* Login */
+.logLayout1{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.logLayout1Inner{
+    width: 500px;
+    min-height: 500px;
+    height: 25%;
+    padding: 15px;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: rgb(125, 124, 124);
+}
+.logLayout1Inner:hover{
+    border: 1px solid rgb(255, 255, 255);
+}
+.logLayout1Inner form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    
+}

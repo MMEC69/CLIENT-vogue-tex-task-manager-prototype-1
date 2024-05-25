@@ -8,8 +8,9 @@ import { Toaster} from "react-hot-toast";
 import { UserContextProvider } from './Context/UserContex';
 import Profile from './Pages/Profile/Profile';
 import CreateNewPage from "./Components/CreateNewProject/CreateNewProject"
+import {devServerURL} from "./MetaData/MetaData";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = devServerURL;
 axios.defaults.withCredentials = true;
 
 function App() {

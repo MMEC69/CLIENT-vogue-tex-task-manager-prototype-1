@@ -1,3 +1,5 @@
+export const devServerURL = "http://localhost:3000";
+
 export const options = [
     {name: "completed"},
     {name: "hold"},
@@ -18,4 +20,4 @@ export const userRoles = [
     {role: "Super Admin"},
     {role: "Admin"},
     {role: "User"}
-]
+];

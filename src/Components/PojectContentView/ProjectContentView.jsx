@@ -18,21 +18,21 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "projectName"
-                value={project.projectName}
+                placeholder={project.projectName}
             />
             <Field2
                 labelName = "Project Description"
                 type = "text"
                 autoComplete='off'
                 name = "projectDescription"
-                value={project.projectDescription}
+                placeholder={project.projectDescription}
             />
             <Field1
                 labelName = "Department Name"
                 type = "text"
                 autoComplete='off'
                 name = "departmentName"
-                value={project.departmentName}
+                placeholder={project.departmentName}
             />
 
             <Field1
@@ -40,7 +40,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "startDate"
-                value={project.startDate}
+                placeholder={project.startDate}
             />
 
             <Field1
@@ -48,7 +48,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "dueDate"
-                value={project.dueDate}
+                placeholder={project.dueDate}
             />
 
             <Field1
@@ -56,7 +56,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "assignedTo"
-                value={project.assignedTo}
+                placeholder={project.assignedTo}
             />
 
             <Field1
@@ -64,7 +64,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "projectState"
-                value={project.projectState}
+                placeholder={project.projectState}
             />
         </form>
 

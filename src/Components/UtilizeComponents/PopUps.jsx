@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
-import styles2 from "../ComponentCSS/Form.module.css";
 import { ProfileImage1, SingleComment1, CommentInput1, CloseBtn1, SingleProjectUser1} from "./PopUpsU";
 import axios from 'axios';
 import toast from 'react-hot-toast';

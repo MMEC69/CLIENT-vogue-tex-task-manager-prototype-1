@@ -1,45 +1,49 @@
 .bigH{
     font-size: 35px;
     font-weight: 700;
-    color: rgb(109, 104, 104);
+    color: rgb(221, 218, 218);
+}
+.bigH:hover{
+    color: rgb(255, 255, 255);
 }
 /* ================================ */
 .bigHG{
     font-size: 15px;
     text-decoration: none;
     margin: 65px 0px 0px 0px;
-    color: rgb(208, 199, 199);
-    transition: 0.3s;
+    color: rgb(219, 216, 216);
 }
 .bigHG:hover{
-    color: rgb(109, 104, 104);
-    transition: 0.3s;
+    color: rgb(255, 255, 255);
 }
 /* ================================ */
-
 .midH{
     font-size: 15px;
     font-weight: 500;
-    color: rgb(105, 100, 100);
+    color: rgb(200, 199, 199);
+}
+.midH:hover{
+    color: rgb(255, 255, 255);
 }
 /* ================================ */
 .midHG{
     font-size: 13px;
     color: rgb(219, 216, 216);
-    transition: 0.3s;
     text-align: right;
     margin: 3px 0px;
 }
 .midHG:hover{
-    color: rgb(155, 151, 151);
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    transition: 0.3s;
 }
 /* ================================ */
 .LH{
     font-size: 15px;
     font-weight: 700;
-    color: rgb(17, 219, 64);
+    color: rgb(53, 177, 82);
+}
+.LH:hover{
+    color: rgb(85, 222, 117);
 }
 /* ================================ */
 .OB{
@@ -51,7 +55,7 @@
 .OB button{
     width: 100%;
     border-radius: 10px;
-    background-color: rgb(30, 213, 48);
+    background-color: rgb(101, 108, 102);
     text-align: center;
     color: white;
     font-size: 15px;
@@ -59,11 +63,12 @@
 }
 .OB button:hover{
     cursor: pointer;
-    background-color: rgb(75, 230, 90);   
+    background-color: rgb(69, 195, 81);   
 }
 /* ================================ */
 .fieldS1{
     width: 100%;
+    color: rgb(209, 208, 208);
 }
 .fieldS1 label{
     width: 100%;
@@ -74,7 +79,16 @@
     font-size: 20px;
     border: none;
     padding: 5px 0px;
-    border-bottom: solid grey 1px;
+    color: rgb(87, 217, 100);
+    background-color: rgb(125, 124, 124);
+    border-bottom: solid rgb(209, 208, 208) 2px;
+}
+.fieldS1 input::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+}
+.fieldS1 input::-ms-input-placeholder { /* Edge 12 -18 */
+    color: rgb(255, 255, 255);
 }
 .fieldS1 input:focus{
     border-bottom: solid rgb(30, 213, 48) 2px;
@@ -85,10 +99,19 @@
     min-height: 100px;
     max-height: 200px;
     font-size: 20px;
-    border: 1px solid grey;
+    color: rgb(87, 217, 100);
+    background-color: rgb(125, 124, 124);
+    border: solid rgb(209, 208, 208) 2px;
     padding: 5px 5px;
     resize: none;
     border-radius: 10px;
+}
+.fieldS1 textarea::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+}
+.fieldS1 textarea::-ms-input-placeholder { /* Edge 12 -18 */
+    color: rgb(255, 255, 255);
 }
 .fieldS1 textarea:focus{
     border: solid rgb(30, 213, 48) 2px;
@@ -135,15 +158,12 @@
     text-align: center;
     border-radius: 10px;
     font-size: 20px;
-    background-color: #04AA6D;
+    background-color:rgb(154, 154, 154) ;
     color: white;
-    transition: 0.5s;
-    box-shadow: 2px 2px 7px #676666;
 }
 .sButton1 button:hover{
+    background-color:rgb(30, 213, 48) ;
     cursor: pointer;
-    transform: scale(1.05);
-    transition: 0.5s;
 }
 .sButton1 button:active{
     box-shadow: none;
@@ -160,14 +180,12 @@
     margin: 20px 0px 0px 0px;
     border-radius: 10px;
     font-size: 20px;
-    color: grey;
-    transition: 0.45s;
+    background-color:rgb(136, 136, 136) ;
+    color: white;
 }
 .sButton2 button:hover{
-    background-color:rgb(139, 137, 137) ;
-    color: white;
+    background-color:rgb(30, 213, 48) ;
     cursor: pointer; 
-    transition: 0.45s;
 }
 /* ================================ */
 .sButton3{
@@ -180,14 +198,15 @@
     font-size: 15px;
     padding: 10px;
     text-align: center;
-    border: 1px solid grey;
+    border: 1px solid rgb(214, 214, 214);
     font-weight: 500;
     border-radius: 10px;
-    background-color:rgb(255, 230, 244) ;
-    color: rgb(121, 115, 115);
+    background-color:rgb(56, 56, 56) ;
+    color: rgb(214, 214, 214);
 }
 .sButton3 button:hover{
-    background-color:rgb(252, 252, 252) ;
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     cursor: pointer; 
 }
 /* ================================ */
@@ -203,4 +222,10 @@
     width: 100px;
     display: inline-block;
     text-align: right;
+}
+/* ================================ */
+/* Heading1 */
+.heading1 h1{
+    font-size: 60px;
+    color: rgb(229, 228, 228);
 }
