@@ -6,7 +6,9 @@ import {
     confirmPasswordErrMsg,
     projectName1ErrMsg,
     departmentName1ErrMsg,
-    projectDescription1ErrMsg } from "../MetaData/FormValidationPatterns"
+    projectDescription1ErrMsg,
+    taskName1ErrMsg,
+    taskDescription1ErrMsg } from "../MetaData/FormValidationPatterns"
 
     export const formErrMsgHandler = (name) => {
     if(name ==="fullName"){
@@ -23,6 +25,10 @@ import {
         return departmentName1ErrMsg;
     }else if(name ==="projectDescription"){
         return projectDescription1ErrMsg;
+    }else if(name ==="newTaskName"){
+        return taskName1ErrMsg;
+    }else if(name ==="newTaskDescription"){
+        return taskDescription1ErrMsg;
     }else{
         return invalidPattern;
     }

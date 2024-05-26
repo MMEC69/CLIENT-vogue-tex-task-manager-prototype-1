@@ -6,6 +6,8 @@ import toast from 'react-hot-toast';
 import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import Styles1 from "../ComponentCSS/Layout.module.css";
+import {taskName1, taskDescription1} from "../../MetaData/FormValidationPatterns";
+
 export default function CreateNewTask() {
     const {
         users,
@@ -85,6 +87,7 @@ export default function CreateNewTask() {
                     name = "newTaskName"
                     value={newTask.newTaskName}
                     onChange={(e) => {setNewTask({...newTask, newTaskName: e.target.value})}}            
+                    pattern = {taskName1}
                 />
                 <Field2
                     labelName = "Task Description"
@@ -94,8 +97,8 @@ export default function CreateNewTask() {
                     name = "newTaskDescription"
                     value={newTask.newTaskDescription}
                     onChange={(e) => {setNewTask({...newTask, newTaskDescription: e.target.value})}}
+                    pattern = {taskDescription1}
                 />
-
                 <DField1
                     labelName = "Start Date"
                     value = {newTask.newTaskStartDate}
