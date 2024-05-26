@@ -30,9 +30,9 @@ export default function Login() {
                 navigate("/dashboard");
             }
         } catch (error) {
-            
+            console.log(`Error: ${error}`);
+            toast.error(`Error: ${error}`);
         }
-        
     }
   return (
     <div className={styles1.logLayout1}>
@@ -41,7 +41,6 @@ export default function Login() {
             <h1>Login</h1>
         </div>
 
-        
         <form onSubmit={loginUser}>
             <Field3
                 labelName = "Email"

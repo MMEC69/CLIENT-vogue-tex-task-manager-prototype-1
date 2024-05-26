@@ -4,8 +4,7 @@ import axios from 'axios';
 import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
-import Styles1 from "../ComponentCSS/Layout.module.css";
-import { options } from '../../MetaData/MetaData.jsx';
+import styles from "../ComponentCSS/Layout.module.css";
 
 export default function SingleProjectView (props) {
   const selectedProject = props.project;
@@ -98,12 +97,13 @@ export default function SingleProjectView (props) {
   //===========================End of functions
 
   return (
-    <div className={Styles1.spLayout}>
-      <div>
+    <div className={styles.spLayout}>
+      <div className={styles.descriptionLayout1}>
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
         <OB c = "Add Comment" f = {(e) => setTrigger1(true)}/>
+        
         <CommentsPopUp 
           trigger = {trigger1} 
           setTrigger = {setTrigger1}
@@ -114,8 +114,8 @@ export default function SingleProjectView (props) {
       </div>
       
 
-      <div className={Styles1.functionButtonLayout}>
-        <div>
+      <div className={styles.functionLayout1}>
+        <div className={styles.functionButtonLayout1}>
           <OB c = "Modify" f = {projectModify}/>
           <OB c = "View" f = {viewProject}/>
           <OB c = "Remove" f = {deleteProject}/>
@@ -123,7 +123,7 @@ export default function SingleProjectView (props) {
           <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2} selectedProject = {selectedProject}/>  
         </div>
         
-        <div className={Styles1.projectStateSelector}>
+        <div className={styles.projectStateSelector}>
           <select 
             name = "projectState" 
             id = "projectState" 

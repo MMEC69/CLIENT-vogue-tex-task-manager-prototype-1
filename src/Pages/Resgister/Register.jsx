@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import "./Register.css";
-import logo from "../../Components/Assests/logo-vogue.jpg";
-import { Link, Navigate } from 'react-router-dom';
+import styles from "../../Components/ComponentCSS/ComponentCSS.module.css";
+import styles1 from "../../Components/ComponentCSS/Layout.module.css";
+import { Link} from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
+import { BigHG } from "../../Components/UtilizeComponents/spC";
 
 export default function Register() {
     const navigate = useNavigate();
@@ -29,104 +31,63 @@ export default function Register() {
                 navigate("/login");
             }
         } catch (error) {
-            console.log("Eroor:" +error);
+            console.log("Error:" +error);
         }   
     }
 
   return (
-    <div className='container'>
-        
-        <div className='register'>
-        <div className='heading'>
-            <h1>Register</h1>
-            
-        </div>
-
-
-        <form onSubmit={regUser}>
-            <div className='label-field'>
-                <label>Full Name</label>
+    <div className={styles1.logLayout1}>
+        <div className={styles1.logLayout1Inner}>
+            <div className={styles.heading1}>
+                <h1>Register</h1>
             </div>
-            <div className='input-field'>
-                <input 
-                    type='text'
-                    placeholder='Full Name'
-                    autoComplete='off'
+            <form onSubmit={regUser}>
+                <Field3
+                    labelName = "Full Name"
+                    type = "text"
+                    placeholder = ""
+                    autoComplete = "off"
                     name = "fullName"
-                    value={regInfo.fullName}
-                    onChange={(e) => {setRegInfo({...regInfo, fullName: e.target.value})}}
+                    value = {regInfo.fullName}
+                    onChange = {(e) => {setRegInfo({...regInfo, fullName: e.target.value})}}
                 />
-            </div>
-
-            <div className='label-field'>
-                <label>Email</label>
-            </div>
-            <div className='input-field'>
-                <input 
-                    type='text'
-                    placeholder='Email'
-                    autoComplete='off'
+                <Field3
+                    labelName = "Email"
+                    type = "email"
+                    placeholder = ""
+                    autoComplete = "off"
                     name = "email"
                     value = {regInfo.email}
-                    onChange={(e) => {setRegInfo({...regInfo, email: e.target.value})}}
+                    onChange = {(e) => {setRegInfo({...regInfo, email: e.target.value})}}
                 />
-            </div>
-
-            <div className='label-field'>
-                <label>Password</label>
-            </div>
-            <div className='input-field'>
-                <input 
-                    type='password'
-                    placeholder='Password'
-                    autoComplete='off'
+                <Field3
+                    labelName = "Password"
+                    type = "password"
+                    placeholder = ""
+                    autoComplete = "off"
                     name = "password"
                     value = {regInfo.password}
-                    onChange={(e) => {setRegInfo({...regInfo, password: e.target.value})}}
+                    onChange = {(e) => {setRegInfo({...regInfo, password: e.target.value})}}
                 />
-            </div>
-
-            <div className='label-field'>
-                <label>Confirm Password</label>
-            </div>
-            <div className='input-field'>
-                <input 
-                    type='password'
-                    placeholder='Confirm Password'
-                    autoComplete='off'
-                    name = "confirm-password"
+                <Field3
+                    labelName = "Confirm Password"
+                    type = "password"
+                    placeholder = ""
+                    autoComplete = "off"
+                    name = "confirmPassword"
                 />
-            </div>
+                <SubmitBtn2 
+                    buttonName = "Register"
+                    type = "submit"
+                />
 
-            <div className='btn'>
-                <div className='submit-btn'>
-                    <button type = "submit">
-                        Register
-                    </button>
-                </div>
-                
-                {/* <div className='info-text'>
-                    <p>Already Have an Account</p>
-                </div> */}
-                <div className='submit-btn'>
-                    <Link to = "/login">
-                        <button>
-                            Login
-                        </button>
-                    </Link>
-                </div>
-            </div>
-
-            {/* <div className='info-text'>
-                <p>Forgot password</p>
-            </div> */}
-
-        </form>
-    </div>
-        <div className='logo'>
-            <img src={logo}/>
+                <Link to = "/login" style={{ textDecoration: 'none' }}>
+                    <BigHG
+                        pn = "ALREADY HAVE AN ACCOUNT?"
+                    />
+                </Link>
+            </form>
         </div>
     </div>
-    
-  )
+  );
 }

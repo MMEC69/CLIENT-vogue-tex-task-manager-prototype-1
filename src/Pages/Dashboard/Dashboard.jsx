@@ -5,8 +5,7 @@ import Content from '../../Components/Content/Content';
 
 export default function Dashboard() {
   return (
-    
-    <div className='dashboard'>
+    <div>
         <Navbar/>
         <LeftMenu/>
         <Content/>

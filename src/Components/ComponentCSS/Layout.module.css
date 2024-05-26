@@ -4,15 +4,26 @@
     gap: 20%;
 }
 /* ====================================== */
-.functionButtonLayout{
+.functionLayout1{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+}
+/* ====================================== */
+.functionButtonLayout1{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+/* ====================================== */
+.descriptionLayout1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 /* ====================================== */
 .spLayout{
     width: 100%;
-    height: auto;
     display: flex;
     justify-content: space-between;
     background: rgb(79, 79, 79);
@@ -20,7 +31,6 @@
     cursor: pointer;
     border: 1px solid grey;
     border-radius: 20px;
-    transition: 0.15s;
 }
 .spLayout:hover{
     border: 1px solid rgb(255, 254, 254);
@@ -100,7 +110,6 @@ scrollbar-width: none;  /* Firefox */
 .logLayout1Inner{
     width: 500px;
     min-height: 500px;
-    height: 25%;
     padding: 15px;
     display: flex;
     margin: auto;
@@ -111,6 +120,9 @@ scrollbar-width: none;  /* Firefox */
     border: 1px solid rgb(229, 229, 229);
     background-color: rgb(125, 124, 124);
 }
+.logLayout1Inner input:hover{
+    cursor: pointer;
+}
 .logLayout1Inner:hover{
     border: 1px solid rgb(255, 255, 255);
 }
@@ -119,5 +131,4 @@ scrollbar-width: none;  /* Firefox */
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    
 }
