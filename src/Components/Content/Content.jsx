@@ -7,6 +7,7 @@ import CreateNewProject from '../CreateNewProject/CreateNewProject';
 import CreateNewTask from '../CreateNewTask/CreateNewTask';
 import ProjectContentView from '../PojectContentView/ProjectContentView';
 import ProjectModify from '../ProjectModify/ProjectModify';
+import {Charts} from "../Charts/Charts";
 
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
@@ -33,6 +34,10 @@ export default function Content() {
 
         {activity === "project-modify" &&
           <ProjectModify/>
+        } 
+
+        {activity === "charts" &&
+          <Charts projects = {displayProjects}/>
         } 
     </div>
     
