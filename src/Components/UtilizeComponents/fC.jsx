@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "../ComponentCSS/ComponentCSS.module.css";
 import Select from "react-dropdown-select"; 
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { registerLicense } from '@syncfusion/ej2-base';
+import {registerLicense} from "@syncfusion/ej2-base";
 import "../ComponentCSS/other.css";
+import { formErrMsgHandler } from "../../Functions/FormValidation";
 import {syncFusionRegLicense} from "../../MetaData/MetaData";
 registerLicense(syncFusionRegLicense);
 
@@ -58,6 +59,7 @@ export function Field2(props) {
 }
 
 export function Field3(props) {
+  const [focused, setFocused] = useState(false);
   const {
       labelName,
       type,
@@ -65,8 +67,15 @@ export function Field3(props) {
       autoComplete,
       name,
       value,
-      onChange
-  } = props
+      onChange,
+      required,
+      pattern
+  } = props;
+  const errMsg = formErrMsgHandler(name);
+
+  const handleFocus = () => {
+    setFocused(true);
+  }
 return (
   <div className = {styles.fieldS1}>
       <label htmlFor={name}>{labelName}: </label>
@@ -78,7 +87,12 @@ return (
           name = {name}
           value = {value}
           onChange = {onChange}  
+          required = {required}
+          pattern={pattern}
+          onBlur={handleFocus}
+          focused = {focused.toString()}
       />
+      <span>{errMsg}</span>
   </div>
 )
 }

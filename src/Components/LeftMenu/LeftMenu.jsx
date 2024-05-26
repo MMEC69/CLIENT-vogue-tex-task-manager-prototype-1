@@ -29,7 +29,6 @@ export const LeftMenu = () => {
   const createNewTaskActivity = () => {
     setActivity("create-new-task");
   }
-
   
 
   return (
@@ -45,6 +44,9 @@ export const LeftMenu = () => {
       <SubmitBtn3 
         buttonName = "New Task"
         onClick={createNewTaskActivity}
+      />
+      <SubmitBtn3 
+        buttonName = "Charts"
       />
       <SubmitBtn3 
         buttonName = "TimeLine"

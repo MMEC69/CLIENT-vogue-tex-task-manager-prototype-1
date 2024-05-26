@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
 import { BigHG } from "../../Components/UtilizeComponents/spC";
-
+import { fullNamePattern1, passwordPattern1 } from "../../MetaData/FormValidationPatterns";
 export default function Register() {
     const navigate = useNavigate();
     const [regInfo, setRegInfo] = useState({
@@ -50,6 +50,7 @@ export default function Register() {
                     name = "fullName"
                     value = {regInfo.fullName}
                     onChange = {(e) => {setRegInfo({...regInfo, fullName: e.target.value})}}
+                    pattern = {fullNamePattern1}
                 />
                 <Field3
                     labelName = "Email"
@@ -68,6 +69,7 @@ export default function Register() {
                     name = "password"
                     value = {regInfo.password}
                     onChange = {(e) => {setRegInfo({...regInfo, password: e.target.value})}}
+                    pattern = {passwordPattern1}
                 />
                 <Field3
                     labelName = "Confirm Password"
@@ -75,6 +77,7 @@ export default function Register() {
                     placeholder = ""
                     autoComplete = "off"
                     name = "confirmPassword"
+                    pattern = {regInfo.password}
                 />
                 <SubmitBtn2 
                     buttonName = "Register"
