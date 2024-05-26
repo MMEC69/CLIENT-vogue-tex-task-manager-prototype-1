@@ -127,18 +127,20 @@
 .fieldS1 span{
     text-align: center;
     width: 80%;
-    color: rgb(245, 113, 93);
-    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: rgb(59, 59, 59);
     padding: 2px 10px;
     border-radius: 5px;
     font-size: 15px;
-    font-weight: 500;
     display: none;
 }
 /* .fieldS1 input:invalid[focused = "true"]{
     border-bottom: 2px solid red;
 } */
 .fieldS1 input:invalid[focused = "true"] ~ span{
+    display: block;
+}
+.fieldS1 textarea:invalid[focused = "true"] ~ span{
     display: block;
 }
 /* ================================ */

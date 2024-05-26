@@ -3,7 +3,10 @@ import {
     invalidPattern,
     emailPatternErrMsg,
     passwordPatternErrMsg,
-    confirmPasswordErrMsg } from "../MetaData/FormValidationPatterns"
+    confirmPasswordErrMsg,
+    projectName1ErrMsg,
+    departmentName1ErrMsg,
+    projectDescription1ErrMsg } from "../MetaData/FormValidationPatterns"
 
     export const formErrMsgHandler = (name) => {
     if(name ==="fullName"){
@@ -14,8 +17,13 @@ import {
         return passwordPatternErrMsg;
     }else if(name ==="confirmPassword"){
         return confirmPasswordErrMsg;
-    }
-    else{
+    }else if(name ==="projectName"){
+        return projectName1ErrMsg;
+    }else if(name ==="departmentName"){
+        return departmentName1ErrMsg;
+    }else if(name ==="projectDescription"){
+        return projectDescription1ErrMsg;
+    }else{
         return invalidPattern;
     }
 } 

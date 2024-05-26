@@ -9,53 +9,83 @@ import {syncFusionRegLicense} from "../../MetaData/MetaData";
 registerLicense(syncFusionRegLicense);
 
 export function Field1(props) {
-    const {
-        labelName,
-        type,
-        placeholder,
-        autoComplete,
-        name,
-        value,
-        onChange
-    } = props
+  const [focused, setFocused] = useState(false);
+  const {
+      labelName,
+      type,
+      placeholder,
+      autoComplete,
+      name,
+      value,
+      onChange,
+      required,
+      pattern
+  } = props
+
+  const errMsg = formErrMsgHandler(name);
+
+  const handleFocus = () => {
+    setFocused(true);
+  }
   return (
     <div className = {styles.fieldS1} >
         <label htmlFor={name}>{labelName}: </label>
         <input 
-            type = {type}
-            placeholder = {placeholder}
-            autoComplete = {autoComplete}
-            name = {name}
-            value = {value}
-            onChange = {onChange}  
+          type = {type}
+          placeholder = {placeholder}
+          autoComplete = {autoComplete}
+          name = {name}
+          value = {value}
+          onChange = {onChange} 
+          required = {required}
+          pattern={pattern}
+          onBlur={handleFocus}
+          onFocus={(e) => name === "confirmPassword" && setFocused(true)}
+          focused = {focused.toString()} 
         />
+        <span>{errMsg}</span>
     </div>
   );
 }
 
 export function Field2(props) {
-    const {
-        labelName,
-        type,
-        placeholder,
-        autoComplete,
-        name,
-        value,
-        onChange
-    } = props
+  const [focused, setFocused] = useState(false);
+  const {
+      labelName,
+      type,
+      placeholder,
+      autoComplete,
+      name,
+      value,
+      onChange,
+      required,
+      pattern
+  } = props;
+  const errMsg = formErrMsgHandler(name);
+
+  const handleFocus = () => {
+    setFocused(true);
+  };
   return (
     <div className = {styles.fieldS1} >
-        <label htmlFor={name}>{labelName}: </label>
-        <textarea 
-            type = {type}
-            placeholder = {placeholder}
-            autoComplete = {autoComplete}
-            name = {name}
-            value = {value}
-            onChange = {onChange}  
-        />
+      <label htmlFor={name}>{labelName}: </label>
+      {/* Need to change this into input -> textare, use css to convert input look like text area */}
+      <input 
+        type = {type}
+        placeholder = {placeholder}
+        autoComplete = {autoComplete}
+        name = {name}
+        value = {value}
+        onChange = {onChange} 
+        required = {required}
+        pattern={pattern}
+        onBlur={handleFocus}
+        onFocus={(e) => name === "confirmPassword" && setFocused(true)}
+        focused = {focused.toString()} 
+      />
+      <span>{errMsg}</span>
     </div>
-  )
+  );
 }
 
 export function Field3(props) {
@@ -75,7 +105,7 @@ export function Field3(props) {
 
   const handleFocus = () => {
     setFocused(true);
-  }
+  };
 return (
   <div className = {styles.fieldS1}>
       <label htmlFor={name}>{labelName}: </label>
@@ -90,11 +120,12 @@ return (
           required = {required}
           pattern={pattern}
           onBlur={handleFocus}
+          onFocus={(e) => name === "confirmPassword" && setFocused(true)}
           focused = {focused.toString()}
       />
       <span>{errMsg}</span>
   </div>
-)
+);
 }
 
 //For date picker

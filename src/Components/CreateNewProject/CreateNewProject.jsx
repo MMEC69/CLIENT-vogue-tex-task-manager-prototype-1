@@ -3,9 +3,11 @@ import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Styles from "../ComponentCSS/Form.module.css";
-import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
+import { Field1, Field2, DField1, MSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import {userRoleDividerCP, projectOwnerFilter} from "../../Functions/Conversion";
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
+import { projectName1, departmentName1, projectDescription1 } from "../../MetaData/FormValidationPatterns";
+
 export default function CreateNewProject() {
     //This is the use contex
     const {
@@ -143,6 +145,7 @@ export default function CreateNewProject() {
                     name = "projectName"
                     value={project.projectName}
                     onChange={(e) => {setProject({...project, projectName: e.target.value})}}
+                    pattern = {projectName1}
                 />       
                 <Field2
                     labelName = "Project Description"
@@ -152,6 +155,7 @@ export default function CreateNewProject() {
                     name = "projectDescription"
                     value={project.projectDescription}
                     onChange={(e) => {setProject({...project, projectDescription: e.target.value})}}         
+                    pattern = {projectDescription1}
                 />
                 <Field1
                     labelName = "Department Name"
@@ -161,6 +165,7 @@ export default function CreateNewProject() {
                     name = "departmentName"
                     value={project.departmentName}
                     onChange={(e) => {setProject({...project, departmentName: e.target.value})}}
+                    pattern = {departmentName1}
                 />
                 <DField1
                     labelName = "Start Date"
