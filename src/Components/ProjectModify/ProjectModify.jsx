@@ -7,7 +7,7 @@ import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../Util
 import Styles from "../ComponentCSS/Form.module.css";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 import { options } from '../../MetaData/MetaData';
-
+import {AttachmentWindow} from "../UtilizeComponents/AttachemntComponents";
 
 export default function ProjectModify() {
     const {
@@ -132,6 +132,10 @@ export default function ProjectModify() {
                     onClick = {
                         (e) => {}  
                     }
+                />
+
+                <AttachmentWindow
+                    attachments = {project.attachments}
                 />
             </form>
 
