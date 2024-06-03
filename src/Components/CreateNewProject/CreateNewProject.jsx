@@ -7,6 +7,7 @@ import { Field1, Field2, DField1, MSField1, SubmitBtn1 } from '../UtilizeCompone
 import {userRoleDividerCP, projectOwnerFilter} from "../../Functions/Conversion";
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import { projectName1, departmentName1, projectDescription1 } from "../../MetaData/FormValidationPatterns";
+import { sendMailNewProject } from '../../Functions/Mail';
 
 export default function CreateNewProject() {
     //This is the use contex
@@ -71,8 +72,13 @@ export default function CreateNewProject() {
                 setCurrentProject({});
             }else{
                 const data = await uploadAttachments();
-                const result = await updateServerAttachments(data, projectName);
+
+                let result = await updateServerAttachments(data, projectName);
                 console.log(result);
+
+                result = await sendMailNewProject(project, data);
+                console.log(result);
+
                 setProject({});
                 toast.success("Project Created!");
                 setActivity("create-new-task");
@@ -82,7 +88,7 @@ export default function CreateNewProject() {
             console.log(error);
         }
     }
-
+    //send attachments--------------------------------------------------Function
     const uploadAttachments = async() => {
         try {
             console.log("file upload init........");
@@ -114,6 +120,7 @@ export default function CreateNewProject() {
         }
     }
 
+    //update db to server--------------------------------------------------Function
     const updateServerAttachments = async (fileInfo, projectName) => {
         try {
             const project = {attachments: fileInfo};
