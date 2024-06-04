@@ -3,14 +3,13 @@ import { UserContext } from '../../Context/UserContex';
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Field1, Field2, DField1, MSField1, SSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
+import { Field1, Field2, DField1, MSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 import {taskName1, taskDescription1} from "../../MetaData/FormValidationPatterns";
 
 export default function CreateNewTask() {
     const {
-        users,
         user,
         newTask, 
         setNewTask, 
@@ -118,7 +117,7 @@ export default function CreateNewTask() {
                 <MSField1
                     labelName = "Assigned To"
                     name = "assignedTo"
-                    options = {users}
+                    options = {currentProject.assignedTo}
                     labelField = "email"
                     valueField = "email"
                     onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e})}}

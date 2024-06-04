@@ -15,7 +15,8 @@ export default function CreateNewProject() {
         setActivity, 
         project, 
         setProject, 
-        setCurrentProject, 
+        setCurrentProject,
+        currentProject, 
         setNewTask, 
         setTasks, 
         user,
@@ -49,6 +50,7 @@ export default function CreateNewProject() {
         try {
             assignedTo = userRoleDividerCP (projectOwner, assignedTo);
             console.log(assignedTo);
+            setCurrentProject({...currentProject, assignedTo: assignedTo})
         } catch (error) {
             console.log("Users assign problem\nError code: "+error);
         }
