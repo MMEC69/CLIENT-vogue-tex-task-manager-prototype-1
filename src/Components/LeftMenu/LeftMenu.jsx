@@ -2,18 +2,15 @@ import React from 'react';
 import { UserContext } from '../../Context/UserContex';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from "react-cookie";
 import { SubmitBtn3 } from "../UtilizeComponents/fC";
 import styles1 from "../ComponentCSS/Layout.module.css";
 
 export const LeftMenu = () => {
-  const [removeCookie] = useCookies(['token']);
   const {setUser, setActivity} = useContext(UserContext);
   const navigate = useNavigate();
   
   const logOut = () => { 
-    setUser(null);
-    removeCookie("token");
+    setUser();
     localStorage.clear();
     navigate("/login");
   }
