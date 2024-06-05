@@ -10,6 +10,10 @@ export default function ProjectContentView() {
     const {currentProject} = useContext(UserContext);
     const {project} = currentProject;
     const {tasks} = project;
+
+    const assignedEmails = project.assignedTo.map((singleAssign) => {
+        return singleAssign.fullName;
+    });
     
     return (
         <div className={Styles.form1}>
@@ -57,7 +61,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "assignedTo"
-                placeholder={project.assignedTo}
+                placeholder={assignedEmails}
             />
 
             <Field1
