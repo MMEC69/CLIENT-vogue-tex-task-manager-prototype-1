@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../../Context/UserContex';
 import SingleTaskView from '../SingleTaskView/SingleTaskView';
 import axios from 'axios';
@@ -24,6 +24,10 @@ export default function CreateNewTask() {
 
     const InitialStartDate = new Date();
     const endDate = currentProject.dueDate;
+
+    useEffect(() => {
+        setTasks(oldTasks);
+    }, []);
 
     // setTasks(oldTasks);
     
