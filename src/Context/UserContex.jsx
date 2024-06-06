@@ -53,17 +53,17 @@ export function UserContextProvider({children}){
 
     useEffect(() => {
         if(!user){
-            axios.get("/profile")
+            axios.get("/user")
             .then(({data}) => {
                 setUser(data);
             });
         }
 
-        axios.get("/getProjects")
+        axios.get("/projects")
             .then(res => setDisplayProjects(res.data))
             .catch(err => console.log(err));
 
-        axios.get("/getUsers")
+        axios.get("/users")
             .then(res => setUsers(res.data))
             .catch(err => console.log(err));
     }, []);
