@@ -7,14 +7,15 @@ import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
 
 export default function SingleProjectView (props) {
-  const selectedProject = props.project;
   const {
     projectName,
     startDate,
     dueDate,
     projectState, 
-    comments
-  } = selectedProject;
+    comments,
+    tasks,
+    assignedTo
+  } = props.project;
 
   const {
     setActivity, 
@@ -103,7 +104,17 @@ export default function SingleProjectView (props) {
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
         <OB c = "Add Comment" f = {(e) => setTrigger1(true)}/>
-        
+        <OB c = "Add Task" f = {(e) => {
+          setCurrentProject({
+            currentProjectOwner: user,
+            currentProjectName: projectName,
+            dueDate: dueDate,
+            oldTasks: tasks,
+            assignedTo: assignedTo
+          });
+          setActivity("create-new-task")
+        }}/>
+
         <CommentsPopUp 
           trigger = {trigger1} 
           setTrigger = {setTrigger1}
@@ -120,7 +131,7 @@ export default function SingleProjectView (props) {
           <OB c = "View" f = {viewProject}/>
           <OB c = "Remove" f = {deleteProject}/>
           <OB c = "Users" f = {(e) => setTrigger2(true)}/> 
-          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2} selectedProject = {selectedProject}/>  
+          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2} selectedProject = {props.project}/>  
         </div>
         
         <div className={styles.projectStateSelector}>
