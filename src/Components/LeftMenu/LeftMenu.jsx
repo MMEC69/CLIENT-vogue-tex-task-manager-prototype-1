@@ -23,10 +23,6 @@ export const LeftMenu = () => {
     setActivity("create-new-project");
   }
 
-  const createNewTaskActivity = () => {
-    setActivity("create-new-task");
-  }
-  
   const chartsActivity = () => {
     setActivity("charts");
   }
@@ -41,10 +37,6 @@ export const LeftMenu = () => {
       <SubmitBtn3 
         buttonName = "New Project"
         onClick={createNewProjectActivity}
-      />
-      <SubmitBtn3 
-        buttonName = "New Task"
-        onClick={createNewTaskActivity}
       />
       <SubmitBtn3 
         buttonName = "Charts"

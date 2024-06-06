@@ -25,8 +25,7 @@ export default function CreateNewTask() {
     const InitialStartDate = new Date();
     const endDate = currentProject.dueDate;
 
-    setTasks(oldTasks);
-    console.log(oldTasks);
+    // setTasks(oldTasks);
     
     const addNewTask = async (e) => {
         e.preventDefault();
@@ -34,7 +33,7 @@ export default function CreateNewTask() {
         //state code
         newTask.taskState = projectStateForCP(newTask.newTaskStartDate);
 
-        setTasks ([newTask, ...tasks, ...oldTasks]);
+        setTasks ([newTask, ...tasks]);
         setNewTask ({
             assigner:user,
             assignedProject: currentProject.currentProjectName,
