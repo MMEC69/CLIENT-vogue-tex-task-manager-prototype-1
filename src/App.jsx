@@ -7,8 +7,8 @@ import axios from 'axios';
 import { Toaster} from "react-hot-toast";
 import { UserContextProvider } from './Context/UserContex';
 import Profile from './Pages/Profile/Profile';
-import CreateNewPage from "./Components/CreateNewProject/CreateNewProject"
 import {devServerURL} from "./MetaData/MetaData";
+import {ProtectedRoutes} from "./Utils/ProtectedRoutes";
 
 axios.defaults.baseURL = devServerURL;
 axios.defaults.withCredentials = true;
@@ -22,9 +22,10 @@ function App() {
         <Routes>
           <Route path = "/register" element = {<Register/>}></Route>
           <Route path = "/login" element = { <Login/> }></Route>
-          <Route path = "/dashboard" element = { <Dashboard/> }></Route>
-          <Route path = "/profile" element = { <Profile/> }></Route>
-          <Route path = "/create-new-project" element = { <CreateNewPage/> }></Route>
+          <Route element = {<ProtectedRoutes/>}>
+            <Route path = "/dashboard" element = { <Dashboard/> }></Route>
+            <Route path = "/profile" element = { <Profile/> }></Route>
+          </Route>
         </Routes>
       </Router>
       </UserContextProvider>

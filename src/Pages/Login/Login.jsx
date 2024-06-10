@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from "../../Components/ComponentCSS/ComponentCSS.module.css";
 import styles1 from "../../Components/ComponentCSS/Layout.module.css";
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 import {toast} from "react-hot-toast";
 import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
 import { MidHG, BigHG } from "../../Components/UtilizeComponents/spC";
+import { UserContext } from '../../Context/UserContex';
 
 export default function Login() {
     const [logInfo, setLogInfo] = useState({
@@ -14,6 +15,8 @@ export default function Login() {
         password: ""
     });
     const navigate = useNavigate();
+
+    const {setUser} = useContext(UserContext);
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -27,6 +30,10 @@ export default function Login() {
               toast.error(data.error); 
             }else{
                 setLogInfo({});
+                await axios.get("/user")
+                .then(({data}) => {
+                    setUser(data);
+                });
                 navigate("/dashboard");
             }
         } catch (error) {
