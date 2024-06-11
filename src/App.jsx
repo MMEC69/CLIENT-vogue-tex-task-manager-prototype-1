@@ -1,8 +1,9 @@
 import './App.css';
 import Register from './Pages/Resgister/Register';
 import Login from "./Pages/Login/Login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Welcome from './Pages/Welcome/Welcome';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import { Toaster} from "react-hot-toast";
 import { UserContextProvider } from './Context/UserContex';
@@ -20,6 +21,7 @@ function App() {
       <Toaster position='top-center' toastOptions={{duration: 2000}}/>
       <Router>
         <Routes>
+          <Route path = "/" element = {<Welcome/>}></Route>
           <Route path = "/register" element = {<Register/>}></Route>
           <Route path = "/login" element = { <Login/> }></Route>
           <Route element = {<ProtectedRoutes/>}>

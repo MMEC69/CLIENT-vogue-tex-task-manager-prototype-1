@@ -3,39 +3,39 @@
     margin-top: -40px;
     margin-bottom: -50px;
     font-weight: 700;
-    color: rgb(221, 218, 218);
+    color: rgb(114, 114, 114);
 }
 .bigH:hover{
-    color: rgb(255, 255, 255);
+    color: rgb(93, 93, 93);
 }
 /* ================================ */
 .bigHG{
     font-size: 15px;
     text-decoration: none;
     margin: 65px 0px 0px 0px;
-    color: rgb(219, 216, 216);
+    color: rgb(130, 130, 130);
 }
 .bigHG:hover{
-    color: rgb(255, 255, 255);
+    color: rgb(78, 78, 78);
 }
 /* ================================ */
 .midH{
     font-size: 15px;
     font-weight: 500;
-    color: rgb(200, 199, 199);
+    color: rgb(130, 130, 130);
 }
 .midH:hover{
-    color: rgb(255, 255, 255);
+    color: rgb(100, 100, 100);
 }
 /* ================================ */
 .midHG{
     font-size: 13px;
-    color: rgb(219, 216, 216);
+    color: rgb(130, 130, 130);
     text-align: right;
     margin: 3px 0px;
 }
 .midHG:hover{
-    color: rgb(255, 255, 255);
+    color: rgb(78, 78, 78);
     cursor: pointer;
 }
 /* ================================ */
@@ -67,12 +67,12 @@
 }
 .OB button:hover{
     cursor: pointer;
-    background-color: rgb(69, 195, 81);   
+    background-color: rgb(50, 50, 50);   
 }
 /* ================================ */
 .fieldS1{
     width: 100%;
-    color: rgb(209, 208, 208);
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,26 +80,27 @@
 }
 .fieldS1 label{
     width: 100%;
-    font-size: 20px;
+    font-size: 25px;
 }
 .fieldS1 input{
     width: 100%;
     font-size: 20px;
     border: none;
     padding: 5px 0px;
-    color: rgb(87, 217, 100);
-    background-color: rgb(125, 124, 124);
+    font-size: 30px;
+    color: rgb(150, 150, 150);
+    background-color: rgb(255, 255, 255);
     border-bottom: solid rgb(209, 208, 208) 2px;
 }
 .fieldS1 input::placeholder {
-    color: rgb(255, 255, 255);
+    color: rgb(171, 171, 171);
     opacity: 1; /* Firefox */
 }
 .fieldS1 input::-ms-input-placeholder { /* Edge 12 -18 */
     color: rgb(255, 255, 255);
 }
 .fieldS1 input:focus{
-    border-bottom: solid rgb(30, 213, 48) 2px;
+    border-bottom: solid rgb(0, 0, 0) 2px;
 }
 .fieldS1 textarea{
     margin: 5px 0px;
@@ -189,7 +190,7 @@
     color: white;
 }
 .sButton1 button:hover{
-    background-color:rgb(30, 213, 48) ;
+    background-color:rgb(113, 113, 113);
     cursor: pointer;
 }
 .sButton1 button:active{
@@ -211,7 +212,7 @@
     color: white;
 }
 .sButton2 button:hover{
-    background-color:rgb(30, 213, 48) ;
+    background-color:rgb(113, 113, 113) ;
     cursor: pointer; 
 }
 /* ================================ */
@@ -232,7 +233,7 @@
     color: rgb(214, 214, 214);
 }
 .sButton3 button:hover{
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(122, 115, 115);
     color: rgb(255, 255, 255);
     cursor: pointer; 
 }
@@ -254,5 +255,5 @@
 /* Heading1 */
 .heading1 h1{
     font-size: 60px;
-    color: rgb(229, 228, 228);
+    color: rgb(82, 82, 82);
 }

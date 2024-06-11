@@ -1,0 +1,148 @@
+/* Owner - Kaveesh Jeffry Versh */
+/* I (Eronne) kaveesh changed the button hover font to white */
+.background{
+    background-color: aliceblue;
+}
+
+.sliderFrame {
+    overflow: hidden;
+    height: 100vh; 
+    width: 100vw; 
+}
+  
+@keyframes slide_animation {
+  0% { left: 0; }
+  10% { left: 0; }
+  20% { left: 100vw; }
+  30% { left: 100vw; }
+  40% { left: 200vw; }
+  50% { left: 200vw; }
+  60% { left: 300vw; }
+  70% { left: 300vw; }
+  80% { left: 200vw; }
+  90% { left: 100vw; }
+  100% { left: 0; }
+}
+  
+@-webkit-keyframes slide_animation {
+  0% { left: 0; }
+  10% { left: 0; }
+  20% { left: 100vw; }
+  30% { left: 100vw; }
+  40% { left: 200vw; }
+  50% { left: 200vw; }
+  60% { left: 300vw; }
+  70% { left: 300vw; }
+  80% { left: 200vw; }
+  90% { left: 100vw; }
+  100% { left: 0; }
+}
+  
+.slideImages {
+  width: 400vw; 
+  height: 100vh; 
+  margin: 0 0 0 -300vw; /* reduce -100vh* image count -1 */
+  position: relative;
+  -webkit-animation-name: slide_animation;
+  animation-name: slide_animation;
+
+  /* change time 11s  */
+  -webkit-animation-duration: 132s; 
+  animation-duration: 132s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+  
+.imgContainer {
+  height: 100vh; 
+  width: 100vw; 
+  position: relative;
+  float: left;
+  background-size: cover; 
+  background-position: center; 
+}
+  
+/* center div*/
+.Direct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%; 
+  width: 94%; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.315);
+  border-radius: 5vh;
+}
+
+  /*---- button css--*/
+.Button1{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height:80px;
+  border-radius: 5px;
+  background: #ffffff8a;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(255, 255, 255, 0.342);
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+}
+
+.Button1:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: rgb(30, 213, 48);
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.Button1:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.Button1 span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: rgb(0, 0, 0);
+  font-size: 1.725em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+  
+.Button1:hover span {
+  color: #fdfeff;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+

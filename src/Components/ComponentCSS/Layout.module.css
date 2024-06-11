@@ -26,14 +26,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background: rgb(79, 79, 79);
+    background: rgb(255, 255, 255);
     padding: 1%;
     cursor: pointer;
     border: 1px solid grey;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .spLayout:hover{
-    border: 1px solid rgb(255, 254, 254);
+    border: 1px solid rgb(95, 95, 95);
     cursor: pointer;
 }
 /* ====================================== */
@@ -108,7 +108,7 @@ scrollbar-width: none;  /* Firefox */
     justify-content: center;    
 }
 .logLayout1Inner{
-    width: 500px;
+    width: 600px;
     min-height: 500px;
     padding: 15px;
     display: flex;
@@ -117,14 +117,14 @@ scrollbar-width: none;  /* Firefox */
     gap: 40px;
     text-align: center;
     border-radius: 10px;
-    border: 1px solid rgb(229, 229, 229);
-    background-color: rgb(125, 124, 124);
+    border: 1px solid rgb(149, 149, 149);
+    background-color: rgb(255, 255, 255);
 }
 .logLayout1Inner input:hover{
     cursor: pointer;
 }
 .logLayout1Inner:hover{
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(55, 55, 55);
 }
 .logLayout1Inner form{
     display: flex;

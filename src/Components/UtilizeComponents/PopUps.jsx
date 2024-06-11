@@ -60,8 +60,8 @@ export function CommentsPopUp(props) {
         <div className={styles1.viewCommentInner}>
 
             <div className={styles1.popupTitle1}>
-            <p>Project - {projectName}</p>
-            <CloseBtn1 btnName = "Close" onClick = {(e) => props.setTrigger(false)}/>
+              <p>Project - {projectName}</p>
+              <CloseBtn1 btnName = "Close" onClick = {() => props.setTrigger(false)}/>
             </div>
 
             <div className={styles1.commentList1}>
