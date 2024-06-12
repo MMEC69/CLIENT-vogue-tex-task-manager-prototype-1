@@ -47,8 +47,8 @@
   animation-name: slide_animation;
 
   /* change time 11s  */
-  -webkit-animation-duration: 132s; 
-  animation-duration: 132s;
+  -webkit-animation-duration: 50s; 
+  animation-duration: 50s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
