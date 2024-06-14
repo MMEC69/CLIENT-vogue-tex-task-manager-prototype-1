@@ -52,7 +52,7 @@ export default function CreateNewProject() {
             console.log(assignedTo);
             setCurrentProject({...currentProject, assignedTo: assignedTo})
         } catch (error) {
-            console.log("Users assign problem\nError code: "+error);
+            console.log(error);
         }
         
         //state code
@@ -93,31 +93,22 @@ export default function CreateNewProject() {
     //send attachments--------------------------------------------------Function
     const uploadAttachments = async() => {
         try {
-            console.log("file upload init........");
-            console.log(files);
             const formData = new FormData();
-            console.log("Form data obj created........");
             for (let index = 0; index < files.length; index++){
                 let file = files[index];
                 formData.append("files", file);
-                console.log(`${file} appended...............`);
             }
-            console.log("Files appended........");
             try {
-                console.log("Attachments are going to be uploaded.......");
                 const {data} = await axios.post(`/uploadProjectAttachments`, formData);
                 if (data.error){
                     toast.error(data.error);
                 }else{
-                    console.log("Attachments upladed to project");
                     return data;
                 }
             } catch (error) {
-                console.log(`Occured an unknown error.......!!!!`);
                 return [];
             }
         } catch (error) {
-            console.log("Files didn't init.......");
             return [];
         }
     }
@@ -219,7 +210,6 @@ export default function CreateNewProject() {
                     }
                 />
             </form>
-            
         </div>
-  );
+    );
 }

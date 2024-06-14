@@ -86,12 +86,12 @@ export default function SingleProjectView (props) {
           project
         });
         if(data.error){
-          console.log("Didn't Post/nError Code: "+data.error);
+          console.log(data.error);
         }else{
           console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
         }
       } catch (error) {
-        console.log(`Unexpected error\nError code: ${error}`);
+        console.log(error);
       }
     }
   }

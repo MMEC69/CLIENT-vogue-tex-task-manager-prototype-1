@@ -1,12 +1,9 @@
 import {devServerURL} from "../../MetaData/MetaData";
-import axios from "axios";
 
 export const AttachmentWindow = (props) => {
     const {
         attachments
     } = props;
-    console.log("Available attachments............");
-    console.log(attachments);
 
     //need adjustment to download all the files
     //Suggestion sned the project name -> use mongo to find attachment paths -> make a zip -> save it -> send it -> delete it from server

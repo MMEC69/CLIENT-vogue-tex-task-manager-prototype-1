@@ -33,12 +33,11 @@ export default function ProjectModify() {
     //post/put to server
     const modifyProject = async (e) => {
         e.preventDefault();
-        
         //select project object
         try{
             project.projectState = project.projectState[0].name;
-        }catch(e){
-            console.log("Project state was empty!\nError Code: "+e);
+        }catch(error){
+            console.log(error);
         }
         
 
@@ -54,7 +53,6 @@ export default function ProjectModify() {
                 toast.success("Project Modified");
             }
         }catch(error){
-            console.log(error);
             toast.error(error);
         }     
     }

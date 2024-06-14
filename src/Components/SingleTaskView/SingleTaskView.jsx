@@ -8,19 +8,14 @@ import axios from 'axios';
 
 export default function SingleTaskView({singleTask, project}) {
   const {
-    assginer, 
     assignedProject,
     newTaskName,
-    newTaskDescription,
     newTaskStartDate,
     newTaskdueDate,
-    newTaskAssignedTo,
     taskState
   } = singleTask;
   
   const {
-    setActivity,
-    setCurrentProject,
     user
   } = useContext(UserContext)
   
@@ -71,12 +66,12 @@ export default function SingleTaskView({singleTask, project}) {
           task
         });
         if(data.error){
-          console.log("Didn't Post/nError Code: "+data.error);
+          console.log(data.error);
         }else{
           console.log(`Task State changed`)
         }
       } catch (error) {
-        console.log(`Unexpected error\nError code: ${error}`);
+        console.log(error);
       }
     }
   }  

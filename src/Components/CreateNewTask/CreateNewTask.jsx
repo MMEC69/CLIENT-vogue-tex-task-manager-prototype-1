@@ -65,7 +65,7 @@ export default function CreateNewTask() {
                 setActivity("dashboard");
             }
         } catch (error) {
-            console.log("Error:" +error);
+            console.log(error);
         }
     }
    
