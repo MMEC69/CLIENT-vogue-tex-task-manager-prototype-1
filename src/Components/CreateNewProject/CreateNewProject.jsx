@@ -4,13 +4,12 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Styles from "../ComponentCSS/Form.module.css";
 import { Field1, Field2, DField1, MSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
-import {userRoleDividerCP, projectOwnerFilter} from "../../Functions/Conversion";
+import {userRoleDividerCP, projectOwnerFilter, prevUserRoleDividerCP} from "../../Functions/Conversion";
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import { projectName1, departmentName1, projectDescription1 } from "../../MetaData/FormValidationPatterns";
 import { sendMailNewProject } from '../../Functions/Mail';
 
 export default function CreateNewProject() {
-    //This is the use contex
     const {
         setActivity, 
         project, 
@@ -23,20 +22,15 @@ export default function CreateNewProject() {
         users
     } = useContext(UserContext);
 
-    //state hook
     const [files, setFiles] = useState([]);
 
-    //Content for datepicker
     const InitialStartDate = new Date();
 
-    //Select filteration
     let filteredUsers = projectOwnerFilter(user, users);
 
     //post/put to server--------------------------------------------------Function
     const addNewProject = async (e) => {
         e.preventDefault();
-        setNewTask({});
-        setTasks([]);
         let { 
             projectOwner,
             projectName, 
@@ -45,12 +39,14 @@ export default function CreateNewProject() {
             startDate, 
             dueDate, 
             assignedTo, 
-            projectState} = project;
+            projectState
+        } = project;
+
 
         try {
-            assignedTo = userRoleDividerCP (projectOwner, assignedTo);
-            console.log(assignedTo);
-            setCurrentProject({...currentProject, assignedTo: assignedTo})
+            const prevAssigned = prevUserRoleDividerCP(user,assignedTo);
+            assignedTo = userRoleDividerCP (user, assignedTo);
+            setCurrentProject({...currentProject, assignedTo: prevAssigned})
         } catch (error) {
             console.log(error);
         }
@@ -122,15 +118,12 @@ export default function CreateNewProject() {
                 project
             });
             if(data.error){
-                console.log("Files paths didnt put to DB.........");
-                return "Files paths didnt put to DB.........";
+                return data.error;
             }else{
-                console.log("Files paths are updated..........");
                 return data;
             }
         } catch (error) {
-            console.log("Unknown Error..............");
-            return "Unknown error..............";
+            return error;
         }
     }
 
@@ -197,17 +190,17 @@ export default function CreateNewProject() {
                 <SubmitBtn1
                     buttonName = "Create The Project"
                     type = "submit"
-                    onClick = 
-                    {
-                        (e) => {
-                            setProject({...project, projectOwner: user});
-                            setCurrentProject({
-                                currentProjectOwner: user,
-                                currentProjectName: project.projectName,
-                                dueDate: project.dueDate
-                            });
-                        }
-                    }
+                    onClick = {() => {
+                        setProject({...project, projectOwner: user.id});
+                        setCurrentProject({
+                            currentProjectOwner: user.id,
+                            currentProjectName: project.projectName,
+                            dueDate: project.dueDate,
+                            oldTasks: []
+                        });
+                        setNewTask({});
+                        setTasks([]);
+                    }}
                 />
             </form>
         </div>

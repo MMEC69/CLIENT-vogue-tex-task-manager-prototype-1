@@ -20,7 +20,8 @@ export default function CreateNewTask() {
         setCurrentProject} = useContext(UserContext);
 
     const {
-        oldTasks } = currentProject;
+        oldTasks 
+    } = currentProject;
 
     const InitialStartDate = new Date();
     const endDate = currentProject.dueDate;
@@ -28,18 +29,21 @@ export default function CreateNewTask() {
     useEffect(() => {
         setTasks(oldTasks);
     }, []);
-
-    // setTasks(oldTasks);
     
     const addNewTask = async (e) => {
         e.preventDefault();
-
-        //state code
-        newTask.taskState = projectStateForCP(newTask.newTaskStartDate);
-
+        let {
+            assignedTo
+        } = newTask;
+        assignedTo = await assignedTo?.map((singleAssign) => {
+            return {
+                id: singleAssign.id,
+                role: singleAssign.role
+            }
+        });
         setTasks ([newTask, ...tasks]);
         setNewTask ({
-            assigner:user,
+            assigner:user.id,
             assignedProject: currentProject.currentProjectName,
             newTaskName: "",
             newTaskDescription: "",
@@ -52,16 +56,22 @@ export default function CreateNewTask() {
 
     const completeProject = async (e) => {
         e.preventDefault();
+        const {
+            id 
+        } = user;
+        const {
+            currentProjectName 
+        } = currentProject;
         try{
             const {data} = await axios.put("/createNewTask", {
-                currentProject, tasks, user
+                id, currentProjectName, tasks
             });
             if(data.error){
                 toast.error(data.error);
                 console.log(data.error)
             }else{
                 setCurrentProject({});
-                toast.success("Project Completed!");
+                toast.success("Project Completed");
                 setActivity("dashboard");
             }
         } catch (error) {
@@ -135,10 +145,10 @@ export default function CreateNewTask() {
                 <SubmitBtn1
                     buttonName = "Add Task"
                     type = "submit"
-                    onClick = {(e) => {
+                    onClick = {() => {
                         setNewTask({
                             ...newTask,
-                            assigner:user,
+                            assigner:user.id,
                             assignedProject: currentProject.currentProjectName
                         });
                     }}

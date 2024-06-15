@@ -32,23 +32,48 @@ export const dateFormat1 = (date) =>{
 // ===================================================
 export const userRoleDividerCP = (projectOwner, assignedUsers) =>{
     let role = filterSuperAdmin(userRoles);
-    console.log(role);
-    projectOwner.type = role;
+    projectOwner = {
+        id: projectOwner.id,
+        role: role
+    };
 
     role = filterUser(userRoles);
     const roledAssignedUsers = assignedUsers.map((assignedUser) => {
-        assignedUser.type = role;
-        return assignedUser;
+        const singleAssign = {
+            id: assignedUser._id,
+            role: role 
+        }
+        return singleAssign;
     });
     return [projectOwner, ...roledAssignedUsers];
 }
+// ===================================================
+export const prevUserRoleDividerCP = (projectOwner, assignedUsers) =>{
+    let role = filterSuperAdmin(userRoles);
+    projectOwner = {
+        id: projectOwner.id,
+        role: role,
+        email: projectOwner.email
+    };
 
+    role = filterUser(userRoles);
+    const roledAssignedUsers = assignedUsers.map((assignedUser) => {
+        const singleAssign = {
+            id: assignedUser._id,
+            role: role,
+            email: assignedUser.email
+        }
+        return singleAssign;
+    });
+    return [projectOwner, ...roledAssignedUsers];
+}
 export const projectOwnerFilter = (projectOwner, users) => {
     let filteredUsers = users.filter((assignUser) => {
         return assignUser.email !== projectOwner.email;
     });
     return filteredUsers
 }
+
 // ======================================================
 export const filterSuperAdmin = (userRoles) => {
     const superAdmin = userRoles.filter((userRole) => {

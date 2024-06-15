@@ -5,9 +5,11 @@ import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
+import {userRoleDividerCP, projectOwnerFilter, prevUserRoleDividerCP} from "../../Functions/Conversion";
 
 export default function SingleProjectView (props) {
   const {
+    _id,
     projectName,
     startDate,
     dueDate,
@@ -21,13 +23,14 @@ export default function SingleProjectView (props) {
     setActivity, 
     setCurrentProject,
     user,
+    users
   } = useContext(UserContext);
 
   //Popup useStates
   const [trigger1, setTrigger1] = useState(false);
   const [trigger2, setTrigger2] = useState(false);
 
-  const projectDeleter = user.email;
+  const projectDeleter = user.id;
   const fStartDate = dateFormat1(startDate);
   const fDueDate = dateFormat1(dueDate);
 
@@ -49,25 +52,21 @@ export default function SingleProjectView (props) {
   const deleteProject = async (e) => {
     e.preventDefault();
     try {
-      //To send req.body, put used instead of delete
       const {data} = await axios.put(
-        `/deleteTheProject/${projectName}`, 
+        `/deleteTheProject/${_id}`, 
         {
-          data: projectDeleter
+          projectDeleter
         }
       );
 
       if(data.error){
         console.log(data.error);
-        // return toast.error(data.error);
       }else{
         console.log("Project Deleted");
-        // return toast.success("Project Deleted");
       }
 
     } catch (error) {
       console.log("Project didn't deleted");
-      // return toast.error(error);
     }
   }
 
@@ -103,14 +102,33 @@ export default function SingleProjectView (props) {
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {projectState}/>
-        <OB c = "Add Comment" f = {(e) => setTrigger1(true)}/>
-        <OB c = "Add Task" f = {(e) => {
+        <OB c = "Add Comment" f = {() => setTrigger1(true)}/>
+        <OB c = "Add Task" f = {() => {
+          const selectedUsers = assignedTo?.map((singleAssignedTo) => {
+            const singleUser = users?.filter((selectedsingleUser) => {
+              return (selectedsingleUser._id === singleAssignedTo.id);
+            });
+            return singleUser[0];
+          });
+          
+          const assignedUsers = selectedUsers?.map((singleUser) => {
+            const role = assignedTo?.filter((singleAssignedTo) => {
+              return singleAssignedTo.id === singleUser._id;
+            });
+            console.log(role);
+            return ({
+              id: singleUser._id,
+              role: role[0].role,
+              email: singleUser.email
+            });
+          });
+          
           setCurrentProject({
             currentProjectOwner: user,
             currentProjectName: projectName,
             dueDate: dueDate,
             oldTasks: tasks,
-            assignedTo: assignedTo
+            assignedTo: assignedUsers
           });
           setActivity("create-new-task")
         }}/>

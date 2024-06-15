@@ -40,19 +40,25 @@ export default function ProjectModify() {
             console.log(error);
         }
         
+        const {
+            id
+        } = user;
 
         try{
-            const {data} = await axios.put(`/modifyTheProject/${selectedProject.projectName}`, {
-                user,
+            const {data} = await axios.put(`/modifyTheProject/${selectedProject._id}`, {
+                id,
                 project
             });
             if(data.error){
+                console.log(data.error);
                 toast.error(data.error);
             }else{
                 setProject({});
+                console.log(data);
                 toast.success("Project Modified");
             }
         }catch(error){
+            console.log(error);
             toast.error(error);
         }     
     }

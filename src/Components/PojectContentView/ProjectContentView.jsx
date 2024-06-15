@@ -57,7 +57,7 @@ export default function ProjectContentView() {
             />
 
             <Field1
-                labelName = "Due Date"
+                labelName = "Assigned To"
                 type = "text"
                 autoComplete='off'
                 name = "assignedTo"
