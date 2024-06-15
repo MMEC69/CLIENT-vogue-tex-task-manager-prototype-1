@@ -6,8 +6,9 @@ import Styles1 from "../ComponentCSS/Layout.module.css";
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 
-export default function SingleTaskView({singleTask, project}) {
+export default function SingleTaskView({singleTask, projectName}) {
   const {
+    _id,
     assignedProject,
     newTaskName,
     newTaskStartDate,
@@ -28,27 +29,27 @@ export default function SingleTaskView({singleTask, project}) {
 
   const deleteTask = async (e) => {
     e.preventDefault();
+    const {
+      id
+    } = user;
+    const taskID = _id;
     try {
       const {data} = await axios.put(
-        `/deleteTheTask/${assignedProject}`, 
+        `/deleteTheTask/${projectName}`, 
         {
-          user,
-          newTaskName
+          id,
+          taskID
         }
       );
       if(data.error){
         console.log(`Didn't post delete\n${data.error}`);
-        // return toast.error(data.error);
       }else{
         console.log(data);
-        // return toast.success("Project Deleted");
       }
     } catch (error) {
       console.log(`Unexpected error\nError code: ${error}`);
-      // return toast.error(error);
     }
   }
-  //If modify protect changes this must change as well
   const changeState = async (e) => {
     e.preventDefault();
 
@@ -78,17 +79,17 @@ export default function SingleTaskView({singleTask, project}) {
 //===========================End of functions
   return (
     <div className={Styles1.spLayout}>
-      <div>
+      <div className={Styles1.descriptionLayout1}>
         <BigH pn =  {newTaskName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
         <LH s = {taskState}/>
       </div>
 
       <div className={Styles1.functionButtonLayout}>
-          <OB c = "Modify" f = {(e) => {setTrigger2(true)}}/>
-          <OB c = "View" f = {(e) => {setTrigger1(true)}}/>
-          <OB c = "Remove" f = {deleteTask}/>  
-          <div className={Styles1.projectStateSelector}>
+        <OB c = "Modify" f = {() => {setTrigger2(true)}}/>
+        <OB c = "View" f = {() => {setTrigger1(true)}}/>
+        <OB c = "Remove" f = {deleteTask}/>  
+        <div className={Styles1.projectStateSelector}>
           <select 
             name = "taskState" 
             id = "taskState" 
@@ -101,20 +102,19 @@ export default function SingleTaskView({singleTask, project}) {
             <option value="dismissed">dismissed</option>
           </select>
         </div>
-          <TaskViewPopUp
-            trigger = {trigger1}
-            setTrigger= {setTrigger1}
-            task = {singleTask}
-          />
-          <TaskModifyPopUp
-            trigger = {trigger2}
-            setTrigger = {setTrigger2}
-            task = {singleTask}
-            project = {project}
-            user = {user}
-          />
+        <TaskViewPopUp
+          trigger = {trigger1}
+          setTrigger= {setTrigger1}
+          task = {singleTask}
+        />
+        <TaskModifyPopUp
+          trigger = {trigger2}
+          setTrigger = {setTrigger2}
+          task = {singleTask}
+          project = {projectName}
+          user = {user}
+        />
       </div>
-      
     </div>
   );
 }

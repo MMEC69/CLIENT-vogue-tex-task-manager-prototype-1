@@ -9,7 +9,10 @@ import {AttachmentWindow} from "../UtilizeComponents/AttachemntComponents";
 export default function ProjectContentView() {
     const {currentProject} = useContext(UserContext);
     const {project} = currentProject;
-    const {tasks} = project;
+    const {
+        projectName,
+        tasks
+    } = project;
 
     const assignedEmails = project.assignedTo.map((singleAssign) => {
         return singleAssign.fullName;
@@ -78,8 +81,8 @@ export default function ProjectContentView() {
         </form>
         
         <div className={Styles1.taskView1}>
-            {tasks.map(task => {
-                return <SingleTaskView singleTask = {task} project = {project}/>
+            {tasks?.map(task => {
+                return <SingleTaskView singleTask = {task} projectName = {projectName}/>
             })}
         </div>   
     </div>

@@ -37,7 +37,6 @@ export function UserContextProvider({children}){
 
     const [newTask, setNewTask] = useState({
         assginer:"",
-        assignedProject: "",
         newTaskName: "",
         newTaskDescription: "",
         newTaskStartDate: "",

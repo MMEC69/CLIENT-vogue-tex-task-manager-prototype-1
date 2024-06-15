@@ -6,6 +6,7 @@ import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx"
 import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
 import {userRoleDividerCP, projectOwnerFilter, prevUserRoleDividerCP} from "../../Functions/Conversion";
+import { getComments } from "../../Functions/ServerCommunication.jsx";
 
 export default function SingleProjectView (props) {
   const {
@@ -14,10 +15,15 @@ export default function SingleProjectView (props) {
     startDate,
     dueDate,
     projectState, 
-    comments,
     tasks,
     assignedTo
   } = props.project;
+
+  let{
+    comments
+  } = props.project;
+
+  const [updatedComments, setUpdatedComments] = useState(comments);
 
   const {
     setActivity, 
@@ -25,6 +31,10 @@ export default function SingleProjectView (props) {
     user,
     users
   } = useContext(UserContext);
+
+  const {
+    id
+  } = user;
 
   //Popup useStates
   const [trigger1, setTrigger1] = useState(false);
@@ -73,36 +83,47 @@ export default function SingleProjectView (props) {
   //If modify protect changes this must change as well
   const changeState = async (e) => {
     e.preventDefault();
-
+    console.log("> changeState initited");
     if(e.target.value === ""){
+      console.log("> changeState ended");
       return ("No need to change");
     }else{
       const project = {projectState: e.target.value};
-
       try {
-        const {data} = await axios.put(`modifyTheProject/${projectName}`,{
-          user,
+        const {data} = await axios.put(`modifyTheProject/${_id}`,{
+          id,
           project
         });
         if(data.error){
           console.log(data.error);
+          console.log("> changeState ended");
         }else{
           console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
+          console.log("> changeState ended");
         }
       } catch (error) {
         console.log(error);
+        console.log("> changeState ended");
       }
     }
   }
   //===========================End of functions
-
   return (
     <div className={styles.spLayout}>
       <div className={styles.descriptionLayout1}>
         <BigH pn =  {projectName}/>
         <MidH sd =  {fStartDate} dd = {fDueDate}/>
+        
         <LH s = {projectState}/>
-        <OB c = "Add Comment" f = {() => setTrigger1(true)}/>
+        
+        <OB c = "Add Comment" f = {async () => {
+            let updatedComments = await getComments(_id);
+            updatedComments = updatedComments.comments;
+            setUpdatedComments(updatedComments);
+            setTrigger1(true);
+          }}
+        />
+        
         <OB c = "Add Task" f = {() => {
           const selectedUsers = assignedTo?.map((singleAssignedTo) => {
             const singleUser = users?.filter((selectedsingleUser) => {
@@ -130,7 +151,7 @@ export default function SingleProjectView (props) {
             oldTasks: tasks,
             assignedTo: assignedUsers
           });
-          setActivity("create-new-task")
+          setActivity("create-new-task");
         }}/>
 
         <CommentsPopUp 
@@ -138,7 +159,8 @@ export default function SingleProjectView (props) {
           setTrigger = {setTrigger1}
           user = {user}
           projectName = {projectName}
-          pastComments = {comments}
+          projectID = {_id}
+          pastComments = {updatedComments}
         />
       </div>
       

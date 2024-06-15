@@ -8,6 +8,7 @@ import {userRoleDividerCP, projectOwnerFilter, prevUserRoleDividerCP} from "../.
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import { projectName1, departmentName1, projectDescription1 } from "../../MetaData/FormValidationPatterns";
 import { sendMailNewProject } from '../../Functions/Mail';
+import { uploadAttachments, updateServerAttachments } from "../../Functions/ServerCommunication";
 
 export default function CreateNewProject() {
     const {
@@ -21,15 +22,13 @@ export default function CreateNewProject() {
         user,
         users
     } = useContext(UserContext);
-
     const [files, setFiles] = useState([]);
-
     const InitialStartDate = new Date();
-
     let filteredUsers = projectOwnerFilter(user, users);
 
     //post/put to server--------------------------------------------------Function
     const addNewProject = async (e) => {
+        console.log("> addNewProject initatied");
         e.preventDefault();
         let { 
             projectOwner,
@@ -41,7 +40,6 @@ export default function CreateNewProject() {
             assignedTo, 
             projectState
         } = project;
-
 
         try {
             const prevAssigned = prevUserRoleDividerCP(user,assignedTo);
@@ -66,64 +64,25 @@ export default function CreateNewProject() {
                 projectState
             });
             if(data.error){
+                console.log(data.error);
                 toast.error(data.error);
                 setCurrentProject({});
             }else{
-                const data = await uploadAttachments();
+                const data = await uploadAttachments(files);
 
-                let result = await updateServerAttachments(data, projectName);
-                console.log(result);
+                let result = await updateServerAttachments(data, projectName, user);
 
                 result = await sendMailNewProject(project, data);
-                console.log(result);
 
                 setProject({});
                 toast.success("Project Created!");
+                console.log("> addNewProject Ended");
                 setActivity("create-new-task");
             }
         } catch (error) {
-            toast.error(error);
             console.log(error);
-        }
-    }
-    //send attachments--------------------------------------------------Function
-    const uploadAttachments = async() => {
-        try {
-            const formData = new FormData();
-            for (let index = 0; index < files.length; index++){
-                let file = files[index];
-                formData.append("files", file);
-            }
-            try {
-                const {data} = await axios.post(`/uploadProjectAttachments`, formData);
-                if (data.error){
-                    toast.error(data.error);
-                }else{
-                    return data;
-                }
-            } catch (error) {
-                return [];
-            }
-        } catch (error) {
-            return [];
-        }
-    }
-
-    //update db to server--------------------------------------------------Function
-    const updateServerAttachments = async (fileInfo, projectName) => {
-        try {
-            const project = {attachments: fileInfo};
-            const {data} = await axios.put(`/modifyTheProject/${projectName}`, {
-                user,
-                project
-            });
-            if(data.error){
-                return data.error;
-            }else{
-                return data;
-            }
-        } catch (error) {
-            return error;
+            console.log("> addNewProject Ended");
+            toast.error(error);
         }
     }
 

@@ -8,50 +8,53 @@ import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
 export function CommentsPopUp(props) {
   const {
     user,
-    projectName,
-    pastComments
+    projectID,
+    pastComments,
+    projectName
   } = props;
 
   const [comment, setComment] = useState({
-    commentor:"",
+    commentor:user.fullName,
     msg:"",
-    projectName:"",
+    projectID:projectID,
     commentedDateTime:""
   });
 
-  const currentDateTime = new Date();
+  
 // commentSubmit====================================/
   const commentSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("> commentSubmit initiated");
     const {
-      commentor,
       msg,
-      projectName,
-      commentedDateTime,
+      commentedDateTime
     } = comment
 
+    if(!msg){
+      console.log("msg is null");
+      console.log("> commentSubmit ended");
+      return "msg is null"
+    }
+
     try {
-      const {data} = await axios.put(`/addComment/${projectName}`,{
-        commentor,
+      const {data} = await axios.put(`/addComment/${projectID}`,{
+        commentor: user.id,
         msg,
         commentedDateTime
       });
       if(data.error){
         console.log(data.error);
-        // toast.error(data.error);
+        console.log("> commentSubmit ended");
+        return data.error;
       }else{
-        setComment({
-          commentor:"",
-          msg:"",
-          projectName:"",
-          commentedDateTime:""
-        });
-        console.log("Commented");
-        toast.success("Commented");
+        setComment({});
+        console.log("> commentSubmit ended");
+        return "Success"
       }
     } catch (error) {
-      console.log("Didnt post!\nErrorCode"+error);
+      console.log(error);
+      console.log("> commentSubmit ended");
+      return error;
     }
   }
 
@@ -80,12 +83,13 @@ export function CommentsPopUp(props) {
             <CommentInput1
               onChangeInputField = {(e) => {setComment({...comment, msg: e.target.value})}}
               value = {comment.msg}
-              onClickButton = {(e) => {setComment({
-                ...comment,
-                commentor: user,
-                projectName: projectName,
-                commentedDateTime: currentDateTime
-              })}}
+              onClickButton = {() => {
+                const currentDateTime = new Date();
+                setComment({
+                  ...comment,
+                  commentedDateTime: currentDateTime
+                });
+              }}
               onSubmit = {commentSubmit}
             />
             
@@ -105,7 +109,7 @@ export function ProjectUsersPopUp(props) {
       <div className={styles1.viewProjectUsersInner}>
         <div className = {styles1.popupTitle1}>
           <p>{projectName} - Assgined users</p>
-          <CloseBtn1 btnName = "Close" onClick = {(e) => props.setTrigger(false)}/>
+          <CloseBtn1 btnName = "Close" onClick = {() => props.setTrigger(false)}/>
         </div>
         <div className={styles1.projectUserList}>
           {

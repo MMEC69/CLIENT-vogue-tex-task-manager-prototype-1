@@ -3,10 +3,16 @@ import { UserContext } from '../../Context/UserContex';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitBtn3 } from "../UtilizeComponents/fC";
+import { getProjects } from '../../Functions/ServerCommunication';
 import styles1 from "../ComponentCSS/Layout.module.css";
 
 export const LeftMenu = () => {
-  const {setUser, setActivity} = useContext(UserContext);
+  const {
+    setUser, 
+    setActivity,
+    setDisplayProjects
+  } = useContext(UserContext);
+
   const navigate = useNavigate();
   
   const logOut = () => { 
@@ -16,6 +22,7 @@ export const LeftMenu = () => {
   }
 
   const dashboardActivity = () => {
+    const projects = getProjects(setDisplayProjects);
     setActivity("dashboard");
   }
 

@@ -6,7 +6,9 @@ import toast from 'react-hot-toast';
 import { Field1, Field2, DField1, MSField1, SubmitBtn1 } from '../UtilizeComponents/fC';
 import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import Styles1 from "../ComponentCSS/Layout.module.css";
+import styles from "../ComponentCSS/Form.module.css";
 import {taskName1, taskDescription1} from "../../MetaData/FormValidationPatterns";
+import { useState } from 'react';
 
 export default function CreateNewTask() {
     const {
@@ -17,7 +19,8 @@ export default function CreateNewTask() {
         setTasks, 
         setActivity, 
         currentProject, 
-        setCurrentProject} = useContext(UserContext);
+        setCurrentProject
+    } = useContext(UserContext);
 
     const {
         oldTasks 
@@ -26,9 +29,7 @@ export default function CreateNewTask() {
     const InitialStartDate = new Date();
     const endDate = currentProject.dueDate;
 
-    useEffect(() => {
-        setTasks(oldTasks);
-    }, []);
+    const [displayTasks, setDisplayTasks] = useState(oldTasks)
     
     const addNewTask = async (e) => {
         e.preventDefault();
@@ -42,9 +43,9 @@ export default function CreateNewTask() {
             }
         });
         setTasks ([newTask, ...tasks]);
+        setDisplayTasks([newTask, ...displayTasks])
         setNewTask ({
             assigner:user.id,
-            assignedProject: currentProject.currentProjectName,
             newTaskName: "",
             newTaskDescription: "",
             newTaskStartDate: "",
@@ -71,6 +72,7 @@ export default function CreateNewTask() {
                 console.log(data.error)
             }else{
                 setCurrentProject({});
+                setTasks ([]);
                 toast.success("Project Completed");
                 setActivity("dashboard");
             }
@@ -80,7 +82,7 @@ export default function CreateNewTask() {
     }
    
     return (
-        <div className={Styles1.createNewTask}>
+        <div className={styles.form1}>
             <form onSubmit={addNewTask}>
                 <Field1
                     labelName = "Project Name"
@@ -146,10 +148,11 @@ export default function CreateNewTask() {
                     buttonName = "Add Task"
                     type = "submit"
                     onClick = {() => {
+                        const taskState = projectStateForCP(newTask.newTaskStartDate);
                         setNewTask({
                             ...newTask,
                             assigner:user.id,
-                            assignedProject: currentProject.currentProjectName
+                            taskState: taskState
                         });
                     }}
                 />
@@ -160,8 +163,8 @@ export default function CreateNewTask() {
             </form>
 
             <div className={Styles1.taskView1}>
-                {tasks?.map(projectTask => {
-                        return <SingleTaskView singleTask = {projectTask}/>
+                {displayTasks?.map(projectTask => {
+                        return <SingleTaskView singleTask = {projectTask} projectName={currentProject.currentProjectName}/>
                 })}
             </div>
         </div>
