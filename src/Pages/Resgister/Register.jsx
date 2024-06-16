@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
 import { BigHG } from "../../Components/UtilizeComponents/spC";
 import { fullNamePattern1, passwordPattern1 } from "../../MetaData/FormValidationPatterns";
+
 export default function Register() {
     const navigate = useNavigate();
     const [regInfo, setRegInfo] = useState({
@@ -18,20 +19,31 @@ export default function Register() {
     
     const regUser = async (e) => {
         e.preventDefault();
-        const { fullName, email, password } = regInfo;
+        console.log("> regUser initiated");
+        const { 
+            fullName, 
+            email, 
+            password 
+        } = regInfo;
         try{
             const {data} = await axios.post("/register", {
-                fullName, email, password
+                fullName, 
+                email, 
+                password
             });
             if(data.error){
+                console.log(data.error);
+                console.log("> regUser ended");
                 toast.error(data.error);
             }else{
                 setRegInfo({});
+                console.log("> regUser ended");
                 toast.success("Registration Successful!");
                 navigate("/login");
             }
         } catch (error) {
-            console.log("Error:" +error);
+            console.log(error);
+            console.log("> regUser ended");
         }   
     }
 

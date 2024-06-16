@@ -28,8 +28,8 @@ export default function CreateNewProject() {
 
     //post/put to server--------------------------------------------------Function
     const addNewProject = async (e) => {
-        console.log("> addNewProject initatied");
         e.preventDefault();
+        console.log("> addNewProject initatied");
         let { 
             projectOwner,
             projectName, 
@@ -49,7 +49,6 @@ export default function CreateNewProject() {
             console.log(error);
         }
         
-        //state code
         projectState = projectStateForCP(startDate);
 
         try {
@@ -65,18 +64,16 @@ export default function CreateNewProject() {
             });
             if(data.error){
                 console.log(data.error);
+                console.log("> addNewProject ended");
                 toast.error(data.error);
                 setCurrentProject({});
             }else{
                 const data = await uploadAttachments(files);
-
                 let result = await updateServerAttachments(data, projectName, user);
-
-                result = await sendMailNewProject(project, data);
-
+                result = await sendMailNewProject(project, data, users);
                 setProject({});
-                toast.success("Project Created!");
                 console.log("> addNewProject Ended");
+                toast.success("Project Created");
                 setActivity("create-new-task");
             }
         } catch (error) {

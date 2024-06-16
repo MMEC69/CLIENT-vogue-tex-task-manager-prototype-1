@@ -220,37 +220,33 @@ export function TaskModifyPopUp(props){
     user
   } = props;
 
-  const prevTaskName = task.newTaskName;
-
-  // taskModify====================================/
+  // ====================================
   const taskModify = async (e) => {
     e.preventDefault();
+    console.log("> taskModify initiated");
     try {
-      const {data} = await axios.put(`/modifyTask/${project.projectName}`, {
-        prevTaskName,
-        user,
+      const {data} = await axios.put(`/modifyTask/${project._id}`, {
+        taskID: task._id,
+        userID: user.id,
         taskModification
       });
       if(data.error){
         console.log(data.error);
-        // toast.error(data.error);
+        console.log("> taskModify ended");
       }else{
         setTaskModification({});
-        console.log("Task Modified");
-        // toast.success("Task Modified")
       }
     } catch (error) {
       console.log(error);
-      // toast.error(error);
+      console.log("> taskModify ended");
     }
   } 
-
-  return(trigger) ?(
+  return(trigger) ? (
     <div className={styles1.viewTask1}>
       <div className={styles1.viewTaskInner1}>
         <div className={styles1.popupTitle1}>
           <p>Project - {project.projectName} || Task - {task.newTaskName}</p>
-          <CloseBtn1 btnName = "Close" onClick = {(e) => setTrigger(false)}/>
+          <CloseBtn1 btnName = "Close" onClick = {() => setTrigger(false)}/>
         </div>
         <div className={styles1.viewTaskForm}>
           <form onSubmit={taskModify}>

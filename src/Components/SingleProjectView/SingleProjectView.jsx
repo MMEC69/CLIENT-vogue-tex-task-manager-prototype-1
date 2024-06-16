@@ -5,8 +5,8 @@ import {BigH, MidH, LH, OB} from "../UtilizeComponents/spC";
 import {CommentsPopUp, ProjectUsersPopUp} from "../UtilizeComponents/PopUps.jsx";
 import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
-import {userRoleDividerCP, projectOwnerFilter, prevUserRoleDividerCP} from "../../Functions/Conversion";
 import { getComments } from "../../Functions/ServerCommunication.jsx";
+import { getProjects } from '../../Functions/ServerCommunication';
 
 export default function SingleProjectView (props) {
   const {
@@ -29,7 +29,8 @@ export default function SingleProjectView (props) {
     setActivity, 
     setCurrentProject,
     user,
-    users
+    users,
+    setDisplayProjects
   } = useContext(UserContext);
 
   const {
@@ -61,6 +62,7 @@ export default function SingleProjectView (props) {
 
   const deleteProject = async (e) => {
     e.preventDefault();
+    console.log("> deleteProject initiated");
     try {
       const {data} = await axios.put(
         `/deleteTheProject/${_id}`, 
@@ -68,15 +70,18 @@ export default function SingleProjectView (props) {
           projectDeleter
         }
       );
-
       if(data.error){
         console.log(data.error);
+        getProjects(setDisplayProjects);
+        console.log("> deleteProject ended");
       }else{
-        console.log("Project Deleted");
+        getProjects(setDisplayProjects);
+        console.log("> deleteProject ended");
       }
-
     } catch (error) {
-      console.log("Project didn't deleted");
+      console.log(error);
+      getProjects(setDisplayProjects);
+      console.log("> deleteProject ended");
     }
   }
 
@@ -95,14 +100,16 @@ export default function SingleProjectView (props) {
           project
         });
         if(data.error){
+          getProjects(setDisplayProjects);
           console.log(data.error);
           console.log("> changeState ended");
         }else{
-          console.log(`Project State Changed from pro ${projectState} to ${project.projectState}`)
+          getProjects(setDisplayProjects);
           console.log("> changeState ended");
         }
       } catch (error) {
         console.log(error);
+        getProjects(setDisplayProjects);
         console.log("> changeState ended");
       }
     }

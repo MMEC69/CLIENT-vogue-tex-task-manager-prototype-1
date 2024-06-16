@@ -20,25 +20,32 @@ export default function Login() {
 
     const loginUser = async (e) => {
         e.preventDefault();
-        const { email, password } = logInfo;
+        console.log("> loginUser initiated");
+        const { 
+            email, 
+            password 
+        } = logInfo;
         try {
             const {data} = await axios.post("/login", {
                 email,
                 password
             });
             if(data.error){
-              toast.error(data.error); 
+                console.log(data.error);
+                console.log("> loginUser ended");
+                toast.error(data.error); 
             }else{
                 setLogInfo({});
                 await axios.get("/user")
                 .then(({data}) => {
                     setUser(data);
                 });
+                console.log("> loginUser ended");
                 navigate("/dashboard");
             }
         } catch (error) {
-            console.log(`Error: ${error}`);
-            toast.error(`Error: ${error}`);
+            console.log(error);
+            toast.error(error);
         }
     }
   return (

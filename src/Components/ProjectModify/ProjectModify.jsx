@@ -134,7 +134,7 @@ export default function ProjectModify() {
                     buttonName = "Complete The Changes"
                     type = "submit"
                     onClick = {
-                        (e) => {}  
+                        () => {}  
                     }
                 />
 
@@ -144,7 +144,7 @@ export default function ProjectModify() {
             </form>
 
             <div className={Styles1.taskView1}>
-                {tasks.map(task => {
+                {tasks?.map(task => {
                     return <SingleTaskView 
                         singleTask = {task} 
                         project = {selectedProject}

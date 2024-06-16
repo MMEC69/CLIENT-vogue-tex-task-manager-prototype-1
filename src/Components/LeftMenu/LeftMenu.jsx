@@ -16,22 +16,32 @@ export const LeftMenu = () => {
   const navigate = useNavigate();
   
   const logOut = () => { 
+    console.log("> logOut initiated");
     setUser();
     localStorage.clear();
     navigate("/login");
+    console.log("> logOut ended");
   }
 
   const dashboardActivity = () => {
-    const projects = getProjects(setDisplayProjects);
+    console.log("> dashboardActivity initiated");
+    getProjects(setDisplayProjects);
     setActivity("dashboard");
+    console.log("> dashboardActivity ended");
   }
 
   const createNewProjectActivity = () => {
+    console.log("> createNewProjectActivity initiated");
+    getProjects(setDisplayProjects);
     setActivity("create-new-project");
+    console.log("> createNewProjectActivity ended");
   }
 
   const chartsActivity = () => {
+    console.log("> chartsActivity initiated");
+    getProjects(setDisplayProjects);
     setActivity("charts");
+    console.log("> chartsActivity ended");
   }
   
 
