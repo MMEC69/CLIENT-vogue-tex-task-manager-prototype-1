@@ -22,8 +22,12 @@ export default function CreateNewProject() {
         user,
         users
     } = useContext(UserContext);
+
     const [files, setFiles] = useState([]);
+    const [receivers, setReceivers] = useState([]);
+
     const InitialStartDate = new Date();
+
     let filteredUsers = projectOwnerFilter(user, users);
 
     //post/put to server--------------------------------------------------Function
@@ -68,9 +72,19 @@ export default function CreateNewProject() {
                 toast.error(data.error);
                 setCurrentProject({});
             }else{
-                const data = await uploadAttachments(files);
-                let result = await updateServerAttachments(data, projectName, user);
-                result = await sendMailNewProject(project, data, users);
+                let result;
+                try {
+                    const data = await uploadAttachments(files);
+                    result = await updateServerAttachments(data, projectName, user);
+                } catch (error) {
+                    console.log(error);
+                }
+                try {
+                    result = await sendMailNewProject(project, data, users);
+                } catch (error) {
+                    console.log(error);
+                }
+                
                 setProject({});
                 console.log("> addNewProject Ended");
                 toast.success("Project Created");

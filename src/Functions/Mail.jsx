@@ -1,10 +1,11 @@
 import axios from "axios";
-import {initialDeco, processDeco} from "../MetaData/TextDecoration";
 import {CNPMailSubject} from "../MetaData/MailSubject";
 import { dateFormat1 } from "./Conversion";
 
 export const sendMailNewProject = async (project, attachments, users) => {
     console.log("> sendMailNewProject initiated");
+    const receivers = [];
+    
     let {
         projectOwner,
         projectName,
@@ -19,15 +20,18 @@ export const sendMailNewProject = async (project, attachments, users) => {
     startDate = dateFormat1(startDate);
     dueDate = dateFormat1(dueDate);
     const subject = `${CNPMailSubject} - ${projectName}`;
-    const receivers = assignedTo.map((receiver) => {
-        const reciversObjs = users.filter((user) => {
-            return user._id = receiver.id
-        });
-        return {
-            email: reciversObjs[0].email
+
+    for (let i = 0; i < assignedTo.length; i++) {
+        for (let j = 0; j < users.length; j++) {
+            if(assignedTo[i] === users[j]){
+                receivers.push(users[j].email);
+            }else{
+                continue
+            }
         }
-    });
+    }
     console.log(receivers);
+
     try {
         const {data} = await axios.post("/sendMailNewProject", {
             receivers : receivers,
