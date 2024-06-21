@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
 import { UserContext } from '../../Context/UserContex';
 import { getProjects } from '../../Functions/ServerCommunication';
-import { userFilter } from '../../Functions/FilterFunctions';
 
 export function CommentsPopUp(props) {
   const {

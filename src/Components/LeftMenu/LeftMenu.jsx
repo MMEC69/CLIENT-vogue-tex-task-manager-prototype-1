@@ -26,7 +26,7 @@ export const LeftMenu = () => {
   const dashboardActivity = () => {
     console.log("> dashboardActivity initiated");
     getProjects(setDisplayProjects);
-    setActivity("dashboard");
+    setActivity("project-dashbaord-content-view");
     console.log("> dashboardActivity ended");
   }
 
@@ -43,13 +43,23 @@ export const LeftMenu = () => {
     setActivity("charts");
     console.log("> chartsActivity ended");
   }
-  
+
+  const projectList = () => {
+    console.log("> projectList initiated");
+    getProjects(setDisplayProjects);
+    setActivity("project-list");
+    console.log("> projectList ended");
+  }
 
   return (
     <div className={styles1.leftMenu}>
       <SubmitBtn3 
         buttonName = "Dashboard"
         onClick={dashboardActivity}
+      />
+      <SubmitBtn3 
+        buttonName = "Project List"
+        onClick={projectList}
       />
       <SubmitBtn3 
         buttonName = "New Project"
@@ -61,6 +71,18 @@ export const LeftMenu = () => {
       />
       <SubmitBtn3 
         buttonName = "TimeLine"
+      />
+      <SubmitBtn3 
+        buttonName = "Users"
+      />
+      <SubmitBtn3 
+        buttonName = "Work Traffic"
+      />
+      <SubmitBtn3 
+        buttonName = "Productivity"
+      />
+      <SubmitBtn3 
+        buttonName = "Work Space"
       />
       <SubmitBtn3 
         buttonName = "LogOut"

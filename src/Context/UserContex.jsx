@@ -8,7 +8,7 @@ export function UserContextProvider({children}){
 
     const [users, setUsers] = useState([]);
 
-    const [activity, setActivity] = useState("dashboard");
+    const [activity, setActivity] = useState("project-dashbaord-content-view");
 
     const [project, setProject] = useState({
         projectOwner: "",

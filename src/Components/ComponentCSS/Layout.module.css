@@ -148,3 +148,24 @@ scrollbar-width: none;  /* Firefox */
     right: 0;
     left: 90px;
 }
+/* ================================================ */
+.projectDashboardContentLayout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+}
+.pieChartLayout{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+}
+.dashboardProjectList{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: -1;
+}
+

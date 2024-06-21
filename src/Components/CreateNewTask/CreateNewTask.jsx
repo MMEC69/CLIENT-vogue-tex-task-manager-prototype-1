@@ -143,7 +143,6 @@ export default function CreateNewTask() {
                     valueField = "email"
                     onChange={(e) => {setNewTask({...newTask, newTaskAssignedTo: e})}}
                 />
-
                 <SubmitBtn1
                     buttonName = "Add Task"
                     type = "submit"

@@ -8,20 +8,25 @@ import CreateNewTask from '../CreateNewTask/CreateNewTask';
 import ProjectContentView from '../PojectContentView/ProjectContentView';
 import ProjectModify from '../ProjectModify/ProjectModify';
 import {Charts} from "../Charts/Charts";
+import {ProjectDashboardContent} from "../ProjectDashboardContent/ProjectDashboardContent";
 
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
   
   return (
     <div className={styles1.content}>
-        {activity === "dashboard" &&
+        {activity === "project-list" &&
           displayProjects?.map((displayProject => {
             return <SingleProjectView project= {displayProject}/>
-          })) 
+          }))
         }
- 
+
         {activity === "create-new-project" &&
           <CreateNewProject/>
+        }
+ 
+        {activity === "project-dashbaord-content-view" &&
+          <ProjectDashboardContent/>
         }
 
         {activity === "create-new-task" &&
