@@ -85,6 +85,9 @@ export const LeftMenu = () => {
         buttonName = "Work Space"
       />
       <SubmitBtn3 
+        buttonName = "Chat"
+      />
+      <SubmitBtn3 
         buttonName = "LogOut"
         onClick={logOut}
       />
