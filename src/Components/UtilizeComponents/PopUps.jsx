@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
 import { ProfileImage1, SingleComment1, CommentInput1, CloseBtn1, SingleProjectUser1} from "./PopUpsU";
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
+import { UserContext } from '../../Context/UserContex';
+import { getProjects } from '../../Functions/ServerCommunication';
+import { userFilter } from '../../Functions/FilterFunctions';
 
 export function CommentsPopUp(props) {
   const {
     user,
     projectID,
     pastComments,
-    projectName
+    projectName,
+    commentUpdate
   } = props;
+
+  const {
+    setDisplayProjects
+  } = useContext(UserContext);
 
   const [comment, setComment] = useState({
     commentor:user.fullName,
@@ -26,12 +33,11 @@ export function CommentsPopUp(props) {
     e.preventDefault();
     console.log("> commentSubmit initiated");
     const {
-      msg,
-      commentedDateTime
-    } = comment
+      msg
+    } = comment;
 
     if(!msg){
-      console.log("msg is null");
+      console.log("> msg is null");
       console.log("> commentSubmit ended");
       return "msg is null"
     }
@@ -40,7 +46,7 @@ export function CommentsPopUp(props) {
       const {data} = await axios.put(`/addComment/${projectID}`,{
         commentor: user.id,
         msg,
-        commentedDateTime
+        commentedDateTime: new Date()
       });
       if(data.error){
         console.log(data.error);
@@ -48,6 +54,7 @@ export function CommentsPopUp(props) {
         return data.error;
       }else{
         setComment({});
+        commentUpdate();
         console.log("> commentSubmit ended");
         return "Success"
       }
@@ -64,7 +71,10 @@ export function CommentsPopUp(props) {
 
             <div className={styles1.popupTitle1}>
               <p>Project - {projectName}</p>
-              <CloseBtn1 btnName = "Close" onClick = {() => props.setTrigger(false)}/>
+              <CloseBtn1 btnName = "Close" onClick = {() => {
+                getProjects(setDisplayProjects);
+                props.setTrigger(false);
+              }}/>
             </div>
 
             <div className={styles1.commentList1}>
@@ -81,15 +91,7 @@ export function CommentsPopUp(props) {
               }
             </div>
             <CommentInput1
-              onChangeInputField = {(e) => {setComment({...comment, msg: e.target.value})}}
-              value = {comment.msg}
-              onClickButton = {() => {
-                const currentDateTime = new Date();
-                setComment({
-                  ...comment,
-                  commentedDateTime: currentDateTime
-                });
-              }}
+              onChangeInputField = {(inputMessage) => {setComment({...comment, msg: inputMessage})}}
               onSubmit = {commentSubmit}
             />
             
@@ -104,6 +106,11 @@ export function ProjectUsersPopUp(props) {
     projectName,
     assignedTo
   } = selectedProject;
+
+  const {
+    users
+  } = useContext(UserContext);
+
   return (props.trigger) ? (
     <div className={styles1.viewProjectUsers}>
       <div className={styles1.viewProjectUsersInner}>
@@ -113,10 +120,10 @@ export function ProjectUsersPopUp(props) {
         </div>
         <div className={styles1.projectUserList}>
           {
-            assignedTo.map((singleUser) => {
+            assignedTo?.map((selectedUser) => {
               return(
                 <SingleProjectUser1 
-                  singleUser = {singleUser} 
+                  selectedUser = {selectedUser} 
                 />
               );
             })
@@ -217,6 +224,7 @@ export function TaskModifyPopUp(props){
     setTrigger,
     task,
     project,
+    projectID,
     user
   } = props;
 
@@ -225,7 +233,7 @@ export function TaskModifyPopUp(props){
     e.preventDefault();
     console.log("> taskModify initiated");
     try {
-      const {data} = await axios.put(`/modifyTask/${project._id}`, {
+      const {data} = await axios.put(`/modifyTask/${projectID}`, {
         taskID: task._id,
         userID: user.id,
         taskModification

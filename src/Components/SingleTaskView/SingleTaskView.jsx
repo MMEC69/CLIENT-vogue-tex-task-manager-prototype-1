@@ -6,10 +6,8 @@ import Styles1 from "../ComponentCSS/Layout.module.css";
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 
-export default function SingleTaskView({singleTask, project}) {
+export default function SingleTaskView({singleTask, projectName, _id}) {
   const {
-    _id,
-    assignedProject,
     newTaskName,
     newTaskStartDate,
     newTaskdueDate,
@@ -29,25 +27,29 @@ export default function SingleTaskView({singleTask, project}) {
 
   const deleteTask = async (e) => {
     e.preventDefault();
+    console.log("> deleteTask initiated");
     const {
       id
     } = user;
     const taskID = _id;
     try {
       const {data} = await axios.put(
-        `/deleteTheTask/${project.projectName}`, 
+        `/deleteTheTask/${_id}`, 
         {
           id,
           taskID
         }
       );
       if(data.error){
-        console.log(`Didn't post delete\n${data.error}`);
+        console.log(data.error);
+        console.log("> deleteTask ended");
       }else{
         console.log(data);
+        console.log("> deleteTask ended");
       }
     } catch (error) {
-      console.log(`Unexpected error\nError code: ${error}`);
+      console.log(error);
+      console.log("> deleteTask ended");
     }
   }
   const changeState = async (e) => {
@@ -62,7 +64,7 @@ export default function SingleTaskView({singleTask, project}) {
       };
 
       try {
-        const {data} = await axios.put(`modifyTheTaskState/${project._id}`,{
+        const {data} = await axios.put(`modifyTheTaskState/${_id}`,{
           userID: user.id,
           task: task
         });
@@ -113,7 +115,8 @@ export default function SingleTaskView({singleTask, project}) {
           trigger = {trigger2}
           setTrigger = {setTrigger2}
           task = {singleTask}
-          project = {project}
+          project = {projectName}
+          projectID ={_id}
           user = {user}
         />
       </div>

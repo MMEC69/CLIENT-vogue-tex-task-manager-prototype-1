@@ -114,6 +114,13 @@ export default function SingleProjectView (props) {
       }
     }
   }
+
+  const commentUpdate = async () => {
+    let updatedComments = await getComments(_id);
+    updatedComments = updatedComments.comments;
+    setUpdatedComments(updatedComments);
+    setTrigger1(true);
+  }
   //===========================End of functions
   return (
     <div className={styles.spLayout}>
@@ -123,12 +130,7 @@ export default function SingleProjectView (props) {
         
         <LH s = {projectState}/>
         
-        <OB c = "Add Comment" f = {async () => {
-            let updatedComments = await getComments(_id);
-            updatedComments = updatedComments.comments;
-            setUpdatedComments(updatedComments);
-            setTrigger1(true);
-          }}
+        <OB c = "Add Comment" f = {commentUpdate}
         />
         
         <OB c = "Add Task" f = {() => {
@@ -168,6 +170,7 @@ export default function SingleProjectView (props) {
           projectName = {projectName}
           projectID = {_id}
           pastComments = {updatedComments}
+          commentUpdate = {commentUpdate}
         />
       </div>
       
@@ -177,8 +180,12 @@ export default function SingleProjectView (props) {
           <OB c = "Modify" f = {projectModify}/>
           <OB c = "View" f = {viewProject}/>
           <OB c = "Remove" f = {deleteProject}/>
-          <OB c = "Users" f = {(e) => setTrigger2(true)}/> 
-          <ProjectUsersPopUp trigger = {trigger2} setTrigger = {setTrigger2} selectedProject = {props.project}/>  
+          <OB c = "Users" f = {() => {setTrigger2(true)}}/> 
+          <ProjectUsersPopUp 
+            trigger = {trigger2} 
+            setTrigger = {setTrigger2} 
+            selectedProject = {props.project}
+          />  
         </div>
         
         <div className={styles.projectStateSelector}>

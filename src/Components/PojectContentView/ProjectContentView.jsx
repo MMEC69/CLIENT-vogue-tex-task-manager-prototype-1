@@ -11,6 +11,7 @@ export default function ProjectContentView() {
     const {project} = currentProject;
     const {
         projectName,
+        _id,
         tasks
     } = project;
 
@@ -82,7 +83,11 @@ export default function ProjectContentView() {
         
         <div className={Styles1.taskView1}>
             {tasks?.map(task => {
-                return <SingleTaskView singleTask = {task} projectName = {projectName}/>
+                return <SingleTaskView 
+                    singleTask = {task} 
+                    projectName = {projectName} 
+                    _id = {_id}
+                    />
             })}
         </div>   
     </div>

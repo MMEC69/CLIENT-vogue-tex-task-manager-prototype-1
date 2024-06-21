@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
 import sampleProfileImage from "../Assests/profile-icon-design-free-vector.jpg";
 import {OB} from "../UtilizeComponents/spC";
+import { UserContext } from '../../Context/UserContex';
 
 export function ProfileImage1() {
   return (
@@ -31,10 +32,17 @@ export function SingleComment1(props) {
 export function CommentInput1(props) {
     const {
         onChangeInputField,
-        onClickButton,
         onSubmit,
-        value
     } = props;
+    const [inputMessage, setInputMessage] = useState();
+    const inputFieldUpdate = async(e) => {
+      console.log("> inputFieldUpdate initiated");
+      console.log("> comment date set");
+      onChangeInputField(inputMessage);
+      console.log("> comment msg set");
+      setInputMessage("");
+      console.log("> inputFieldUpdate ended");
+    }
     return (
       <div className={styles1.commentInput1}>
         <form onSubmit={onSubmit}>
@@ -42,10 +50,10 @@ export function CommentInput1(props) {
             type='text'
             placeholder='Write your comment here...'
             name='comment'
-            value={value}
-            onChange={onChangeInputField}
+            value={inputMessage}
+            onChange={(e) => {setInputMessage(e.target.value)}}
           />
-          <button onClick={onClickButton}>
+          <button onClick={inputFieldUpdate}>
             Send
           </button>
         </form>
@@ -57,7 +65,7 @@ export function CommentInput1(props) {
     const {
       btnName,
       onClick
-    } = props
+    } = props;
     return (
       <div className = {styles1.closeBtn1}>
           <button onClick={onClick}>{btnName}</button>
@@ -65,8 +73,15 @@ export function CommentInput1(props) {
     );
   } 
 
-  export function SingleProjectUser1(props){
-    const {singleUser} = props;
+  export function SingleProjectUser1 (props){
+    const {selectedUser} = props;
+    let singleUser = [];
+    console.log(selectedUser);
+    const {users} = useContext(UserContext);
+    const userDetils = users.filter((checkingUser) => {
+      return checkingUser._id === selectedUser.id;
+    }); 
+    singleUser = userDetils[0];
     return(
       <div className={styles1.singleUser1}>
         <div className={styles1.userProfileImage1}>
