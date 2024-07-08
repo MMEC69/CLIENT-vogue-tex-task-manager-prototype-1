@@ -154,6 +154,7 @@ scrollbar-width: none;  /* Firefox */
     display: flex;
     flex-direction: row;
     gap: 20%;
+    z-index: -1;
 }
 .pieChartLayout{
     width: 40%;
@@ -166,6 +167,4 @@ scrollbar-width: none;  /* Firefox */
     display: flex;
     flex-direction: column;
     gap: 20px;
-    z-index: -1;
 }
-

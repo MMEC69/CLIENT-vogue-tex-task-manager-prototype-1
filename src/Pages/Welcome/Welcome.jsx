@@ -11,7 +11,6 @@ function Welcome() {
   const navigate = useNavigate();
   return (
     <div className='background'>
-      
       <div className='sliderFrame'>
             <div className="slideImages">
                 <div className='imgContainer'>

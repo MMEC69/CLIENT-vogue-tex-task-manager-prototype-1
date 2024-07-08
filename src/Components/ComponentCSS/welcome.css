@@ -89,7 +89,7 @@
   align-items: center;
   width: 300px;
   height:80px;
-  border-radius: 5px;
+  border-radius: 10px;
   background: #ffffff8a;
   font-family: "Montserrat", sans-serif;
   box-shadow: 0px 6px 24px 0px rgba(255, 255, 255, 0.342);
@@ -102,7 +102,7 @@
   content: " ";
   width: 0%;
   height: 100%;
-  background: rgb(30, 213, 48);
+  background: rgb(46, 46, 46);
   position: absolute;
   transition: all 0.4s ease-in-out;
   right: 0;
