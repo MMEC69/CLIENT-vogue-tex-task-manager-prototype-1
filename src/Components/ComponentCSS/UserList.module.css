@@ -1,0 +1,58 @@
+.singleUserLayout{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px rgb(173, 173, 173) solid;
+    padding: 20px;
+    border-radius: 10px;
+}
+.singleUserLayout:hover{
+    border: 1px rgb(96, 96, 96) solid;
+    cursor: pointer;
+}
+.singleDetails{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.singleUserName{
+    color: rgb(95, 93, 93);
+    font-size: 20px;
+}
+.singleUserEmail{
+    color: rgb(137, 136, 136);
+    font-size: 15px;
+}
+.singleUserButtons{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+.singleUserViewProjectBtn{
+    width: 200px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(204, 204, 204);
+}
+.singleUserRemoveUser{
+    width: 200px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(245, 62, 62);
+    color: rgb(246, 247, 248);
+}
+.singleUserViewProjectBtn:hover{
+    cursor: pointer;
+    background-color: rgb(220, 220, 220);
+}
+.singleUserRemoveUser:hover{
+    cursor: pointer;
+    background-color: rgb(245, 81, 81);
+}

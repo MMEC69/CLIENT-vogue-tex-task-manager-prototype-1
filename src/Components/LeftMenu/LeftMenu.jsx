@@ -51,6 +51,13 @@ export const LeftMenu = () => {
     console.log("> projectList ended");
   }
 
+  const userList = () => {
+    console.log("> userList initiated");
+    getProjects(setDisplayProjects);
+    setActivity("user-list");
+    console.log("> userList ended");
+  }
+
   return (
     <div className={styles1.leftMenu}>
       <SubmitBtn3 
@@ -74,6 +81,7 @@ export const LeftMenu = () => {
       />
       <SubmitBtn3 
         buttonName = "Users"
+        onClick = {userList}
       />
       <SubmitBtn3 
         buttonName = "Work Traffic"
