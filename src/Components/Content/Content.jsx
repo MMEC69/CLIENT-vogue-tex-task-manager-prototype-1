@@ -10,6 +10,8 @@ import ProjectModify from '../ProjectModify/ProjectModify';
 import {Charts} from "../Charts/Charts";
 import {ProjectDashboardContent} from "../ProjectDashboardContent/ProjectDashboardContent";
 import UserList from '../UsersList/UserList';
+import WorkTraffic from '../PredictionLayout/WorkTraffic';
+import EmployeeProductivity from '../PredictionLayout/EmployeeProductivity';
 
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
@@ -48,6 +50,14 @@ export default function Content() {
 
         {activity === "user-list" &&
           <UserList/>
+        } 
+
+        {activity === "work-traffic" &&
+          <WorkTraffic/>
+        } 
+
+        {activity === "productivity" &&
+          <EmployeeProductivity/>
         } 
     </div>
     

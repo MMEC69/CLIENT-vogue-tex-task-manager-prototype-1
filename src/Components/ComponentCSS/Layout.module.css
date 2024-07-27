@@ -168,3 +168,86 @@ scrollbar-width: none;  /* Firefox */
     flex-direction: column;
     gap: 20px;
 }
+/* ================================================ */
+.predictionLayout{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.predictionElementsLayout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.predictionButtonLayout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(234, 234, 251);
+}
+.predictionButtonLayout button{
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgb(204, 204, 255);
+    background-color: rgb(204, 204, 255);
+    color: white;
+    border-radius: 10px;
+    align-items: center;
+    font-size: 15px;
+}
+.predictionButtonLayout button:hover{
+    cursor: pointer;
+    border: 1px solid rgb(255, 255, 255);
+}
+.predictionChart{
+    width: 100%;
+    text-align: center;
+    color: rgb(204, 204, 255);
+    padding: 10px;
+}
+.predictionChart img{
+    width: 80%;
+}
+.predictionSummary{
+    width: 30%;
+    background-color: rgb(204, 204, 255);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.singleInfoLayout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+/* ================================================ */
+.workTraffic{
+    width: 100%;
+}
+/* ================================================ */
+.employeeProductivity{
+    width: 100%;
+}
+/* ================================================ */
+.singleInfoBox{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(204, 204, 255);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.singleInfoBox h4{
+    font-size: 20px;
+}
+.singleInfoBox{
+    font-size: 18px;
+}
+/* ================================================ */
