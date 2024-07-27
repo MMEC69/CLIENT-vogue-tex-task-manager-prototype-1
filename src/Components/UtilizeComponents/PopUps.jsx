@@ -15,6 +15,8 @@ export function CommentsPopUp(props) {
     commentUpdate
   } = props;
 
+  const pastCommentsReveresed = pastComments.toReversed();
+
   const {
     setDisplayProjects
   } = useContext(UserContext);
@@ -78,7 +80,8 @@ export function CommentsPopUp(props) {
 
             <div className={styles1.commentList1}>
               { 
-                pastComments?.map((pastComment) => {
+                
+                pastCommentsReveresed?.map((pastComment) => {
                   return (<div className={styles1.comment1}>
                   <ProfileImage1 />
                   <SingleComment1
