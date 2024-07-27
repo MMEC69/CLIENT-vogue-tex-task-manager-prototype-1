@@ -18,7 +18,7 @@ export const LeftMenu = () => {
   const logOut = () => { 
     console.log("> logOut initiated");
     setUser();
-    localStorage.clear();
+    localStorage.removeItem("loggedUser");
     navigate("/login");
     console.log("> logOut ended");
   }

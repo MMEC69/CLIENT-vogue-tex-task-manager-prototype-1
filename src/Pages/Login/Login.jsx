@@ -16,7 +16,7 @@ export default function Login() {
     });
     const navigate = useNavigate();
 
-    const {setUser} = useContext(UserContext);
+    const {setUser, user} = useContext(UserContext);
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -39,6 +39,7 @@ export default function Login() {
                 await axios.get("/user")
                 .then(({data}) => {
                     setUser(data);
+                    window.localStorage.setItem("loggedUser", JSON.stringify(data));
                 });
                 console.log("> loginUser ended");
                 navigate("/dashboard");

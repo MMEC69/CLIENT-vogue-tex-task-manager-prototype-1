@@ -58,6 +58,9 @@ export function UserContextProvider({children}){
         axios.get("/users")
             .then(res => setUsers(res.data))
             .catch(err => console.log(err));
+        
+        const data = window.localStorage.getItem("loggedUser")
+        setUser(JSON.parse(data));
     }, []);
 
     return(

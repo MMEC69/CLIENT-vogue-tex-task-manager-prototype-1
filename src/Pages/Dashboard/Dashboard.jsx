@@ -16,9 +16,6 @@ export default function Dashboard() {
         <div className={styles.contentLayout}>
           <Content />
         </div>
-        
-        
-        
     </div>
   )
 }

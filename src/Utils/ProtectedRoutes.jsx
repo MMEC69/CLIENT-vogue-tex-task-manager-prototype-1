@@ -3,6 +3,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContex";
 
 export const ProtectedRoutes = () => {
-    const {user} = useContext(UserContext);
-    return user ? <Outlet/> : <Navigate to= "/"/>;
+    const data = window.localStorage.getItem("loggedUser")
+    const userLogged = JSON.parse(data);
+    return userLogged ? <Outlet/> : <Navigate to= "/"/>;
 }
