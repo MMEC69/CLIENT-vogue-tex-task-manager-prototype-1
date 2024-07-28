@@ -244,6 +244,7 @@ export function TaskModifyPopUp(props){
         console.log(data.error);
         console.log("> taskModify ended");
       }else{
+        console.log("> taskModify ended");
         setTaskModification({});
       }
     } catch (error) {
