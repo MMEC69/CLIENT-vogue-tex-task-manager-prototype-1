@@ -1,6 +1,6 @@
 export const devServerURL = "http://localhost:3000";
 
-export const syncFusionRegLicense = "Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCekx0TXxbf1x0ZFREalxUTnJWUj0eQnxTdEFjXX1fcXZVQ2RVWEN/Ww=="
+export const syncFusionRegLicense = "Ngo9BigBOggjHTQxAR8/V1NCaF1cWWhBYVdpR2Nbe05yflREal1QVBYiSV9jS3pTcUdrWHtfcnVUR2BdUw=="
 
 export const options = [
     {name: "completed"},
