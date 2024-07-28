@@ -86,7 +86,7 @@ export default function ProjectContentView() {
                 return <SingleTaskView 
                     singleTask = {task} 
                     projectName = {projectName} 
-                    _id = {_id}
+                    projectID = {_id}
                     />
             })}
         </div>   

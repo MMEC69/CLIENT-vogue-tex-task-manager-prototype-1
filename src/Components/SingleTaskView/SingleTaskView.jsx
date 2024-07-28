@@ -6,7 +6,7 @@ import Styles1 from "../ComponentCSS/Layout.module.css";
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
 
-export default function SingleTaskView({singleTask, projectName, _id}) {
+export default function SingleTaskView({singleTask, projectName, projectID}) {
   const {
     newTaskName,
     newTaskStartDate,
@@ -31,10 +31,10 @@ export default function SingleTaskView({singleTask, projectName, _id}) {
     const {
       id
     } = user;
-    const taskID = _id;
+    const taskID = singleTask._id;
     try {
       const {data} = await axios.put(
-        `/deleteTheTask/${_id}`, 
+        `/deleteTheTask/${projectID}`, 
         {
           id,
           taskID
@@ -59,12 +59,12 @@ export default function SingleTaskView({singleTask, projectName, _id}) {
       return ("No need to change");
     }else{
       const task = {
-        taskID: _id, 
+        taskID: singleTask._id, 
         taskState: e.target.value
       };
 
       try {
-        const {data} = await axios.put(`modifyTheTaskState/${_id}`,{
+        const {data} = await axios.put(`modifyTheTaskState/${projectID}`,{
           userID: user.id,
           task: task
         });
@@ -116,7 +116,7 @@ export default function SingleTaskView({singleTask, projectName, _id}) {
           setTrigger = {setTrigger2}
           task = {singleTask}
           project = {projectName}
-          projectID ={_id}
+          projectID ={projectID}
           user = {user}
         />
       </div>

@@ -147,8 +147,8 @@ export default function ProjectModify() {
                 {tasks?.map(task => {
                     return <SingleTaskView 
                         singleTask = {task} 
-                        project = {selectedProject}
-                        user = {user}
+                        projectName = {selectedProject.projectName}
+                        projectID = {selectedProject._id}
                         />
                 })}
             </div>   

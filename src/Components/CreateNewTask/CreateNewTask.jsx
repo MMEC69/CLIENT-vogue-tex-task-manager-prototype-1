@@ -74,7 +74,7 @@ export default function CreateNewTask() {
                 setCurrentProject({});
                 setTasks ([]);
                 toast.success("Project Completed");
-                setActivity("dashboard");
+                setActivity("project-dashbaord-content-view");
             }
         } catch (error) {
             console.log(error);
