@@ -8,6 +8,7 @@ import Styles from "../ComponentCSS/Form.module.css";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 import { options } from '../../MetaData/MetaData';
 import {AttachmentWindow} from "../UtilizeComponents/AttachemntComponents";
+import { sendMailProjectModify } from '../../Functions/Mail';
 
 export default function ProjectModify() {
     const {
@@ -44,6 +45,8 @@ export default function ProjectModify() {
             id
         } = user;
 
+        const projectModifier = user;
+
         try{
             const {data} = await axios.put(`/modifyTheProject/${selectedProject._id}`, {
                 id,
@@ -55,6 +58,13 @@ export default function ProjectModify() {
             }else{
                 setProject({});
                 console.log(data);
+                try {
+                    const result = await sendMailProjectModify(selectedProject, projectModifier, users);
+                    console.log(result);
+                } catch (error) {
+                    console.log("> Error Occured when mailing");
+                    console.log(error);
+                }
                 toast.success("Project Modified");
             }
         }catch(error){

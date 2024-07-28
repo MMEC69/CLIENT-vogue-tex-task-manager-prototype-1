@@ -7,7 +7,9 @@ import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
 import { getComments } from "../../Functions/ServerCommunication.jsx";
 import { getProjects } from '../../Functions/ServerCommunication';
-import { sendMailProjectRemoval } from '../../Functions/Mail.jsx';
+import { 
+  sendMailProjectRemoval, 
+  sendMailProjectChangeState } from '../../Functions/Mail.jsx';
 
 
 export default function SingleProjectView (props) {
@@ -97,23 +99,28 @@ export default function SingleProjectView (props) {
   //If modify protect changes this must change as well
   const changeState = async (e) => {
     e.preventDefault();
+    const prevState = projectState;
     console.log("> changeState initited");
     if(e.target.value === ""){
       console.log("> changeState ended");
       return ("No need to change");
     }else{
+      const postState = e.target.value;
       const project = {projectState: e.target.value};
       try {
         const {data} = await axios.put(`modifyTheProject/${_id}`,{
           id,
           project
         });
+        const projectStateChanger = user;
         if(data.error){
           getProjects(setDisplayProjects);
           console.log(data.error);
           console.log("> changeState ended");
         }else{
           getProjects(setDisplayProjects);
+          const result = await sendMailProjectChangeState(projectName, projectStateChanger, prevState, postState, assignedTo, users);
+          console.log(result);
           console.log("> changeState ended");
         }
       } catch (error) {
