@@ -7,6 +7,8 @@ import {dateFormat1} from "../../Functions/Conversion";
 import styles from "../ComponentCSS/Layout.module.css";
 import { getComments } from "../../Functions/ServerCommunication.jsx";
 import { getProjects } from '../../Functions/ServerCommunication';
+import { sendMailProjectRemoval } from '../../Functions/Mail.jsx';
+
 
 export default function SingleProjectView (props) {
   const {
@@ -76,6 +78,13 @@ export default function SingleProjectView (props) {
         console.log("> deleteProject ended");
       }else{
         getProjects(setDisplayProjects);
+        try {
+          const result = await sendMailProjectRemoval(projectName, projectDeleter, assignedTo, users);
+          console.log(result);
+        } catch (error) {
+          console.log("> Error Occured when mailing");
+          console.log(error);
+        }
         console.log("> deleteProject ended");
       }
     } catch (error) {
