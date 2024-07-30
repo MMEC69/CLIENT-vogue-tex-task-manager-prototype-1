@@ -5,19 +5,20 @@ import { Field1, Field2} from '../UtilizeComponents/fC';
 import Styles from "../ComponentCSS/Form.module.css";
 import Styles1 from "../ComponentCSS/Layout.module.css";
 import {AttachmentWindow} from "../UtilizeComponents/AttachemntComponents";
+import { dateFormat1 } from '../../Functions/Conversion';
+import { userFilter2 } from '../../Functions/FilterFunctions';
 
 export default function ProjectContentView() {
-    const {currentProject} = useContext(UserContext);
+    const {currentProject, users} = useContext(UserContext);
     const {project} = currentProject;
     const {
         projectName,
         _id,
-        tasks
+        tasks,
+        assignedTo
     } = project;
 
-    const assignedEmails = project.assignedTo.map((singleAssign) => {
-        return singleAssign.fullName;
-    });
+    const assginedEmails = userFilter2(users, assignedTo) 
     
     return (
         <div className={Styles.form1}>
@@ -49,7 +50,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "startDate"
-                placeholder={project.startDate}
+                placeholder={dateFormat1(project.startDate)}
             />
 
             <Field1
@@ -57,7 +58,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "dueDate"
-                placeholder={project.dueDate}
+                placeholder={dateFormat1(project.dueDate)}
             />
 
             <Field1
@@ -65,7 +66,7 @@ export default function ProjectContentView() {
                 type = "text"
                 autoComplete='off'
                 name = "assignedTo"
-                placeholder={assignedEmails}
+                placeholder={assginedEmails}
             />
 
             <Field1

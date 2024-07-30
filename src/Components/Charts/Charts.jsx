@@ -3,6 +3,7 @@ import { Table, Tag } from 'antd';
 import { Category, ChartComponent, SplineSeries, DataLabel, Inject, Legend, SeriesCollectionDirective, SeriesDirective, Tooltip } from '@syncfusion/ej2-react-charts';
 import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, PieSeries, AccumulationDataLabel } from '@syncfusion/ej2-react-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { dateFormat1 } from '../../Functions/Conversion';
 
 // pie-chart configuration for colors
 export let pointRender = (args) => {
@@ -49,8 +50,16 @@ let seriesColor = ['#FFE066', "#FAB666", "#F68F6A", "#F3646A", "#CC555A", "#9C46
 
 
 export const Charts = (props) => {
-    const Projects = props.projects;
-    console.log(Projects);
+    const tempProjects = props.projects;
+    const modifiedStartDate = dateFormat1(tempProjects.startDate);
+    const modifiedEndDate = dateFormat1(tempProjects.endDate);
+    const Projects = tempProjects.map((tempProject) => {
+        return ({
+            ...tempProject, 
+            startDate: modifiedStartDate,
+            dueDate: modifiedEndDate
+        });
+    });
 
 
     const stateColors = {

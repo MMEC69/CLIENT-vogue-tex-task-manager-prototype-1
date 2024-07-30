@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
 import { UserContext } from '../../Context/UserContex';
 import { getProjects } from '../../Functions/ServerCommunication';
+import { dateFormat1 } from '../../Functions/Conversion';
+import { userFilter2 } from '../../Functions/FilterFunctions';
 
 export function CommentsPopUp(props) {
   const {
@@ -143,6 +145,9 @@ export function TaskViewPopUp(props){
     setTrigger,
     task
   } = props;
+
+  const {users} = useContext(UserContext);
+
   const {
     assigner,
     assignedProject,
@@ -189,21 +194,21 @@ export function TaskViewPopUp(props){
                   type = "text"
                   autoComplete='off'
                   name = "taskStartDate"
-                  value={newTaskStartDate}
+                  value={dateFormat1(newTaskStartDate)}
               />
               <Field1
                   labelName = "Due Date"
                   type = "text"
                   autoComplete='off'
                   name = "dueDate"
-                  value={newTaskDueDate}
+                  value={dateFormat1(newTaskDueDate)}
               />
               <Field1
                   labelName = "Assigned To"
                   type = "text"
                   autoComplete='off'
                   name = "assignedTo"
-                  value={newTaskAssignedTo}
+                  value={userFilter2(users, newTaskAssignedTo)}
               />
               <Field1
                   labelName = "State"

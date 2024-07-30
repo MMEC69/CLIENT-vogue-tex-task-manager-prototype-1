@@ -12,3 +12,19 @@ export const userFilter = (users, assignedTo) => {
     console.log(filteredUsers);
 }
 
+export const userFilter2 = (users, assignedTo) => {
+    let filteredUsers = [];
+    for (let i = 0; i < assignedTo.length; i++) {
+        for (let j = 0; j < users.length; j++) {
+            if(assignedTo[i].id === users[j]._id){
+                filteredUsers.push(users[j].email);
+            }else{
+                continue;
+            }
+        }
+    }
+    console.log(filteredUsers);
+    return filteredUsers;
+}
+
+
