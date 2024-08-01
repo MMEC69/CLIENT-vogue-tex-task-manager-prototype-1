@@ -10,7 +10,6 @@ import { UserContextProvider } from './Context/UserContex';
 import Profile from './Pages/Profile/Profile';
 import {devServerURL} from "./MetaData/MetaData";
 import {ProtectedRoutes} from "./Utils/ProtectedRoutes";
-
 axios.defaults.baseURL = devServerURL;
 axios.defaults.withCredentials = true;
 

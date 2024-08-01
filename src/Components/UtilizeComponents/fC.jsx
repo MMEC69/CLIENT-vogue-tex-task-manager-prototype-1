@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import styles from "../ComponentCSS/ComponentCSS.module.css";
 import Select from "react-dropdown-select"; 
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import {registerLicense} from "@syncfusion/ej2-base";
 import "../ComponentCSS/other.css";
 import { formErrMsgHandler } from "../../Functions/FormValidation";
-import {syncFusionRegLicense} from "../../MetaData/MetaData";
-registerLicense(syncFusionRegLicense);
 
 export function Field1(props) {
   const [focused, setFocused] = useState(false);

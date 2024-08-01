@@ -10,7 +10,7 @@ import { getProjects } from '../../Functions/ServerCommunication';
 import { 
   sendMailProjectRemoval, 
   sendMailProjectChangeState } from '../../Functions/Mail.jsx';
-
+  
 
 export default function SingleProjectView (props) {
   const {

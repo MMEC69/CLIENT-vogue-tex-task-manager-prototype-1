@@ -13,7 +13,6 @@ import { uploadAttachments, updateServerAttachments } from "../../Functions/Serv
 import {Charts} from "../../Components/Charts/ChartsForDashboard";
 import SingleProjectView from '../SingleProjectView/SingleProjectView';
 
-
 export function ProjectDashboardContent() {
     const {displayProjects} = useContext(UserContext);
 
