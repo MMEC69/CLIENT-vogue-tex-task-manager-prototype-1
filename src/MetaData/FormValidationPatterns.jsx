@@ -1,5 +1,5 @@
 // For Register account 
-export const fullNamePattern1 = "^[a-zA-Z]{3,20}$";
+export const fullNamePattern1 = "^[a-zA-Z ]{3,20}$";
 export const fullNamePattern1ErrMsg = "Full name should only have 3-20 letters";
 
 export const emailPatternErrMsg = "Email should be valid";

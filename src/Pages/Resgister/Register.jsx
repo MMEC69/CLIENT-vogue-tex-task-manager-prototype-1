@@ -61,7 +61,7 @@ export default function Register() {
                     autoComplete = "off"
                     name = "fullName"
                     value = {regInfo.fullName}
-                    onChange = {(e) => {setRegInfo({...regInfo, fullName: e.target.value})}}
+                    onChange = {(e) => {setRegInfo({...regInfo, fullName: (e.target.value).trim()})}}
                     pattern = {fullNamePattern1}
                 />
                 <Field3
