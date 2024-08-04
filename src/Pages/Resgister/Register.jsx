@@ -27,9 +27,9 @@ export default function Register() {
         } = regInfo;
         try{
             const {data} = await axios.post("/register", {
-                fullName, 
-                email, 
-                password
+                fullName: (fullName.trim()), 
+                email: email, 
+                password: password
             });
             if(data.error){
                 console.log(data.error);
@@ -61,7 +61,7 @@ export default function Register() {
                     autoComplete = "off"
                     name = "fullName"
                     value = {regInfo.fullName}
-                    onChange = {(e) => {setRegInfo({...regInfo, fullName: (e.target.value).trim()})}}
+                    onChange = {(e) => {setRegInfo({...regInfo, fullName: e.target.value})}}
                     pattern = {fullNamePattern1}
                 />
                 <Field3

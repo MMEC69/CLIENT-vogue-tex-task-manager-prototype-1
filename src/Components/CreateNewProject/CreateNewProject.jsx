@@ -57,14 +57,14 @@ export default function CreateNewProject() {
 
         try {
             const {data} = await axios.post("/createNewProject", {
-                projectOwner,
-                projectName, 
-                projectDescription, 
-                departmentName, 
-                startDate, 
-                dueDate, 
-                assignedTo, 
-                projectState
+                projectOwner: projectOwner,
+                projectName: (projectName.trim()), 
+                projectDescription: (projectDescription.trim()), 
+                departmentName: departmentName, 
+                startDate: startDate, 
+                dueDate: dueDate, 
+                assignedTo: assignedTo, 
+                projectState: projectState
             });
             if(data.error){
                 console.log(data.error);
@@ -93,7 +93,8 @@ export default function CreateNewProject() {
         } catch (error) {
             console.log(error);
             console.log("> addNewProject Ended");
-            toast.error(error);
+            //need to customize the error
+            toast.error("Server Error");
         }
     }
 
@@ -107,7 +108,7 @@ export default function CreateNewProject() {
                     autoComplete='off'
                     name = "projectName"
                     value={project.projectName}
-                    onChange={(e) => {setProject({...project, projectName: e.target.value})}}
+                    onChange={(e) => {setProject({...project, projectName: (e.target.value).trim()})}}
                     pattern = {projectName1}
                 />       
                 <Field2

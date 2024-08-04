@@ -10,7 +10,7 @@ export default function SingleTaskView({singleTask, projectName, projectID}) {
   const {
     newTaskName,
     newTaskStartDate,
-    newTaskdueDate,
+    newTaskDueDate,
     taskState
   } = singleTask;
   
@@ -23,7 +23,7 @@ export default function SingleTaskView({singleTask, projectName, projectID}) {
   const [trigger2, setTrigger2] = useState(false);
 
   const fStartDate = dateFormat1(newTaskStartDate);
-  const fDueDate = dateFormat1(newTaskdueDate);
+  const fDueDate = dateFormat1(newTaskDueDate);
 
   const deleteTask = async (e) => {
     e.preventDefault();

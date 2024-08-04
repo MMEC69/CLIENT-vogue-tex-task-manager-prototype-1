@@ -106,7 +106,7 @@ export default function CreateNewTask() {
                     autoComplete='off'
                     name = "newTaskName"
                     value={newTask.newTaskName}
-                    onChange={(e) => {setNewTask({...newTask, newTaskName: e.target.value})}}            
+                    onChange={(e) => {setNewTask({...newTask, newTaskName: (e.target.value).trim()})}}            
                     pattern = {taskName1}
                 />
                 <Field2
@@ -116,7 +116,7 @@ export default function CreateNewTask() {
                     autoComplete='off'
                     name = "newTaskDescription"
                     value={newTask.newTaskDescription}
-                    onChange={(e) => {setNewTask({...newTask, newTaskDescription: e.target.value})}}
+                    onChange={(e) => {setNewTask({...newTask, newTaskDescription: (e.target.value).trim()})}}
                     pattern = {taskDescription1}
                 />
                 <DField1
@@ -163,7 +163,11 @@ export default function CreateNewTask() {
 
             <div className={Styles1.taskView1}>
                 {displayTasks?.map(projectTask => {
-                        return <SingleTaskView singleTask = {projectTask} projectName={currentProject.currentProjectName}/>
+                        return <SingleTaskView 
+                                    singleTask = {projectTask} 
+                                    projectName={currentProject.currentProjectName}
+                                    projectID = {currentProject.projectID}
+                                    />
                 })}
             </div>
         </div>

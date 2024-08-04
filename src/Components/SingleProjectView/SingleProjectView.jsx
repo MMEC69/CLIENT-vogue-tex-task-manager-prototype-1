@@ -174,7 +174,8 @@ export default function SingleProjectView (props) {
             currentProjectName: projectName,
             dueDate: dueDate,
             oldTasks: tasks,
-            assignedTo: assignedUsers
+            assignedTo: assignedUsers,
+            projectID: _id
           });
           setActivity("create-new-task");
         }}/>
