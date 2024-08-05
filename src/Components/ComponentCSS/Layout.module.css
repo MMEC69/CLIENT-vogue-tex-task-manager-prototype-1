@@ -308,3 +308,166 @@ scrollbar-width: none;  /* Firefox */
     cursor: pointer;
     color: rgb(186, 186, 186);
 }
+/* ================================================ */
+.chat{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.userList{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    /* background-color: rgb(255, 115, 0); */
+}
+.userList input{
+    width: 100%;
+    border: 1px black solid;
+    /* background-color: rgb(255, 115, 0); */
+}
+.messenger{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* background-color: aqua; */
+}
+.messengerWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.messengerTop{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+.messengerBottom{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    justify-content: space-between;
+}
+.messageInput{
+    width: 80%;
+    height: 90px;
+    padding: 10px;
+}
+.messageSendButton{
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+.onlineList{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px;
+}
+/* ================================================ */
+.conversation{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.conversation:hover{
+    background-color: rgb(229, 229, 229);
+}
+.conversationImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.conversationImg img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.conversationName span{
+    font-weight: 500;
+}
+/* ================================================ */
+.singleMessage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.singleMessageTop{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.singleMessageText{
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: aqua;
+}
+.singleMessageTop img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.singleMessageBottom p{
+    font-size: 12px;
+}
+.singleMessage.own{
+    align-items: flex-end;
+}
+.singleMessage.own .singleMessageText{
+    background-color: rgb(198, 198, 198);
+}
+/* ================================================ */
+.chatOnlineUser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+.chatOnlineUser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+.chatOnlineImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid white;
+}
+.chatOnlineImageContainer{
+    position: relative;
+}
+.chatOnlineBadge{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}

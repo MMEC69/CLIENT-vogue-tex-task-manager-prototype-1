@@ -12,6 +12,7 @@ import {ProjectDashboardContent} from "../ProjectDashboardContent/ProjectDashboa
 import UserList from '../UsersList/UserList';
 import WorkTraffic from '../PredictionLayout/WorkTraffic';
 import EmployeeProductivity from '../PredictionLayout/EmployeeProductivity';
+import Chat from '../Chat/Chat';
 
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
@@ -58,6 +59,10 @@ export default function Content() {
 
         {activity === "productivity" &&
           <EmployeeProductivity/>
+        } 
+
+        {activity === "chat" &&
+          <Chat/>
         } 
     </div>
     

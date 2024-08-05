@@ -72,6 +72,13 @@ export const LeftMenu = () => {
     console.log("> productivity ended");
   }
 
+  const chat = () => {
+    console.log("> chat initiated");
+    getProjects(setDisplayProjects);
+    setActivity("chat");
+    console.log("> chat ended");
+  }
+
   return (
     <div className={styles1.leftMenu}>
       <SubmitBtn3 
@@ -110,6 +117,7 @@ export const LeftMenu = () => {
       />
       <SubmitBtn3 
         buttonName = "Chat"
+        onClick = {chat}
       />
       <SubmitBtn3 
         buttonName = "LogOut"
