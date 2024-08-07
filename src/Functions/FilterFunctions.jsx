@@ -1,3 +1,4 @@
+// ===============================================================
 export const userFilter = (users, assignedTo) => {
     let filteredUsers = [];
     for (let i = 0; i < assignedTo.length; i++) {
@@ -11,7 +12,7 @@ export const userFilter = (users, assignedTo) => {
     }
     console.log(filteredUsers);
 }
-
+// ===============================================================
 export const userFilter2 = (users, assignedTo) => {
     let filteredUsers = [];
     for (let i = 0; i < assignedTo.length; i++) {
@@ -26,5 +27,14 @@ export const userFilter2 = (users, assignedTo) => {
     console.log(filteredUsers);
     return filteredUsers;
 }
+// ===============================================================
+export const userFilter3 = (users, currentUserId) => {
+    console.log(users);
 
+    const filteredUsers = users?.filter((user) => {
+        return currentUserId !== user._id;
+    });
+    return filteredUsers;
+}
+// ===============================================================
 
