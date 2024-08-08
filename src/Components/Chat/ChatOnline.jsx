@@ -10,7 +10,7 @@ export default function ChatOnline({onlineUsers, currentUserId, setCurrentChat})
   // ================================================================
   useEffect(() => {
     const getChatUsers = async() => {
-      console.log("> $$$$$getChatUsers initiated");
+      console.log("> getChatUsers initiated");
       try {
         const {data} = await axios.get(`/users`);
         const filteredUsers = userFilter3(data, currentUserId); 
