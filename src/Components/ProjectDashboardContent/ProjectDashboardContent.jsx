@@ -20,16 +20,19 @@ export function ProjectDashboardContent() {
     
     return (
         <div className={LayoutStyles.projectDashboardContentLayout}>
-            <div className={LayoutStyles.pieChartLayout}>
-                <Charts projects = {displayProjects}/>
+            <div className={LayoutStyles.pieChartLayoutWrapper}>
+                <div className={LayoutStyles.pieChartLayout}>
+                    <Charts projects = {displayProjects}/>
+                </div>
             </div>
-
-            <div className={LayoutStyles.dashboardProjectList}>
-            {displayProjects?.map((displayProject => {
-                return <SingleProjectView project= {displayProject}/>
-            }))}
+            
+            <div className={LayoutStyles.dashboardProjectListWrapper}>
+                <div className={LayoutStyles.dashboardProjectList}>
+                    {displayProjects?.map((displayProject => {
+                        return <SingleProjectView project= {displayProject}/>
+                    }))}
+                </div>
             </div>
-
         </div>
     );
 }
