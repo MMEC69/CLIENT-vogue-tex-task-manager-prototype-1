@@ -7,12 +7,16 @@ import { UserContext } from "../../Context/UserContex";
 import axios from 'axios';
 import { socketServerURL } from '../../MetaData/MetaData';
 import {io} from "socket.io-client";
+import ChatOffline from './ChatOffline';
+import { userFilter5 } from '../../Functions/FilterFunctions';
+import { NewConversationPopup } from './NewConversationPopup';
 
 export default function Chat() {
   const {
-    users,
-    user
+    user,
+    users
   } = useContext(UserContext);
+
   const userId = user.id;
   const [conversations, setConversation] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -20,8 +24,20 @@ export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [offlineUsers, setOfflineUsers] = useState([]);
+  const [trigger1, setTrigger1] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const scrollRef = useRef();
   const socket = useRef();
+  // ============================================
+  const startNewConversation = (e) => {
+    console.log("> startNewConversation initiated");
+    getConversations();
+    let newConversationsToBeMade = userFilter5(users, userId, conversations);
+    setFilteredUsers(newConversationsToBeMade);
+    setTrigger1(true);
+    console.log("> startNewConversation ended");
+  }
   // ============================================
   useEffect(() => {
     socket.current = io(socketServerURL)
@@ -46,8 +62,26 @@ export default function Chat() {
     socket.current.emit("addUser", userId);
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);
-    })
+    });
   },[]);
+  // ============================================
+  useEffect(() => {
+    let filteredOfflineUsers = [];
+    for (let i = 0; i < users.length; i++) {
+      for (let j = 0; j < onlineUsers.length; j++) {
+        if (users[i]._id === onlineUsers[j].userId) {
+          break;
+        }
+        if(onlineUsers.length === (j+1)){
+          filteredOfflineUsers.push(users[i]._id);
+          break;
+        }
+        continue;
+      }
+      continue;
+    }
+    setOfflineUsers(filteredOfflineUsers);
+  },[onlineUsers]);
   // ============================================
   const handleSubmit = async(e) => {
     console.log("> handleSubmit initiated");
@@ -75,17 +109,18 @@ export default function Chat() {
     }
   }
   // ============================================
-  useEffect(() => {
-    const getConversations = async() => {
-      console.log("> getConversations initiated");
-      try {
-        const {data} = await axios.get(`/getConversation/${userId}`);
-        setConversation(data);
-      } catch (error) {
-        console.log(error);
-      }
-      console.log("> getConversations ended");
+  const getConversations = async() => {
+    console.log("> getConversations initiated");
+    try {
+      const {data} = await axios.get(`/getConversation/${userId}`);
+      setConversation(data);
+    } catch (error) {
+      console.log(error);
     }
+    console.log("> getConversations ended");
+  }
+  // ============================================
+  useEffect(() => {
     getConversations();
   }, [userId]);
   // ============================================
@@ -111,9 +146,20 @@ export default function Chat() {
   return (
     <div className={styles.chat}>
         <div className={styles.userList}>
-            <input 
+            {/* <input 
                 type="text"
                 placeholder='Search for users' 
+            /> */}
+            <button onClick={startNewConversation}>
+              Start a new Conversation
+            </button>
+            <NewConversationPopup
+              trigger = {trigger1}
+              setTrigger = {setTrigger1}
+              filteredUsers = {filteredUsers}
+              userId = {userId}
+              getConversations = {getConversations}
+              setCurrentChat = {setCurrentChat}
             />
             {conversations?.map((conversation) => (
               <div onClick={() => setCurrentChat(conversation)}>

@@ -10,7 +10,6 @@ export const userFilter = (users, assignedTo) => {
             }
         }
     }
-    console.log(filteredUsers);
 }
 // ===============================================================
 export const userFilter2 = (users, assignedTo) => {
@@ -24,17 +23,53 @@ export const userFilter2 = (users, assignedTo) => {
             }
         }
     }
-    console.log(filteredUsers);
     return filteredUsers;
 }
 // ===============================================================
 export const userFilter3 = (users, currentUserId) => {
-    console.log(users);
-
     const filteredUsers = users?.filter((user) => {
         return currentUserId !== user._id;
     });
     return filteredUsers;
 }
 // ===============================================================
+export const userFilter4 = (offlineUsers, users) => {
+    let filteredUsers = [];
+    for (let i = 0; i < offlineUsers.length; i++) {
+        for (let j = 0; j < users.length; j++) {
+            if(offlineUsers[i] === users[j]._id){
+                filteredUsers.push(users[j]);
+                break;
+            }else{
+                continue;
+            }
+        }
+        continue;
+    }
+    return filteredUsers;
+}
+// ===============================================================
+export const userFilter5 = (users, currentUserId, oldChatUsers) => {
+    const filteredUsers = users?.filter((user) => {
+        return currentUserId !== user._id;
+    });
 
+    //receiver from conversations are always the second one according to DB
+    //Hence oldChatUsers[i].memebrs[1],
+    let newConversationsToBeMade = [];
+    for (let i = 0; i < filteredUsers.length; i++) {
+        let count = 0;
+        for (let j = 0; j < oldChatUsers.length; j++) {
+            const pastReceiver = oldChatUsers[j].members[1];
+            if (filteredUsers[i]._id === pastReceiver) {
+                break;
+            }
+            count+=1;
+        }
+        if(count === oldChatUsers.length){
+            newConversationsToBeMade.push(filteredUsers[i]);
+        }
+    }
+    return newConversationsToBeMade;
+}
+// ===============================================================

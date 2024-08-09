@@ -132,10 +132,12 @@ export default function SingleProjectView (props) {
   }
 
   const commentUpdate = async () => {
+    console.log("> commentUpdate initiated");
     let updatedComments = await getComments(_id);
     updatedComments = updatedComments.comments;
     setUpdatedComments(updatedComments);
     setTrigger1(true);
+    console.log("> commentUpdate ended");
   }
   //===========================End of functions
   return (
