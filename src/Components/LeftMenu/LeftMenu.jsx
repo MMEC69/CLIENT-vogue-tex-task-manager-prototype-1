@@ -75,8 +75,15 @@ export const LeftMenu = () => {
   const chat = () => {
     console.log("> chat initiated");
     getProjects(setDisplayProjects);
-    setActivity("chat");
+    setActivity("search-results");
     console.log("> chat ended");
+  }
+
+  const searchResult = () => {
+    console.log("> searchResult initiated");
+    getProjects(setDisplayProjects);
+    setActivity("search-results");
+    console.log("> searchResult ended");
   }
 
   return (
@@ -118,6 +125,10 @@ export const LeftMenu = () => {
       <SubmitBtn3 
         buttonName = "Chat"
         onClick = {chat}
+      />
+      <SubmitBtn3 
+        buttonName = "Search"
+        onClick = {searchResult}
       />
       <SubmitBtn3 
         buttonName = "LogOut"

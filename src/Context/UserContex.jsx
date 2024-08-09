@@ -49,6 +49,7 @@ export function UserContextProvider({children}){
     const [displayProjects, setDisplayProjects] = useState([]);
     const [test, setTest] = useState({});
     
+    const [searchResult, setSearchResult] = useState(null);
 
     useEffect(() => {
         axios.get("/projects")
@@ -83,7 +84,9 @@ export function UserContextProvider({children}){
             displayProjects, 
             setDisplayProjects,
             test, 
-            setTest
+            setTest,
+            searchResult,
+            setSearchResult
             }}>
             {children}
         </UserContext.Provider>
