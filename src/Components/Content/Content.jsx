@@ -14,6 +14,7 @@ import WorkTraffic from '../PredictionLayout/WorkTraffic';
 import EmployeeProductivity from '../PredictionLayout/EmployeeProductivity';
 import Chat from '../Chat/Chat';
 import ProjectSearchResult from '../ProjectSearchResult/ProjectSearchResult';
+import Profile from '../Profile/Profile';
 
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
@@ -68,6 +69,10 @@ export default function Content() {
 
         {activity === "search-results" &&
           <ProjectSearchResult/>
+        }
+
+        {activity === "profile" &&
+          <Profile/>
         }
     </div>
     

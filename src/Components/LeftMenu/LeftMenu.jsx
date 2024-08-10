@@ -75,7 +75,7 @@ export const LeftMenu = () => {
   const chat = () => {
     console.log("> chat initiated");
     getProjects(setDisplayProjects);
-    setActivity("search-results");
+    setActivity("chat");
     console.log("> chat ended");
   }
 

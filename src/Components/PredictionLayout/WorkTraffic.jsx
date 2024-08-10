@@ -5,6 +5,14 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 
 export default function WorkTraffic() {
+  const summary = {
+    topic1: {topic: "Best months to take vacations", description: "January, Feburary, March, Novmeber and October are least busy"},
+    topic2: {topic: "Worst months to take vacations", description: "August is the most busy month"},
+    topic3: {topic: "Worst months to take vacations", description: "June, July, November and Decmeber is mildly busy"},
+    topic4: {topic: "Worst months to take vacations", description: "January is the best month for vacations"},
+    predictionSummary: `January is the best month to take vacations and the August is the worst month
+    to take vacations Decmeber is mildly busy and taking vacations is okay for the seasonal holidays.`
+  }
 
   const requestFile = async (e, requestFile) => {
     e.preventDefault();
@@ -34,7 +42,8 @@ export default function WorkTraffic() {
             button2F = {(e) => {requestFile(e, "predictedChart")}}
             button3 = "Other Chart"
             button3F = {(e) => {requestFile(e, "otherChart")}}
-            summary = "Sample"
+            summary = {summary}
+            predictionType = "worktraffic"
         />
     </div>
   );

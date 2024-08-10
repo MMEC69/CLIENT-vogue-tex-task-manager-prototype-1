@@ -5,30 +5,58 @@ import SingleInfoBox from './SingleInfoBox';
 import analysisImage from "../Assests/Prediction/WorkTraffic/projectWorkTrafficAnalysis.PNG";
 import predictionImage from "../Assests/Prediction/WorkTraffic/projectWorkTrafficPredictionP1(Testing , Training).PNG"
 import otherImage from "../Assests/Prediction/WorkTraffic/projectWorkTrafficAnalysisByMonth.PNG";
+import analysisImageP from "../Assests/Prediction/EmployeeProductivity/projectProductivityAnalysis.PNG";
+import predictionImageP from "../Assests/Prediction/EmployeeProductivity/projectProductivityTrafficPredictionP1(Testing , Training).PNG"
+import otherImageP from "../Assests/Prediction/EmployeeProductivity/projectProductivityAnalysisByMonth.PNG";
+
 
 export default function PredictionLayout(props) {
     const {
         button1,
         button2,
         button3,
-        summary
+        summary,
+        predictionType
     } = props;
+    console.log(summary)
     const [viewImage, setViewImage] = useState(SampleChartImg);
     const imageChanger = (e, resultImage) => {
         e.preventDefault();
-        switch (resultImage) {
-            case "analysisImage":
-                setViewImage(analysisImage);
+        switch (predictionType) {
+            case "worktraffic":
+                switch (resultImage) {
+                    case "analysisImage":
+                        setViewImage(analysisImage);
+                        break;
+                    case "predictionImage":
+                        setViewImage(predictionImage);
+                        break;
+                    case "otherImage":
+                        setViewImage(otherImage);
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case "predictionImage":
-                setViewImage(predictionImage);
-                break;
-            case "otherImage":
-                setViewImage(otherImage);
+            case "productivity":
+                switch (resultImage) {
+                    case "analysisImage":
+                        setViewImage(analysisImageP);
+                        break;
+                    case "predictionImage":
+                        setViewImage(predictionImageP);
+                        break;
+                    case "otherImage":
+                        setViewImage(otherImageP);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;
         }
+        
     }
   return (
     <div className={styles1.predictionLayout}>
@@ -49,26 +77,26 @@ export default function PredictionLayout(props) {
             </div>
             <div className={styles1.predictionSummary}>
                 <h3>Prediction Summary</h3>
-                <h4>{summary}</h4>
+                <h4>{summary.predictionSummary}</h4>
             </div>
         </div>
         <div className={styles1.predictionInfoLayout}>
             <div className={styles1.singleInfoLayout}>
                 <SingleInfoBox
-                    topic = "Topic 1"
-                    description = "Sample Description"
+                    topic = {summary.topic1.topic}
+                    description = {summary.topic1.description}
                 />
                 <SingleInfoBox
-                    topic = "Topic 1"
-                    description = "Sample Description"
+                    topic = {summary.topic2.topic}
+                    description = {summary.topic2.description}
                 />
                 <SingleInfoBox
-                    topic = "Topic 1"
-                    description = "Sample Description"
+                    topic = {summary.topic3.topic}
+                    description = {summary.topic1.description}
                 />
                 <SingleInfoBox
-                    topic = "Topic 1"
-                    description = "Sample Description"
+                    topic = {summary.topic4.topic}
+                    description = {summary.topic4.description}
                 />
             </div>
         </div>

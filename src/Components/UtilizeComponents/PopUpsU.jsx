@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
+import styles from "../ComponentCSS/Layout.module.css";
 import sampleProfileImage from "../Assests/profile-icon-design-free-vector.jpg";
 import {OB} from "../UtilizeComponents/spC";
 import { UserContext } from '../../Context/UserContex';
@@ -86,19 +87,33 @@ export function CommentInput1(props) {
       <div className={styles1.singleUser1}>
         <div className={styles1.userProfileImage1}>
           <ProfileImage1 />
+          <p>{singleUser.fullName}</p>
         </div>
+        {/* <div className={styles1.userInfo1}>
+          <p>{singleUser.fullName}</p>
+        </div> */}
         <div className={styles1.userInfo1}>
-        <p>{singleUser.email}</p>
-        <p>{singleUser.fullName}</p>
+          <p>{singleUser.email}</p>
+        </div>
+        {/* <div className={styles1.userInfo1}>
+          <p>{singleUser.role}</p>
+        </div> */}
         
-        </div>
-        <div className={styles1.userInfo1}>
-          <p>{singleUser.type}</p>
-        </div>
-        <div className={styles1.functions1}> 
-          <OB c = "type"/>
+        {/* <div className={styles1.functions1}> 
+          <div className={styles.projectStateSelector}>
+            <select 
+              name = "projectState" 
+              id = "projectState" 
+              // onChange={changeState}
+              defaultValue=""
+            >
+              <option value="">select</option>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+            </select>
+          </div>
           <OB c = "remove"/>
-        </div>
+        </div> */}
       </div>
     );
   }

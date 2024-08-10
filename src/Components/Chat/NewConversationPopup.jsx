@@ -23,7 +23,7 @@ export function NewConversationPopup(props) {
                     setTrigger(false);
                 }}/>
             </div>
-
+            
             <div className={styles.newConversationList}>
                 {filteredUsers?.map((filteredUser) => {
                     return (

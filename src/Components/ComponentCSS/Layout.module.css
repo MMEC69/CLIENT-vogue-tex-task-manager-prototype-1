@@ -532,3 +532,56 @@ scrollbar-width: none;  /* Firefox */
     top: 3px;
     right: 3px;
 }
+/* ================================================ */
+.profile{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+    text-align: center;
+    margin-top: 10%;
+}
+.profileImage{
+    width: 202px;
+    height: 202px;
+    background-color: #555;
+    border-radius: 50%;
+    
+}
+.profileImage img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.userUpdateForm{
+    width: 800px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.profileLabel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+}
+.profileLabel input{
+    text-align: center;
+}
+.profileUpdateButton{
+    width: 100%;
+    height: 32px;
+    border-radius: 10px;
+    background-color: rgb(153, 153, 153);
+    color: #f1f1f1;
+    cursor: pointer;
+}
+.profileUpdateButton:hover{
+    background-color: #c8c8c8;
+}
+/* ================================================ */

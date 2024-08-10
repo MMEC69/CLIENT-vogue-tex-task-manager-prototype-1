@@ -30,6 +30,12 @@ const handleSubmit = async(e) => {
   }
 }
 // =====================================================
+const handleClickProfile = () => {
+  console.log("> handleClickProfile initiated");
+  setActivity("profile");
+  console.log("> handleClickProfile initiated");
+}
+// =====================================================
   return (
     <div className={styles1.navbar}>
         <div className={styles1.searchBar}>
@@ -42,7 +48,10 @@ const handleSubmit = async(e) => {
           </form>
             <CiSearch/>
         </div>
-        <div className={styles1.navbarButtons}>
+        <div 
+          className={styles1.navbarButtons}
+          onClick={handleClickProfile}
+        >
             <CgProfile/>
         </div>
     </div>
