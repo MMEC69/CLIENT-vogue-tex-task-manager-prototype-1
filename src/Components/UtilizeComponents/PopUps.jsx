@@ -321,5 +321,26 @@ export function TaskModifyPopUp(props){
     </div>
   ) : "";
 } 
+// =======================================================
+export function PasswordResetPopup(props) {
+  const {
+    trigger,
+    setTrigger
+  } = props;
+  return(trigger) ? (
+    <div className={styles1.viewPasswordResetPopup}>
+      <div className={styles1.viewPasswordResetPopupInner}>
+        <div className={styles1.popupTitle1}>
+          <p>Password Reset</p>
+          <CloseBtn1 btnName = "Close" onClick = {() => setTrigger(false)}/>
+        </div>
+        <div className={styles1.viewPasswordContent}>
+          content
+        </div>
+      </div>
+    </div>
+  ) : ""
+}
 
+// =======================================================
 

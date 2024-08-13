@@ -8,6 +8,7 @@ import {toast} from "react-hot-toast";
 import { Field3, SubmitBtn2 } from '../../Components/UtilizeComponents/fC';
 import { MidHG, BigHG } from "../../Components/UtilizeComponents/spC";
 import { UserContext } from '../../Context/UserContex';
+import { PasswordResetPopup } from '../../Components/UtilizeComponents/PopUps';
 
 export default function Login() {
     const [logInfo, setLogInfo] = useState({
@@ -17,6 +18,8 @@ export default function Login() {
     const navigate = useNavigate();
 
     const {setUser, user} = useContext(UserContext);
+
+    const [trigger1, setTrigger1] = useState(false);
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -48,6 +51,12 @@ export default function Login() {
             console.log(error);
             toast.error(error);
         }
+    }
+
+    const passwordResetHandleOnClick = (e) => {
+        console.log("> passwordResetHandleOnClick initiated");
+        setTrigger1(true);
+        console.log("> passwordResetHandleOnClick ended");
     }
   return (
     <div className={styles1.logLayout1}>
@@ -82,7 +91,14 @@ export default function Login() {
                 type = "submit"
             />
 
-            <MidHG s = "Forgot Password?"/> 
+            <div onClick={passwordResetHandleOnClick}>
+                <MidHG s = "Forgot Password?"/>
+            </div>
+            <PasswordResetPopup
+                trigger = {trigger1}
+                setTrigger = {setTrigger1}
+            />
+             
             
             <Link to = "/register" style={{ textDecoration: 'none' }}>
                 <BigHG
