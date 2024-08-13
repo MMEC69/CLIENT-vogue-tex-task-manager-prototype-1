@@ -15,7 +15,7 @@ import EmployeeProductivity from '../PredictionLayout/EmployeeProductivity';
 import Chat from '../Chat/Chat';
 import ProjectSearchResult from '../ProjectSearchResult/ProjectSearchResult';
 import Profile from '../Profile/Profile';
-
+import AboutUs from '../AboutUs/AboutUs';
 export default function Content() {
   const { activity, displayProjects} = useContext(UserContext);
   
@@ -73,6 +73,9 @@ export default function Content() {
 
         {activity === "profile" &&
           <Profile/>
+        }
+        {activity === "about-us" &&
+          <AboutUs/>
         }
     </div>
     

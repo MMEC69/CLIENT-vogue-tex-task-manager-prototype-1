@@ -4,6 +4,7 @@ import styles1 from "../ComponentCSS/Layout.module.css";
 import { CiSearch } from "react-icons/ci";
 import { UserContext } from '../../Context/UserContex';
 import axios from 'axios';
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 export const Navbar = () => {
   const {
@@ -36,6 +37,12 @@ const handleClickProfile = () => {
   console.log("> handleClickProfile initiated");
 }
 // =====================================================
+const handleClickAboutUs = () => {
+  console.log("> handleClickAboutUs initiated");
+  setActivity("about-us");
+  console.log("> handleClickAboutUs initiated");
+}
+// =====================================================
   return (
     <div className={styles1.navbar}>
         <div className={styles1.searchBar}>
@@ -47,6 +54,12 @@ const handleClickProfile = () => {
             />
           </form>
             <CiSearch/>
+        </div>
+        <div 
+          className={`${styles1.navbarButtons} ${styles1.aboutUsButton}`}
+          onClick={handleClickAboutUs}
+        >
+            <IoInformationCircleOutline />
         </div>
         <div 
           className={styles1.navbarButtons}

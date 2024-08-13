@@ -21,8 +21,8 @@ export function AttachmentPopup(props) {
                     setTrigger(false);
                 }}/>
               </div>
-                
-              <div >
+              <div className={styles1.attachmentListWrapper}>
+              <div className={styles1.attachmentList}>
                 {attachments?.map((attachment) => {
                     return (
                         <SingleAttachment
@@ -30,8 +30,9 @@ export function AttachmentPopup(props) {
                         attachment = {attachment}
                         />
                     );
-                })
+                  })
                 }
+              </div>
               </div>
           </div>
       </div>
@@ -43,9 +44,18 @@ export function SingleAttachment(props) {
         downloadAttachment,
         attachment
     } = props;
+    const {
+      originalname
+    } = attachment;
     return (
-      <div>
-        <button
+      <div className={styles1.singleAttachement}>
+        <span
+          className={styles1.attachmentName}
+        >
+          {originalname}
+        </span>
+        <button 
+            className={styles1.attachmentDownloadButton}
             onClick={(e) => downloadAttachment(e, attachment)}
         >
             Download

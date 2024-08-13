@@ -355,6 +355,12 @@ scrollbar-width: none;  /* Firefox */
     font-size: 40px;
     color: rgb(148, 148, 148);
 }
+.navbarButtons.aboutUsButton{
+    height: 53px;
+    width: 53px;
+    font-size: 48px;
+    color: rgb(148, 148, 148);
+}
 .navbarButtons:hover{
     cursor: pointer;
     color: rgb(186, 186, 186);
@@ -583,5 +589,18 @@ scrollbar-width: none;  /* Firefox */
 }
 .profileUpdateButton:hover{
     background-color: #c8c8c8;
+}
+/* ================================================ */
+.assignedtoList{
+
+}
+.assignedtoList span{
+    font-size: 25px;
+}
+.assignedtoList ul{
+
+}
+.assignedtoList li{
+    font-size: 20px;
 }
 /* ================================================ */

@@ -7,6 +7,7 @@ import Styles1 from "../ComponentCSS/Layout.module.css";
 import {AttachmentWindow} from "../UtilizeComponents/AttachemntComponents";
 import { dateFormat1 } from '../../Functions/Conversion';
 import { userFilter2 } from '../../Functions/FilterFunctions';
+import AssignedToList from '../UsersList/AssignedToList';
 
 export default function ProjectContentView() {
     const {currentProject, users} = useContext(UserContext);
@@ -61,12 +62,16 @@ export default function ProjectContentView() {
                 placeholder={dateFormat1(project.dueDate)}
             />
 
-            <Field1
+            {/* <Field1
                 labelName = "Assigned To"
                 type = "text"
                 autoComplete='off'
                 name = "assignedTo"
                 placeholder={assginedEmails}
+            /> */}
+
+            <AssignedToList
+                assginedEmails = {assginedEmails}
             />
 
             <Field1

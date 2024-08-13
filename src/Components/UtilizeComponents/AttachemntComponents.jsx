@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {devServerURL} from "../../MetaData/MetaData";
 import { AttachmentPopup } from "../AttachmentList/AttachmentPopup";
+import styles from "../ComponentCSS/ComponentCSS.module.css";
 
 export const AttachmentWindow = (props) => {
     const {
@@ -46,10 +47,14 @@ export const AttachmentWindow = (props) => {
     // ===========================================================
     return(
         <div>
-            <button onClick={(e) => {
+            <button 
+                className = {styles.attachmentButton}
+                onClick={(e) => {
                     e.preventDefault();
                     setTrigger1(true);
-                }}>Attachments</button>
+            }}>
+                Attachments
+            </button>
             <AttachmentPopup
                 trigger = {trigger1}
                 setTrigger = {setTrigger1}

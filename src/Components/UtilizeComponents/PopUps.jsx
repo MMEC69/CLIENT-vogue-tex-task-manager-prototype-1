@@ -7,6 +7,7 @@ import { UserContext } from '../../Context/UserContex';
 import { getProjects } from '../../Functions/ServerCommunication';
 import { dateFormat1 } from '../../Functions/Conversion';
 import { userFilter2 } from '../../Functions/FilterFunctions';
+import AssignedToList from '../UsersList/AssignedToList';
 
 export function CommentsPopUp(props) {
   const {
@@ -203,13 +204,16 @@ export function TaskViewPopUp(props){
                   name = "dueDate"
                   value={dateFormat1(newTaskDueDate)}
               />
-              <Field1
+              <AssignedToList
+                assginedEmails = {userFilter2(users, newTaskAssignedTo)}
+              />
+              {/* <Field1
                   labelName = "Assigned To"
                   type = "text"
                   autoComplete='off'
                   name = "assignedTo"
                   value={userFilter2(users, newTaskAssignedTo)}
-              />
+              /> */}
               <Field1
                   labelName = "State"
                   type = "text"

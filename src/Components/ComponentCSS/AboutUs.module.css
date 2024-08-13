@@ -1,0 +1,73 @@
+.aboutUsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.aboutVogeTex,
+.missionVision,
+.software,
+.aboutDevelopers {
+  padding: 20px; /* Add padding to make the background larger */
+  background-color: #f9f9f9; /* Light grey background for better contrast */
+  border-radius: 10px; /* Rounded corners */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+  margin-bottom: 20px; /* Space between sections */
+}
+
+.aboutVogeTex:hover,
+.missionVision:hover,
+.software:hover,
+.aboutDevelopers:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Add box shadow on hover */
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.topic1 {
+  font-size: 2rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.topic2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.description1 {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .aboutUsContainer {
+    padding: 10px;
+  }
+
+  .aboutVogeTex,
+  .missionVision,
+  .software,
+  .aboutDevelopers {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .topic1 {
+    font-size: 1.5rem;
+  }
+
+  .topic2 {
+    font-size: 1.25rem;
+  }
+
+  .description1 {
+    font-size: 0.9rem;
+  }
+}

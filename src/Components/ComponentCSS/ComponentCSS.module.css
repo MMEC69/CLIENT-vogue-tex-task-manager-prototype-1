@@ -263,3 +263,19 @@
     color: rgb(82, 82, 82);
 }
 /* ================================ */
+.attachmentButton{
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px;
+    font-size: 15px;
+    color: rgb(232, 232, 232);
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+.attachmentButton:hover{
+    background-color: rgb(182, 182, 182);
+}
+/* ================================ */
