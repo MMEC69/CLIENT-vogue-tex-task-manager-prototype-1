@@ -89,13 +89,21 @@
     gap: 10px;
 }
 .taskView1{
-    width: 40%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     gap:10px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    
+}
+.taskView1Wrapper{
+    width: 50%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow-y: scroll;
 }
 .taskView1::-webkit-scrollbar {
     display: none;

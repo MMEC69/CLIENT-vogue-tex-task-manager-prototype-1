@@ -17,7 +17,7 @@ export default function SingleUser(props) {
             <h3 className={styles.singleUserEmail}>{email}</h3>
         </div>
         <div className={styles.singleUserButtons}>
-            <button className={styles.singleUserViewProjectBtn}>View Projects</button>
+            {/* <button className={styles.singleUserViewProjectBtn}>View Projects</button> */}
             {/* <button className={styles.singleUserRemoveUser}>Remove User</button> */}
         </div>
     </div>

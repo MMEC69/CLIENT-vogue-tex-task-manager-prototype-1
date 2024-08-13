@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
 import styles1 from "../ComponentCSS/Popup.module.css";
-import { ProfileImage1, SingleComment1, CommentInput1, CloseBtn1, SingleProjectUser1} from "./PopUpsU";
+import { ProfileImage1, SingleComment1, CommentInput1, CloseBtn1, SingleProjectUser1, RequestCodeContent, RequestPasswordChange} from "./PopUpsU";
 import axios from 'axios';
-import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
+import { Field1, Field2, DField1, SubmitBtn1, SubmitBtn3, SubmitBtn2} from '../UtilizeComponents/fC';
 import { UserContext } from '../../Context/UserContex';
 import { getProjects } from '../../Functions/ServerCommunication';
 import { dateFormat1 } from '../../Functions/Conversion';
 import { userFilter2, userFilter6 } from '../../Functions/FilterFunctions';
 import AssignedToList from '../UsersList/AssignedToList';
 import {format} from "timeago.js";
+import { RequestEmailContent } from './PopUpsU';
 
 export function CommentsPopUp(props) {
   const {
@@ -311,10 +312,12 @@ export function TaskModifyPopUp(props){
                   min = {project.startDate}
                   onChange={(e) => {setTaskModification({...taskModification, newTaskdueDate: e.target.value})}}
               />
-              <SubmitBtn1
-                    buttonName = "Complete The Changes"
-                    type = "submit"
-              />
+              <div className={styles1.emailSubmitButton}>
+                <SubmitBtn1
+                      buttonName = "Complete The Changes"
+                      type = "submit"
+                />
+              </div>
           </form>
         </div>
       </div>
@@ -327,6 +330,12 @@ export function PasswordResetPopup(props) {
     trigger,
     setTrigger
   } = props;
+
+  //request-email, request-code, password-change
+  const [tempActivity, setTempActivity] = useState("request-email");
+  const [user, setUser] = useState("");
+  const [ticket, setTicket] = useState("");
+
   return(trigger) ? (
     <div className={styles1.viewPasswordResetPopup}>
       <div className={styles1.viewPasswordResetPopupInner}>
@@ -335,7 +344,38 @@ export function PasswordResetPopup(props) {
           <CloseBtn1 btnName = "Close" onClick = {() => setTrigger(false)}/>
         </div>
         <div className={styles1.viewPasswordContent}>
-          content
+          {tempActivity === "request-email" &&
+            <RequestEmailContent
+              tempActivity = {tempActivity}
+              setTempActivity = {setTempActivity}
+              user = {user}
+              setUser = {setUser}
+              ticket = {ticket}
+              setTicket = {setTicket}
+            />
+          }
+          {tempActivity === "request-code" &&
+            <RequestCodeContent
+              tempActivity = {tempActivity}
+              setTempActivity = {setTempActivity}
+              user = {user}
+              setUser = {setUser}
+              ticket = {ticket}
+              setTicket = {setTicket}
+            />
+          }
+          {tempActivity === "password-change" &&
+            <RequestPasswordChange
+              tempActivity = {tempActivity}
+              setTempActivity = {setTempActivity}
+              user = {user}
+              setUser = {setUser}
+              ticket = {ticket}
+              setTicket = {setTicket}
+              trigger = {trigger}
+              setTrigger = {setTrigger}
+            />
+          }
         </div>
       </div>
     </div>
@@ -343,4 +383,3 @@ export function PasswordResetPopup(props) {
 }
 
 // =======================================================
-

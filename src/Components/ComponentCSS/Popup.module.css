@@ -403,12 +403,20 @@
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 560px;
+    height: 300px;
     background-color: #ffffff;
     border: 1px solid grey;
     border-radius: 5px;
 }
 .viewPasswordContent{
-
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.emailSubmitButton{
+    background-color: aqua;
 }
 /* ======================================== */

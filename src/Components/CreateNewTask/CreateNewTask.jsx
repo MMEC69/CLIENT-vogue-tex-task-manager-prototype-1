@@ -161,18 +161,18 @@ export default function CreateNewTask() {
                     onClick={completeProject}
                 />
             </form>
-
-            <div className={Styles1.taskView1}>
-                {displayTasks?.map(projectTask => {
-                        return (<SingleTaskView 
-                            singleTask = {projectTask} 
-                            projectName={currentProject.currentProjectName}
-                            projectID = {currentProject.projectID}
-                            activity = {activity}
-                        />);
-                })}
+            <div className={Styles1.taskView1Wrapper}>
+                <div className={Styles1.taskView1}>
+                    {displayTasks?.map(projectTask => {
+                            return (<SingleTaskView 
+                                singleTask = {projectTask} 
+                                projectName={currentProject.currentProjectName}
+                                projectID = {currentProject.projectID}
+                                activity = {activity}
+                            />);
+                    })}
+                </div>
             </div>
         </div>
-    
     );
 }
