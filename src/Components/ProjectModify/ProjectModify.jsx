@@ -15,6 +15,7 @@ export default function ProjectModify() {
         user,
         users, 
         currentProject,
+        activity
     } = useContext(UserContext);
 
     const [project, setProject] = useState({});
@@ -159,6 +160,7 @@ export default function ProjectModify() {
                         singleTask = {task} 
                         projectName = {selectedProject.projectName}
                         projectID = {selectedProject._id}
+                        activity = {activity}
                         />
                 })}
             </div>   

@@ -73,3 +73,10 @@ export const userFilter5 = (users, currentUserId, oldChatUsers) => {
     return newConversationsToBeMade;
 }
 // ===============================================================
+export const userFilter6 = (users, assigner) => {
+    const taskAssigner = users.filter((user) => {
+        return ( user._id === assigner);
+    });
+
+    return taskAssigner[0].email;
+}

@@ -19,7 +19,8 @@ export default function CreateNewTask() {
         setTasks, 
         setActivity, 
         currentProject, 
-        setCurrentProject
+        setCurrentProject,
+        activity
     } = useContext(UserContext);
 
     const {
@@ -163,11 +164,12 @@ export default function CreateNewTask() {
 
             <div className={Styles1.taskView1}>
                 {displayTasks?.map(projectTask => {
-                        return <SingleTaskView 
-                                    singleTask = {projectTask} 
-                                    projectName={currentProject.currentProjectName}
-                                    projectID = {currentProject.projectID}
-                                    />
+                        return (<SingleTaskView 
+                            singleTask = {projectTask} 
+                            projectName={currentProject.currentProjectName}
+                            projectID = {currentProject.projectID}
+                            activity = {activity}
+                        />);
                 })}
             </div>
         </div>

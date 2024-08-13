@@ -6,8 +6,9 @@ import { Field1, Field2, DField1, SubmitBtn1} from '../UtilizeComponents/fC';
 import { UserContext } from '../../Context/UserContex';
 import { getProjects } from '../../Functions/ServerCommunication';
 import { dateFormat1 } from '../../Functions/Conversion';
-import { userFilter2 } from '../../Functions/FilterFunctions';
+import { userFilter2, userFilter6 } from '../../Functions/FilterFunctions';
 import AssignedToList from '../UsersList/AssignedToList';
+import {format} from "timeago.js";
 
 export function CommentsPopUp(props) {
   const {
@@ -89,7 +90,7 @@ export function CommentsPopUp(props) {
                   <ProfileImage1 />
                   <SingleComment1
                     msg = {pastComment.commentMessage}
-                    date = {pastComment.commentedDateTime}
+                    date = {format(pastComment.commentedDateTime)}
                   />
                 </div>);
                 })
@@ -174,7 +175,7 @@ export function TaskViewPopUp(props){
                   type = "text"
                   autoComplete='off'
                   name = "assigner"
-                  value={assigner}
+                  value={userFilter6(users, assigner)}
               />
               <Field1
                   labelName = "Task Name"

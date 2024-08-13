@@ -11,7 +11,8 @@ export default function SingleTaskView({singleTask, projectName, projectID}) {
     newTaskName,
     newTaskStartDate,
     newTaskDueDate,
-    taskState
+    taskState,
+    activity
   } = singleTask;
   
   const {

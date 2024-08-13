@@ -104,9 +104,9 @@ export const LeftMenu = () => {
         buttonName = "Charts"
         onClick = {chartsActivity}
       />
-      <SubmitBtn3 
+      {/* <SubmitBtn3 
         buttonName = "TimeLine"
-      />
+      /> */}
       <SubmitBtn3 
         buttonName = "Users"
         onClick = {userList}
@@ -119,9 +119,9 @@ export const LeftMenu = () => {
         buttonName = "Productivity"
         onClick = {productivity}
       />
-      <SubmitBtn3 
+      {/* <SubmitBtn3 
         buttonName = "Work Space"
-      />
+      /> */}
       <SubmitBtn3 
         buttonName = "Chat"
         onClick = {chat}

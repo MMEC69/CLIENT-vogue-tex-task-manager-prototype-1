@@ -9,6 +9,7 @@ import {projectStateForCP} from "../../Functions/ProjectStateFunctions";
 import { projectName1, departmentName1, projectDescription1 } from "../../MetaData/FormValidationPatterns";
 import { sendMailNewProject } from '../../Functions/Mail';
 import { uploadAttachments, updateServerAttachments } from "../../Functions/ServerCommunication";
+import styles from "../ComponentCSS/Popup.module.css";
 
 export default function CreateNewProject() {
     const {
@@ -156,7 +157,16 @@ export default function CreateNewProject() {
                     onChange = {(e) => {setProject({...project, assignedTo: e})}}
                 />
 
-                <input type='file' multiple onChange={(e) => setFiles(e.target.files)}/>
+                <label htmlFor="fileUpload" className={styles.attachmentUploadButton}>
+                    <input
+                        htmlFor = "fileUpload"
+                        type='file' 
+                        multiple 
+                        onChange={(e) => setFiles(e.target.files)}
+                    />
+                    {/* Attach */}
+                </label>
+                
 
                 <SubmitBtn1
                     buttonName = "Create The Project"

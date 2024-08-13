@@ -10,7 +10,11 @@ import { userFilter2 } from '../../Functions/FilterFunctions';
 import AssignedToList from '../UsersList/AssignedToList';
 
 export default function ProjectContentView() {
-    const {currentProject, users} = useContext(UserContext);
+    const {
+        currentProject, 
+        users,
+        activity
+    } = useContext(UserContext);
     const {project} = currentProject;
     const {
         projectName,
@@ -93,6 +97,7 @@ export default function ProjectContentView() {
                     singleTask = {task} 
                     projectName = {projectName} 
                     projectID = {_id}
+                    activity = {activity}
                     />
             })}
         </div>   
