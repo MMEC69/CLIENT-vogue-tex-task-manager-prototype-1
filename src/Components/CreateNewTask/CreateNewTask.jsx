@@ -107,7 +107,7 @@ export default function CreateNewTask() {
                     autoComplete='off'
                     name = "newTaskName"
                     value={newTask.newTaskName}
-                    onChange={(e) => {setNewTask({...newTask, newTaskName: (e.target.value).trim()})}}            
+                    onChange={(e) => {setNewTask({...newTask, newTaskName: e.target.value})}}            
                     pattern = {taskName1}
                 />
                 <Field2
@@ -117,7 +117,7 @@ export default function CreateNewTask() {
                     autoComplete='off'
                     name = "newTaskDescription"
                     value={newTask.newTaskDescription}
-                    onChange={(e) => {setNewTask({...newTask, newTaskDescription: (e.target.value).trim()})}}
+                    onChange={(e) => {setNewTask({...newTask, newTaskDescription: e.target.value})}}
                     pattern = {taskDescription1}
                 />
                 <DField1
@@ -151,6 +151,8 @@ export default function CreateNewTask() {
                         const taskState = projectStateForCP(newTask.newTaskStartDate);
                         setNewTask({
                             ...newTask,
+                            newTaskName: newTask.newTaskName.trim(),
+                            newTaskDescription: newTask.newTaskDescription.trim(),
                             assigner:user.id,
                             taskState: taskState
                         });
